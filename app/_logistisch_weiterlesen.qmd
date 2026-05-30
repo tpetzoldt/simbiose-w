@@ -1,0 +1,21 @@
+**r- und K-Strategie**
+
+
+Das logistische Modell ist die theoretische Grundlage für die Unterscheidung zwischen r- und K-Strategen. Unter einem r-Strategen versteht man Arten, die sich schnell vermehren, "koste es, was es wolle". K-Strategen sind hingegen Arten, die eine möglichst hohe Abundanz (ein hohes K) erreichen können. Nach modernerer Auffassung sind es Organismen, die auch bei Nahrungsknappheit gut überleben und Verluste minimieren können.
+
+Siehe dazu auch [Ein-Spezies-Modelle](https://de.wikipedia.org/wiki/Populationsdynamik#Ein-Spezies-Modelle) in Wikipedia.
+
+**Diskretes Wachstum kann zu Chaos führen**
+
+Das logistische Modell und dessen Gleichgewichte sind ein anschauliches Beispiel aus der Chaostheorie. 
+Die unter "Aufgaben" beschriebenen Experimente setzen voraus, dass das Populationswachstum kontinuierlich erfolgt, d.h.
+mathematisch mit einer Differentialgleichung beschrieben wird.
+
+Wenn sich das Populationswachstum in Form von Generationen entwickelt, 
+z.B. bei Wildtieren die sich nur einmal im Jahr fortpflanzen, dann ist der Zeitschritt "diskret". Mathematisch ist das eine Differenzengleichung.
+
+In diesem Fall kann die Kapazitätsgrenze zeitweilig überschritten werden. Anschließend kommt es zu einem teilweisen Zusammenbruch der Population, z.B. auf Grund von Futtermangel. Im anschließenden Jahr kann sich die Population wieder erholen usw. Somit entsteht ein Zyklus und unter bestimmten Bedingungen ein chaotisches Muster.
+
+Mehr dazu steht unter [Logistische_Gleichung](https://de.wikipedia.org/wiki/Logistische_Gleichung#Graphische_Darstellung) in Wikipedia.
+
+Wenn Du es selbst ausprobieren willst, kannst Du eine Mail an die Entwickler der App schreiben. Vielleicht bauen sie das Chaosmodell mit in die App ein.

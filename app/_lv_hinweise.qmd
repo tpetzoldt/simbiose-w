@@ -1,0 +1,16 @@
+**Ein dimensionsloses Modell**
+
+In der Regel lernen wir, dass die Koordinatenachsen immer mit Maßeinheiten beschriftet werden sollen. Das ist sehr wichtig aber es gibt Ausnahmen.  Bei theoretischen Modellen wird manchmal nur die Bedeutung ohne Maßeinheit an die Achse geschrieben, z.B. "Zeit", "Häufigkeit" oder "Abundanz". 
+
+In der Physik geht man oft noch weiter und skaliert alle Achsen auf ein Intervall von Null bis Eins. In den vorliegenden Apps haben wir darauf verzichtet, so dass man sich unter den Werten etwas vorstellen kann.
+So können wir je nach Anwendung eine Maßeinheit festlegen, z.B."Stunden" bzw. "Tage" für schnell wachsende Algen und Daphnien oder "Jahre" für Schneeschuhhasen und Luchse.
+
+Bei den Maßeinheiten für Abundanz und Biomasse muss beachtet werden, dass Algen und Daphnien unterschiedlich groß sind und eine unterschiedliche Körpermasse besitzen. Wenn man auf die Maßeinheit verzichtet, sind die Werte auf der y-Achse nur relative Größen, die nicht miteinander vergleichbar sind.
+
+Betrachtet man die Biomasse, kann man mit einem Trick annähernd vergleichbare Verhältnisse herstellen. Als Faustregel gilt, dass in einer Nahrungskette etwa 10% der Energie von einer trophischen Ebene an die nächste weitergegeben wird.
+
+Wir können das berücksichtigen, wenn der Parameter $c$ ("Zuwachseffizienz") nur ein Zehntel von $b$ ("Fraßintensität") beträgt, also z.B. $b=0.2$ und $c=0.02$. Außerdem muss man in diesem Fall die Anfangswerte entsprechend anpassen, z.B. $B_0=1$ und $R_0=0.05$.
+
+Durch Änderung der Parameter können auch Kombinationen eingestellt werden, die nicht sinnvoll oder unrealistisch erscheinen. Dies liegt zum Teil daran, dass die Parameterwerte relativ zur Zeit angegeben werden, z.B. Wachstum pro Tag oder pro Stunde. Daher ist es manchmal notwendig, auch die Zeiteinheit anzupassen und die Werte und Maßeinheiten einer genauen Realitätsprüfung zu unterziehen.
+
+Um das Verständnis zu erleichtern, können wir die Maßeinheiten außer Acht lassen und die Ergebnisse nur qualitativ betrachten, d.h. wenig - viel, Zyklus - Gleichgewicht, größere Amplitude - kleinere Amplitude, längerer Zyklus - kürzerer Zyklus.

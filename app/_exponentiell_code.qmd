@@ -1,0 +1,92 @@
+## {width=22%}
+
+```{r}
+#| context: server
+suppressMessages(library(deSolve))
+
+growth <- function (t, x, parms) {
+  with(as.list(c(x, parms)),{
+    dN <- r * N
+    list(c(dN))
+  })
+}
+
+simulate_growth <- reactive({
+  
+  ## todo: integrate this in the other codes, too
+  req(input$growth_continuous, input$t_max, input$growth_r, input$growth_N0)
+  
+  if (input$growth_continuous  == "continuous") {
+    times  <- seq(0, input$t_max, length.out=101)
+  } else {
+    times  <- seq(0, input$t_max, by=1)
+  }
+  
+  parms  <- c(r = input$growth_r)
+  y0 <- c(N = input$growth_N0)
+  #res <- ode(y0, times, growth, parms, method = "adams")
+  
+  ## continuos: analytical solution
+  if (input$growth_continuous == "continuous") {
+    res <- data.frame(
+       time = times,
+       N = y0 * exp(parms * times)
+  )
+  ## discrete: numerical integration
+  } else {
+    res <- as.data.frame(ode(y0, times, growth, parms, method = "euler"))
+  }
+  
+  
+})
+
+#| context: server
+output$growth <- renderPlotly({
+  res <- simulate_growth()
+  
+  gg <- res |>
+    as.data.frame() |>
+    pivot_longer(cols=c("N"), names_to="Population", values_to="Abundanz") |>
+    rename(Zeit = time) |>
+    ggplot(aes(Zeit, Abundanz, color=Population)) + 
+      scale_color_manual(values=c("#69af22")) +
+      theme(legend.position="none") +
+      figure_theme 
+  if (input$growth_continuous == "continuous") {
+    gg <- gg + geom_line()
+  } else {
+    gg <- gg + geom_point()
+  }
+
+  ggplotly(gg)
+  
+})
+```
+
+```{r}
+inputPanel(
+  h2("Anfangswerte"),
+  numericInput(
+    "growth_N0", label = "N0: Abundanz", value = 1, min = 0, max = 100, step = 1,
+			 width="50%"
+  ),
+  h2("Parameter"),
+  sliderInput(
+    "growth_r", label = "r: Wachstumsrate", value = 1, min = -1.2, max = 1.2, step = 0.1
+  ),
+  h2("Steuerung"),
+   radioButtons("growth_continuous", "Zeitschritte",
+               c("diskret" = "discrete",
+                 "kontinuierlich" = "continuous"), selected="discrete"),
+   sliderInput(
+     "t_max", label = "Simulationszeit", value = 10, min = 5, max = 200, step = 5
+   )
+
+)
+```
+
+## {width=40%}
+```{r}
+plotlyOutput("growth")
+```
+

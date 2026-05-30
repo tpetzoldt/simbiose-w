@@ -1,0 +1,22 @@
+**Exponentielles Wachstum verstehen**
+
+1. Wie viele Zellen entwickeln sich bei einer Wachstumsrate von $r=1$ d^-1^ aus einer einzelnen Zelle an einem Tag:
+
+a. beim diskreten Wachstum in festen Zeitschritten?
+b. beim kontinuierlichen (exponentiellen) Wachstum?
+
+---
+
+2. Eine Grünalgenpopulation startet mit 10 Zellen pro Liter und einer Wachstumsrate von $r=1$ d^-1^. Wieviele Zellen pro Liter findet man bei exponentiellem Wachstum nach 7 Tagen?
+
+---
+
+3. Eine Cyanobakterienpopulation (Blaualgen) wächst mit einer Wachstumsrate von $r=0.5$ d^-1^. Nach etwa wieviel Tagen hat sich bei einem exponentiellem Wachstum die Abundanz verzehnfacht?
+
+---
+
+4. In einem See ist eine Klarwassersituation entstanden. Die Daphnienpopulation mit einer Konzentration von 50 Individuen pro Liter leidet unter akutem Nahrungsmangel und vermehrt sich nicht mehr. Allerdings beträgt auf Grund des Fischfraßdrucks die exponentielle Mortalitätsrate $d=0.1$ d^-1^. Nach wieviel Tagen befindet sich nur noch eine Daphnie in einem Liter Wasser?
+
+---
+
+5. Ein Gedankenexperiment: In einem Becherglas mit 1 L Nährlösung befinden sich Algen mit einem Frischmasse von 1 mg L^-1^, die Wachstumsrate beträgt 1 d^-1^. Nach welcher Zeit wäre das Becherglas komplett mit Algenbiomasse gefüllt, wenn die Algen unlimitiert wachsen könnten?

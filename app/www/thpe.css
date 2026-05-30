@@ -1,0 +1,136 @@
+.red {
+  color: red;
+}
+.blue {
+  color: #006ab2;
+}
+.cyan {
+  color: #009de0;
+}
+.gray {
+  color: #717778;
+}
+.neongreen {
+  color: #69af22;
+}
+.orange {
+  color: #ee7f00;
+}
+.darkred {
+  color: #93107d;
+}
+
+body {
+  font-size: var(--font-size-root) !important; 
+}
+
+
+/* Reduce all headings proportionally */
+h1 { font-size: 140% !important; }
+h2 { font-size: 120% !important; }
+h3 { font-size: 100% !important; }
+h4 { font-size: 85% !important; }
+
+/* Reduction of Shiny Widget font size */
+/* Target all Shiny input widgets */
+.shiny-bound-input,
+.form-control,
+.selectize-input,
+.form-select {
+  font-size: 85%; !important;
+}
+
+/* Target input labels */
+.control-label,
+label {
+  font-size: 85%; !important;
+}
+
+/* Target selectInput dropdown options */
+.selectize-dropdown {
+  font-size: 85%; !important;
+}
+
+/* Target radio buttons and checkboxes */
+.radio label,
+.checkbox label {
+  font-size: 85% !important;
+}
+
+/* Target slider inputs */
+.irs-single,
+.irs-min,
+.irs-max,
+.irs-from,
+.irs-to {
+  font-size: 70% !important;
+}
+
+
+
+/* the following may be obsolete; if needed, reduce further */
+
+.tinyfont {
+  font-size: 50%;
+  line-height: 160%;
+}
+
+
+.smallfont {
+  font-size: 70%;
+  line-height: 160%;
+}
+
+.bigfont {
+  font-size: 140%;
+  line-height: 160%;
+}
+
+.hugefont {
+  font-size: 200%;
+  line-height: 180%;
+}
+
+.add-space{
+  padding-right: 5%;
+}
+
+
+.irs-wrapper { /* The standard class for Quarto/Shiny sliders */
+  /* On Windows/Large screens, give it more breathing room */
+  width: 90%; 
+  margin: 0 auto;
+}
+
+/* Specific adjustment for the narrow 22% cards */
+.card[style*="width: 22%"] .irs-wrapper {
+  width: calc(100% - 2rem); /* Leaves exactly 1rem of padding on each side */
+  min-width: 150px; /* Prevents it from becoming a tiny dot on Windows */
+}
+
+/* Adjust for iPad/Mac specifically if you want to keep that 80% look there */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .irs-wrapper {
+    width: 80%;
+  }
+}
+
+/* Specific fix for iPad 10th Gen (Touch devices) */
+@media (pointer: coarse) {
+  .quarto-dashboard .form-group.shiny-input-container {
+    width: 80% !important; /* Force it even narrower for the iPad */
+  }
+}
+
+/* Adjust the main brand/title in the top bar */
+.navbar-brand .navbar-title {
+  font-size: 1.2rem !important; /* Default is usually 1.5rem or larger */
+}
+
+/* Make it even smaller on iPad/Mobile to prevent wrapping */
+@media  (pointer: coarse) {
+  .navbar-brand .navbar-title {
+    font-size: 60% !important;
+  }
+}
+

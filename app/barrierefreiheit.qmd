@@ -1,0 +1,42 @@
+**Erklärung zur Barrierefreiheit**
+
+Das Institut für Hydrobiologie der Technischen Universität Dresden ist bemüht, ihre unter [https://weblab.hydro.tu-dresden.de/](https://weblab.hydro.tu-dresden.de/) veröffentlichte Website im Einklang mit den Bestimmungen des Barrierefreie-Websites-Gesetz (BfWebG) in Verbindung mit der Barrierefreie-Informationstechnik-Verordnung (BITV 2.0) barrierefrei zugänglich zu machen.
+
+**Erstellung dieser Erklärung zur Barrierefreiheit**
+
+Diese Erklärung wurde am 09.09.2020 erstellt und zuletzt am 10.12.2024 aktualisiert. Grundlage der Erstellung dieser Erklärung zur Barrierefreiheit ist eine am 28.09.2020 durch die Professur für Mensch-Computer Interaktion der TU Dresden für unsere Apps durchgeführte Selbstbewertung.
+
+**Stand der Barrierefreiheit**
+
+Diese Website ist noch nicht mit den Vorgaben des BfWebG in Verbindung mit der BITV 2.0 vereinbar. Die Unvereinbarkeiten und/oder Ausnahmen sind nachstehend aufgeführt.
+
+**Nicht barrierefreie Inhalte**
+
+* Die Sprachauszeichnung der Webseiten fehlt teilweise.
+* Teilweise sind die Seitentitel nicht vorhanden bzw. nicht eindeutig.
+* Die Hierarchie der Überschriften-Ebenen wurde teilweise nicht beachtet.
+* Die Screenreader-Rückmeldung ist an einigen Stellen unzureichend:
+    - Einige Formularfelder besitzen keine Verknüpfung zu ihrer Beschriftung.
+    - Bei einigen Auswahllisten werden die Einträge nicht vorgelesen. 
+
+Für die durch die angebotenen Webtools generierten Grafiken existieren keine Alternativtexte. Da es sich bei den Tools um experimentelle Forschungsprototypen handelt, sind diese Inhalte aufgrund einer unverhältnismäßigen Belastung nach § 2 Absatz 3 BfWebG vorübergehend nicht barrierefrei zugänglich gestaltet. Für taktile Alternativen können Sie sich bei Bedarf an die [AG Services Behinderung und Studium](https://tu-dresden.de/tu-dresden/chancengleichheit/agsbs) wenden.
+
+**Kontakt**
+
+Sollten Ihnen Mängel in Bezug auf die barrierefreie Gestaltung auffallen oder wenn Sie Informationen zu nicht barrierefreien Inhalten benötigen, wenden Sie sich bitte an Dr. Thomas Petzoldt (E-Mail: thomas.petzoldt@tu-dresden.de, Telefon: +49 351 463 34954). Wir sind für Ihre Rückmeldungen und Unterstützung dankbar.
+
+Wir werden versuchen, die mitgeteilten Mängel zu beseitigen bzw. Ihnen nicht zugängliche Informationen in barrierefreier Form zur Verfügung zu stellen.
+
+**Durchsetzungsverfahren**
+
+Wenn wir Ihre Rückmeldungen aus Ihrer Sicht nicht befriedigend bearbeiten, können Sie sich an die Sächsische Durchsetzungsstelle wenden:
+
+Beauftragter der Sächsischen Staatsregierung für die Belange von Menschen mit Behinderungen, 
+
+Albertstraße 10, 01097 Dresden<br>
+Postanschrift: Archivstraße 1, 01097 Dresden<br>
+E-Mail: info.behindertenbeauftragter@sk.sachsen.de<br> 
+Telefon: 0351 564-12161<br>
+Fax: 0351 564-12169<br>
+[Webseite: https://www.inklusion.sachsen.de](Webseite: https://www.inklusion.sachsen.de)
+

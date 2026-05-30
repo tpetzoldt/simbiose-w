@@ -1,0 +1,80 @@
+/*-- scss:defaults --*/
+
+$navbar-bg: #00008c;
+$navbar-fg: #ffffff;
+$sidebar-hl: #69af22;
+
+$mainFont: 'Open Sans';
+$headingFont: 'Open Sans Semibold';
+
+
+/* Standard Desktop (Full HD) */
+/* 100% of 16px = 16px */
+html {
+  font-size: 100%; 
+}
+
+/* MacBook / Large Laptops */
+/* 93.75% of 16px = 15px */
+@media (max-width: 1600px) {
+  html {
+    font-size: 93.75%; 
+  }
+}
+
+/* iPad / Tablets */
+/* 87.5% of 16px = 14px */
+@media (max-width: 1024px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+/* Target the Huawei M5 Lite (10.1" / 1920x1200 / DPR 2.0) */
+@media screen 
+  and (min-width: 900px) 
+  and (max-width: 1000px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  
+  html {
+    /* Shrink the base size so it looks like a high-res desktop */
+    font-size: 70% !important; 
+  }
+
+  /* Tighten the padding in Quarto cards to fit more content */
+  .card-body {
+    padding: 0.5rem !important;
+  }
+}
+
+/* Target all download buttons */
+.btn-download, 
+a[download] {
+  font-size: 0.7rem !important; /* Smaller than the standard 1rem */
+  padding: 0.25rem 0.5rem;      /* Shrink the button padding to match */
+}
+
+/* Ensure the icon (if any) scales with the text */
+.btn-download i {
+  font-size: 0.7rem;
+}
+
+body {
+  font-size: var(--font-size-root);
+}
+
+ul li::marker {
+  color: #c85000; /* Change the color of list markers */
+}
+
+.math, .mjx-math {
+  font-size: 100%;
+  font-family: $mainFont;
+  font-style: italic;
+}
+
+/* Example usage of navbar variables */
+.navbar {
+  background-color: $navbar-bg;
+  color: $navbar-fg;
+}

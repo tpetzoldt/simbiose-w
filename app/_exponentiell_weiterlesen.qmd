@@ -1,0 +1,42 @@
+**Hintergrundinformationen**
+
+In der Einleitung wurde von einer Verdopplung ausgegangen aber bei
+kontinuierlichem Wachstum wird mit einer Exponentialfunktion gerechnet. 
+Warum ist das so?
+
+In der Realität teilen sich nicht alle Algenzellen gleichzeitig,
+manche teilen sich früher, andere später und die Frühen teilen sich
+vielleicht schon das zweite Mal. Im Ergebnis erhält man deshalb keine
+geometrische Folge, sondern ein exponentielles Wachstum.
+
+Aus der schrittweisen (iterativen) Gleichung:
+
+$$
+N_{t+1} = N_{t} + r \cdot N_{t}
+$$
+wird durch Umformen eine Differenzengleichung:
+
+$$
+\frac{N_{t+1} - N_t}{\Delta t} = r \cdot N_t
+$$
+beziehungsweise:
+
+$$
+\frac{\Delta N}{\Delta t} = r \cdot N_t
+$$
+
+Wenn man sehr viele Zellen und kurze Zeiträume betrachtet, erhält man eine
+Differentialgleichung:
+
+$$
+\frac{dN}{dt} = r \cdot N
+$$
+
+Diese Gleichung kann man mit Hilfe der sogenannten Variablentrennungsmethode analytisch
+integrieren und erhält die exponentielle Formel:
+
+$$
+N_t = N_0 \cdot e^{r\cdot t}
+$$
+Die exponentielle Formel hat den Vorteil, dass man nicht schrittweise iterieren 
+muss, sondern die Werte für alle Zeitschritte direkt ausrechnen kann.

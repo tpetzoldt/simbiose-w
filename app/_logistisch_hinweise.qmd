@@ -1,0 +1,27 @@
+**Am Anfang ist das Wachstum nahezu exponentiell**
+
+* Bei im Vergleich zu $K$ kleiner Startabundanz $N_0$ entspricht die Wachstumskurve am Anfang
+nahezu einem exponentiellen Wachstum. Die Abundanz ist weit weg von $K$ so das dessen 
+Vergrößerung keinen Einfluss mehr hat.
+
+* Bei einer Verkleinerung von $K$ in die Nähe der Abundanz, wird die Limitierung 
+deutlich sichtbar und die Wachstumskurve flacht sich ab.
+
+**Die maximale Abundanz ist vom Startwert unabhängig**
+
+* Der Wert von $N_0$ beeinflusst lediglich, wie schnell der Wert von $K$ erreicht wird. Er hat keinen Einfluss auf den Endwert.
+
+* Wenn die Startabundanz über der Kapazitätsgrenze liegt, verringert sich die Population so lange, bis $K$ erreicht ist.
+
+**Gleichgewichte funktionieren unterschiedlich**
+
+Im Experiment können wir drei verschiedene Arten von Gleichgewichten erkennen. Wenn $N_0=0$ ist, sind keine Organismen da, die wachsen können. Wir haben sozusagen ein "steriles System". Die Abundanz bleibt auf 0.
+
+Wenn $r_{max}=0$ und $N_0 > 0$ sind, dann sind zwar Organismen da, aber sie vermehren sich nicht. Es kann auch sein, sie vermehren sich, aber Vermehrung und Absterben halten sich genau die Wage.
+
+Beide Gleichgewichte sind "labil" (oder instabil). Wenn zu $N_0 = 0$ nur ein kleiner Wert hinzukommt, beginnt das Populationswachstum, das Gleichgewicht wird verlassen und die Abundanz bewegt sich in Richtung $K$. Dasselbe passiert, wenn im zweiten Fall $r_{max} > 0$ wird.
+
+Im dritten Fall (bei $N = K$) handelt es sich um ein stabiles Gleichgewicht. Es wird erreicht wenn $N$ kleiner ist als $K$ aber auch wenn $N$ größer ist als $K$. Selbst wenn die Abundanz kurzzeitig von $K$ wegbewegt wird, stellt sich $K$ wieder ein. Man nennt dies auch "Resilienz".
+
+
+
