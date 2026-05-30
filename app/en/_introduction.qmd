@@ -18,7 +18,8 @@ When extracting drinking water from reservoirs, the algae must be removed at the
 
 ## A segment of the Food Chain
 
-The shift from clear to green, turbid water results from **fluctuations in population density**. This can happen quickly because microalgae and daphnia grow and reproduce very rapidly.
+The shift from clear to green, turbid water results from **fluctuations in population density**.
+This can happen quickly because microalgae and daphnia grow and reproduce very rapidly.
 In nature, the rate of growth depends on many factors, such as the season, the weather, nutrient availability, and fish stock.
 
 Scientists around the world are working to better understand these processes and describe them mathematically in order to understand the condition of water bodies and, for example, predict algal blooms.
