@@ -1,0 +1,60 @@
+## {width=22%}
+
+```{r}
+#| context: server
+suppressMessages(library(deSolve))
+
+logist <- function (t, x, parms) {
+  with(as.list(c(x, parms)),{
+    dN <- r_max * N * (1-N/K)
+    list(c(dN))
+  })
+}
+parms  <- c(r_max=0.1, K=10)
+times  <- seq(0, 100, by=0.5)
+y0     <- c(N=1)
+
+simulate_logist <- reactive({
+  parms  <- c(r_max=input$logist_r,  K=input$logist_K)
+  y0 <- c(N = input$logist_N0)
+  res <- ode(y0, times, logist, parms, method = "adams")
+})
+
+#| context: server
+output$logist <- renderPlotly({
+  res <- simulate_logist()
+  
+  gg <- res |>
+    as.data.frame() |>
+    pivot_longer(cols=c("N"), names_to="Population", values_to="Abundanz") |>
+    rename(Zeit = time) |>
+    ggplot(aes(Zeit, Abundanz, color=Population)) + geom_line() + 
+      scale_color_manual(values=c("#69af22")) +
+      theme(legend.position="none") +
+      figure_theme
+
+  ggplotly(gg)  
+  
+})
+```
+
+```{r}
+inputPanel(
+  h2("Anfangswerte"),
+  numericInput(
+    "logist_N0", label = "N0: Abundanz", value = 1.0, min = 0, max = 1000, step = 0.1
+  ),
+  h2("Parameter"),
+  sliderInput(
+    "logist_r", label = "r_max: Wachstumsrate", value = 0.1, min = 0, max = 1, step = 0.02
+  ),
+  sliderInput(
+    "logist_K", label = "K: Kapazitätsgrenze", value = 100, min = 0, max = 1000, step = 10
+  )
+)
+```
+
+## {width=40%}
+```{r}
+plotlyOutput("logist")
+```

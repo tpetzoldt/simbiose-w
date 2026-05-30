@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SimBioSe-W</title>
+  <script>
+    // Ermittelt die bevorzugte Sprache des Browsers (z.B. "de", "en-US")
+    var userLang = navigator.language || navigator.userLanguage; 
+    
+    // Wenn die Sprache mit "en" beginnt, leite zu /en/ weiter, sonst zu /de/
+    if (userLang.startsWith('en')) {
+      window.location.href = "./en/app.qmd"; // bzw. der Pfad zur kompilierten app.html / Shiny-Server-Pfad
+    } else {
+      window.location.href = "./de/app.qmd";
+    }
+  </script>
+</head>
+<body>
+  <p>Loading / Wird geladen...</p>
+</body>
+</html>

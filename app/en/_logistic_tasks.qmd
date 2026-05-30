@@ -1,0 +1,39 @@
+**Gleichgewichte beim logistischen Wachstum**
+
+<br></br>
+
+1. Setze die logistische Wachstumsrate auf den kleinstmöglichen Wert ($r_{max}=0.02$) und die Kapazitätsgrenze $K=500$:
+ 
+    * Welche Form zeigt die Wachstumskurve?
+
+---
+
+2. Verschiebe nun den Regler von $K$.
+ 
+    * Warum hat eine Vergrößerung von $K$ nur einen geringen Einfluss?
+    
+    * Warum hat eine Verkleinerung von $K$ einen größeren Einfluss?
+
+---
+
+3. Setze jetzt wieder $r_{max}=0.1$ und $K=100$.
+ 
+    * Was passiert, wenn man die Anfangsabundanz $N_0$ verändert?
+    
+    * Setzte nun die Anfangsabundanz auf eine größeren Wert, z.B. 120. Was passiert?
+
+---
+
+4. Im Folgenden wollen wir verschiedene Arten des Gleichgewichts untersuchen:
+ 
+    * $N_0=0, r_{max}=0.1, K=100$
+    
+    * $N_0=1, r_{max}=0, K=100$
+    
+    * $N_0=100, r_{max}=0.1, K=100$
+
+
+a) Erläutere zunächst durch Interpretation, wie die unterschiedlichen Gleichgewichtszustände entstehen. 
+
+b) Versuche durch Einsetzen der Werte in die Gleichungen zu verstehen, warum es zum Gleichgewicht kommt.
+Hierfür ist die Gleichung der Ableitung $dN/dt= ...$ einfacher zu verstehen als die integrierte Form.

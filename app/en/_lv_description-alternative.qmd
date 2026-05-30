@@ -1,0 +1,41 @@
+**Das Räuber-Beute-Modell von Lotka und Volterra**
+
+Im Unterschied zum logistischen oder zum ressourcenlimitierten Wachstum lassen sich in der Natur nur selten stabile Gleichgewichte beobachten, sondern die Abundanz schwankt. Hierfür gibt es verschiedene Ursachen, z.B. den Vermehrungszyklus oder eine untershiedliche Nahrungsverfügbarkeit durch die Jahreszeiten und das Wetter.
+
+Populationsschwankungen können jedoch auch aus Wechselwirkungen zwischen Populationen resultieren.
+
+Solche Wechselwirkungen wurden Anfang des 20. Jahrhunderts von dem italienischen Mathematiker und Physiker [Vito Volterra](https://de.wikipedia.org/wiki/Vito_Volterra) und dem österreich-amerikanischen Chemiker und Versicherungsmathematiker [Alfed Lotka](https://de.wikipedia.org/wiki/Alfred_J._Lotka) untersucht und mathematisch beschrieben.
+
+
+Das Modell besteht aus zwei Gleichungen, einer für die Produzenten (z.B. Algen) und einer für die Konsumenten (z.B. Daphnien). In Abwandlung zur von @Volterra1926b ursprünglich verwendeten Schreibweise der Gleichungen verwenden viele Wissenschaftler und Lehrbücher unterschiedliche Symbole und Varianten. Wir verwenden im folgenden eine vereinfachte Notation mit $A$ für die Algen und $D$ für die Daphnien. Als Modellparameter verwenden wir:
+
+$b$ für die Vermehrungsrate der Algen
+$g$ für des gefressen werden
+$f$ als Umrechnungsfaktor von Algen in Daphnien
+$m$ für die Sterberate der Daphnien (Mortalität)
+
+
+Das Modell besteht nun im Prinzip aus drei Prozessen. Die ersten beiden 
+entsprechen einem exponentiellen Wachstumsmodell mit positiver bzw. negativer 
+Wachstumsrate.
+
+\begin{align}
+\frac{dA}{dt} = b \cdot A \text{exponentielles Wachstum der Algen}\\
+\frac{dD}{dt} = - m \cdot D \text{exponentielles Absterben der Daphnien}\\
+\end{align}
+
+Der dritte Prozess beschreibt fressen und gefressen werden, also die Interaktion. Hierbei hängt die Verlustrate der Algen $(g \cdot D)$ von der Abundanz der Daphnien ab und die Wachstumrate der Daphnien von der Abundanz der Algen $(g  \cdot A)$. Ein zusätzlicher Umrechnungsfaktor $f$ beschreibt den Ausnutzungsgrad der Algen für das Wachstum der Daphnien, z.B. 0.1 für 10% Ausnutzungsgrad.
+
+
+Somit ergibt sich das folgende Gleichungssystem, bei dem die Verlustrate der Algen durch Gefressenwerden und die Wachstumsrate der Daphnien durch zusätzliche Klammern symbolisiert werden:
+
+$$
+\begin{align}
+\frac{dA}{dt} &= b \cdot A - (g \cdot D) \cdot A \\
+\frac{dD}{dt} &= f \cdot (g \cdot A) \cdot D - m \cdot D
+\end{align}
+$$
+
+
+
+

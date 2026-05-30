@@ -1,0 +1,22 @@
+**Wodurch wird das Wachstum begrenzt?**
+
+<br></br>
+
+1. Vergleiche das ressourcenlimitierte Wachstum mit dem logistischen Wachstum.
+
+    a. Worin besteht der Vorteil des ressourcenlimitierten Wachstums gegenüber der logistischen Wachstumsfunktion?
+
+    b. Gibt es auch Nachteile?
+
+---
+
+2. Untersuche den Einfluss von $r$, $k_P$ und $Y$ auf das Wachstum.
+
+    a. Bei welchen Werten von $r$ ist das Wachstum am schnellsten?
+
+    b. Bei welchen Werten von $k_P$ ist das Wachstum am schnellsten und die Nährstoffausnutzung am besten?
+
+    c. Wovon hängt die Steilheit des Übergangs in die Limitierung ab?
+
+    d. Welcher Parameter und welcher Anfangswert bestimmt die erreichte maximale Phytoplanktonmenge? Die maximal erreichte Abundanz entspricht der Kapazitätsgrenze $K$ beim logistischen Modell.
+

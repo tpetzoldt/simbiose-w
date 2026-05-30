@@ -1,0 +1,11 @@
+**Tipps zur App**
+
+* Wenn die Zahlen zu groß werden, kann man den Simulationszeitraum verkürzen.
+* Man kann Zahlen mit dem Mauszeiger direkt aus der Grafik ablesen.
+* Das Ergebnisdiagramm kann mit Hilfe des Kamerasymbols abgespeichert werden.
+* Statt Simulation sind manchmal auch Papier und Bleistift oder ein Taschenrechner nützlich, Nachdenken sowieso.
+
+**Tipps zu den Aufgaben**
+
+* Wenn eine Population abstirbt, also $b < d$ ist, dann ist die Reproduktionsrate $r$ negativ.
+* Die Dichte von Algen ist nur wenig größer als die von Wasser. Wir können praktisch mit 1 g cm^-3^ rechnen.

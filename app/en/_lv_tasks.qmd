@@ -1,0 +1,87 @@
+**Einstellung von Gleichgewichten**
+
+
+Gegeben sind zunächst die Standardparameter und Startwerte wie folgt:
+
+$a=b=c=d=0.1$, $B_0=1$, $R_0=0.5$.
+
+
+1. Verändere den Anfangswert für den Räuber ($R_0$) auf 2 bzw. auf 1.
+
+* Was passiert?
+
+---
+
+2. Setze nochmals $R_0=2$. Versuche nun, eine
+  Vermehrungsrate der Beute ($a$) zu finden, bei dem wieder ein
+  Gleichgewicht auftritt.
+
+* Man kann den gesuchten Wert entweder durch Probieren oder durch Umstellen 
+  des Gleichungssystems finden.
+
+---
+
+**Periodendauer und Amplitude**
+
+Stelle zunächst die Standardparameter wieder her, z.B. indem die App neu geladen wird.
+
+
+3. Durch Veränderung der Parameter $a, b, c, d$ lässt sich die Periodendauer ändern. 
+Zur Vereinfachung sollen alle Parameterwerte zunächst gleich sein ($a = b = c = d$). 
+Finde nun Werte, so dass sich die Periodendauer:
+
+    a. verkürzt
+
+    b. verlängert
+
+    c. Warum wirken die Parameter in die jeweils beobachtete Richtung?
+    
+Hinweis: Die Checkbox "Werte abtasten" aktiviert zusätzliche Hilfslinien. 
+  Mit Hilfe der Maus lassen sich konkrete Werte ablesen.
+
+---
+
+4. Setze nun wieder die Standardparameterwerte ein.
+
+    a. Verdopple die Beute-Vermehrungsrate $a$ auf 0.2. Wie ist das
+      Ergebnis zu erklären?
+
+    b. Verdopple die Räuber-Sterberate $d$ auf 0.2. Wie ist das
+      Ergebnis zu erklären?
+
+    c. Welche Folgerungen lassen sich zu **Umsatz** und **Populationsdichte**
+      in realen Systemen treffen?
+
+---
+
+5. Verdopple und halbiere den Umsatz zwischen $B$ und $R$.
+  Verwenden dazu Parameter im Bereich: $b = c = 0.05 \dots 0.2$.
+  
+* Wie lässt sich das Ergebnis erklären? Welche Informationen sind erforderlich, um beurteilen zu können, ob das Ergebnis realistisch ist?
+
+---
+
+**Analytische Ermittlung von Gleichgewichten und Mittelwerten**
+
+6. Stelle das Gleichungssystem um und ermittle den Gleichgewichtszustand.
+
+    a. Im Gleichgewichtszustand sind die ersten Ableitungen beider Gleichungen 
+      gleich 0. Gehe zu Aufgabe (2) zurück und finde den Wert des Parameters a
+      durch Umstellung und Lösung des Gleichungsystems.
+      
+    b. Über die Checkbox "Werte ablesen" kann man aus den angezeigten Punkten
+      die Mittelwerte von Beute und Räuber für jeden Zyklus abschätzen. Hierbei
+      reicht ein Zyklus immer von einem Maximum zum nächsten.
+      
+    c. Vergleiche den Gleichgewichtstand (horizontale gepunktete Linien) mit 
+      den nach (b) abgeschätzten Mittelwerten. Überlege bzw. recherchiere,
+      wie man den Mittelwert aus den Anfangswerten und den Modellparametern
+      direkt erhalten kann.
+
+
+$$
+\begin{align}
+\frac{dB}{dt} &= a \cdot B - b \cdot B \cdot R \\
+\frac{dR}{dt} &= c \cdot B \cdot R - d \cdot R
+\end{align}
+$$

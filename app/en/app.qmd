@@ -1,0 +1,273 @@
+---
+title: "[![](www/TUD_Logos_final_RGB_TUD_Logo_horizontal_weiss_de.png){height=40}](https://tu-dresden.de/hydrobiologie){target='_blank'}&nbsp;[SimBioSe-W]"
+lang: de
+format: 
+  dashboard:
+    orientation: columns
+    theme:
+      - cosmo
+      - ../www/thpe.scss
+    css: ../www/thpe.css
+    #logo: www/TUD_Logos_final_RGB_TUD_Logo_horizontal_weiss_de.png
+    #logo-alt: TU Dresden-Logo
+    #logo-href: https://tu-dresden.de/hydrobiologie/
+    expandable: false
+    search: true
+server: shiny
+#embed-resources: true
+#html-math-method: katex
+html-math-method: mathjax
+bibliography: ../growth_and_lv_models.bib
+csl: ../apa.csl
+header-includes: |
+  <script>
+  $(document).on('shiny:connected', function() {
+    // Wait a brief moment for the Quarto dashboard UI to finish settling
+    setTimeout(function() {
+      var logo = $('.navbar-brand img.logo');
+      if (logo.length > 0 && !logo.parent().is('a')) {
+        logo.wrap('<a href="https://www.your-organisation.com" target="_blank" style="text-decoration: none;"></a>');
+      }
+    }, 100); 
+  });
+  </script>
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width=14, 
+                      fig.height=6, dev.args = list(pointsize=20))
+library("dplyr")
+library("tidyr")
+library("deSolve")
+library("shiny")
+library("plotly")
+library("scales")
+library("fontawesome")
+
+shiny::addResourcePath(prefix = "www", directoryPath = "../www")
+
+mypar <- list(las = 1, cex.lab = 1.4, cex.axis=1.4, lwd = 2)
+
+figure_theme <- theme(
+  axis.text = element_text(size=12),
+  axis.title = element_text(size=12, face="bold"),
+  legend.title = element_text(size=12, face="bold"),
+  legend.text = element_text(size=12),
+  strip.text = element_text(size=12, face="bold")
+)
+```
+
+
+# Introduction
+
+
+::: {.card width="20%" .gray}
+**Simbiose-W, version 1.4-0**
+
+The app is an open educational resource funded through the SimBiose project by the [Digital Teaching Fund](https://tu-dresden.de/zill/foerdermoeglichkeiten/fondsdll) at TU Dresden. 
+
+You may freely use the app as a whole as well as individual components in accordance with the Creative Commons license [CC BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/deed.de)  (share, edit, attribution, redistribute under the same terms). 
+If you remix, modify, or otherwise build directly upon the material, you may distribute your contributions only under the same license as the original. 
+
+No warranty is provided for the accuracy of the content or the technical functionality.
+
+**Short link**
+
+![](../www/simbiose-w-qrcode.png){width="6em" height="6em" fig-alt="QR Code auf diese Seite"}
+
+[https://tud.link/q25ufy](https://tud.link/q25ufy)
+<br>
+
+:::{.smallfont}
+**Quelltext für Entwickler**<br>
+[https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w](https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w)
+:::
+
+::: {.card-footer}
+![](../www/by-sa.png){height=36px fig-alt="Logo CC BY-SA"}&nbsp;
+![](../www/oer-banner.png){height=32px fig-alt="Logo: Open Educational Resources"}
+:::
+:::
+
+::: {.card width="60%"}
+{{< include _introduction.qmd >}}
+:::
+
+::: {.card width="20%" .gray}
+**Usage Tips**
+
+The app is optimized for display on laptop and PC monitors and on popular tablets.
+
+If the text is still too large or too small, you can adjust the font size in your system settings or web browser:
+
+* Windows: [Ctrl] + [-] or [Ctrl] + [+]
+* Android/Chrome: Settings -- Accessibility
+* iPad: if text overlaps, close all other tabs
+
+Portrait mode is supported on smartphones.
+
+**Development team at TU Dresden**
+
+* [Chair of Limnology](https://tu-dresden.de/hydrobiologie) and 
+* [Chair of Didactics of Biology](https://tu-dresden.de/mn/biologie/didaktik).
+
+
+Thomas Petzoldt, Luisa Henze, Monique Meier
+
+
+**Technologies**
+
+[R](https://www.r-project.org), [Quarto](https://quarto.org), [Shiny](https://shiny.posit.co/), [deSolve](https://github.com/tpetzoldt/deSolve), [ggplot2](https://ggplot2.tidyverse.org/)
+
+
+::: {.card-footer}
+![](../www/TUD_Logo_RGB_horizontal_blau_de.svg){height=44px fig-alt="Logo TU Dresden"}
+![](../www/ihb-color.svg){height=40px fig-alt="Logo Institut für Hydrobiologie"}
+:::
+:::
+
+
+# Exponential Growth
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+### Example
+
+{{< include _exponential_example.qmd >}}
+
+### The Model
+
+{{< include _exponential_description.qmd >}}
+
+### Tasks
+
+{{< include _exponential_tasks.qmd >}}
+
+### Hints
+
+{{< include _exponential_hints.qmd >}}
+
+### Read More
+
+{{< include _exponential_more.qmd >}}
+
+:::
+
+<!-- contains code with 2 columns --->
+{{< include _exponential_code.qmd >}}
+
+
+
+<!---------------------------------------------------------------------------/-->
+# Limitierted Growth
+
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+
+### example
+
+{{< include _logistic_example.qmd >}}
+
+### The Model
+
+{{< include _logistic_description.qmd >}}
+
+### Tasks
+
+{{< include _logistic_tasks.qmd >}}
+
+### Hints
+
+{{< include _logistic_hints.qmd >}}
+
+### Read More
+
+{{< include _logistic_more.qmd >}}
+
+:::
+
+<!-- contains code with 2 columns --->
+{{< include _logistic_code.qmd >}}
+
+<!---------------------------------------------------------------------------/-->
+# Nutrient Limited Growth
+
+
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+
+### Example
+
+{{< include _resource_example.qmd >}}
+
+### The Model
+
+{{< include _resource_description.qmd >}}
+
+### Tasks
+
+{{< include _resource_tasks.qmd >}}
+
+### Hints
+
+{{< include _resource_hints.qmd >}}
+
+### Read More
+
+{{< include _resource_more.qmd >}}
+
+:::
+
+<!-- contains code with 2 columns --->
+{{< include _resource_code.qmd >}}
+
+<!---------------------------------------------------------------------------/-->
+# Predator-Prey Model
+
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+
+### Example
+
+{{< include _lv_example.qmd >}}
+
+### The Model
+
+{{< include _lv_description.qmd >}}
+
+### Tasks
+
+{{< include _lv_tasks.qmd >}}
+
+### Hints
+
+{{< include _lv_hints.qmd >}}
+
+### Read More
+
+{{< include _lv_more.qmd >}}
+
+:::
+
+{{< include _lv_code.qmd >}}
+
+<!---------------------------------------------------------------------------/-->
+# Impressum
+
+{{< include ../impressum.qmd >}}
+
+# &#9855; <!--- Wheelchair Symbol /--->
+
+{{< include ../barrierefreiheit.qmd >}}
