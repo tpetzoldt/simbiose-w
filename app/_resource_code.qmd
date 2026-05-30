@@ -29,27 +29,37 @@ simulate_resource <- reactive({
 output$resource <- renderPlotly({
   res <- simulate_resource()
   
+  # Fetch dynamic translations for labels and structural variables
+  label_time          <- i18n$t("Time (h)")
+  label_abundance     <- i18n$t("Abundance")
+  label_phosphorus    <- i18n$t("Phosphorus")
+  label_phytoplankton <- i18n$t("Phytoplankton")
+  label_state_var     <- i18n$t("State Variable")
+  
+  # Construct dynamic labeller values for the wrap headers
+  facet_labels <- c(
+    Phosphorus = i18n$t("Phosphorus (P, mg/m3)"),
+    Phytoplankton = i18n$t("Phytoplankton (C, mg/m3)")
+  )
+  names(facet_labels) <- c(label_phosphorus, label_phytoplankton)
+  
   gg <- res |>
     as.data.frame() |>
-    rename(Phytoplankton=A, Phosphor=P) |>
-    pivot_longer(cols=c("Phosphor", "Phytoplankton"), 
-                 names_to = "Zustandsgröße", values_to = "Abundanz") |>
-    mutate(Population=factor(Zustandsgröße, levels=c("Phosphor", "Phytoplankton"))) |>
-    rename(Zeit = time) |>
-    ggplot(aes(Zeit, Abundanz, color = Zustandsgröße)) + 
+    rename(!!sym(label_phytoplankton) := A, !!sym(label_phosphorus) := P) |>
+    pivot_longer(cols = c(!!sym(label_phosphorus), !!sym(label_phytoplankton)), 
+                 names_to = label_state_var, values_to = label_abundance) |>
+    mutate(Population = factor(!!sym(label_state_var), levels = c(label_phosphorus, label_phytoplankton))) |>
+    rename(!!sym(label_time) := time) |>
+    ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_state_var))) + 
       geom_line() + 
-      facet_wrap(~ Zustandsgröße, scales="free", nrow=2, strip.position = "left", 
-                 labeller = as_labeller(c(Phosphor = "Phosphor (P, mg/m3)", 
-                                          Phytoplankton = "Phytoplankton (C, mg/m3)"))
-                 
-                 ) +
+      facet_wrap(vars(!!sym(label_state_var)), scales="free", nrow=2, strip.position = "left", 
+                 labeller = as_labeller(facet_labels)) +
       ylab(NULL) +
       scale_color_manual(values=c("#f2aa8d", "#69af22")) +
       theme(legend.position="none", 
-            #strip.background = element_blank(),
             strip.placement = "outside",
             plot.margin=margin(t = 0, r = 0, b = 10, l = 0, unit = "pt")) +
-      xlab("Zeit (h)") +
+      xlab(label_time) +
       figure_theme
 
   ggplotly(gg)  
@@ -58,30 +68,30 @@ output$resource <- renderPlotly({
 ```
 
 ```{r}
-#| fig-alt: "Input-Panel zur Einstellung von Anfangswerten und Modellparametern"
+#| fig-alt: "Input panel for adjusting initial values and model parameters"
 inputPanel(
-  h2("Anfangswerte"),
+  h2(i18n$t("Initial Values")),
   numericInput(
-    "resource_A", label = "A0: Algen (C, mg/m3)", value = 1.0, min = 0, max = 2, step = 0.1
+    "resource_A", label = i18n$t("A0: Algae (C, mg/m3)"), value = 1.0, min = 0, max = 2, step = 0.1
   ),
   numericInput(
-    "resource_P", label = "P0: Phosphor (P, mg/m3)", value = 10, min = 0, max = 20, step = 0.1
+    "resource_P", label = i18n$t("P0: Phosphorus (P, mg/m3)"), value = 10, min = 0, max = 20, step = 0.1
   ),
-  h2("Parameter"),
+  h2(i18n$t("Parameters")),
   sliderInput(
-    "resource_r", label = "r: Wachstumsrate (1/h)", value = 0.1, min = 0, max = 1, step = 0.02
-  ),
-  sliderInput(
-    "resource_kP", label = "Kp: Halbsättigung (P, mg/m3)", value = 5, min = 0.5, max = 20, step = .5
+    "resource_r", label = i18n$t("r: Growth rate (1/h)"), value = 0.1, min = 0, max = 1, step = 0.02
   ),
   sliderInput(
-    "resource_Y", label = "Y: C/P-Verhältnis", value = 41, min = 0, max = 200, step = 5
+    "resource_kP", label = i18n$t("Kp: Half-saturation (P, mg/m3)"), value = 5, min = 0.5, max = 20, step = .5
+  ),
+  sliderInput(
+    "resource_Y", label = i18n$t("Y: C/P ratio"), value = 41, min = 0, max = 200, step = 5
   )
 )
 ```
 
 ## {width=40%}
 ```{r}
-#| fig-alt: "Zeitreihendiagramm mit dem zeitlichen Verlauf der Zustandsgrößen"
+#| fig-alt: "Time-series diagram showing the temporal progression of state variables"
 plotlyOutput("resource")
 ```

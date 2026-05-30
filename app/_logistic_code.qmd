@@ -24,11 +24,15 @@ simulate_logist <- reactive({
 output$logist <- renderPlotly({
   res <- simulate_logist()
   
+  # Dynamically translate the plot axis labels
+  label_time      <- i18n$t("Time")
+  label_abundance <- i18n$t("Abundance")
+  
   gg <- res |>
     as.data.frame() |>
-    pivot_longer(cols=c("N"), names_to="Population", values_to="Abundanz") |>
-    rename(Zeit = time) |>
-    ggplot(aes(Zeit, Abundanz, color=Population)) + geom_line() + 
+    pivot_longer(cols=c("N"), names_to="Population", values_to=label_abundance) |>
+    rename(!!sym(label_time) := time) |>
+    ggplot(aes(!!sym(label_time), !!sym(label_abundance), color=Population)) + geom_line() + 
       scale_color_manual(values=c("#69af22")) +
       theme(legend.position="none") +
       figure_theme
@@ -40,16 +44,16 @@ output$logist <- renderPlotly({
 
 ```{r}
 inputPanel(
-  h2("Anfangswerte"),
+  h2(i18n$t("Initial Values")),
   numericInput(
-    "logist_N0", label = "N0: Abundanz", value = 1.0, min = 0, max = 1000, step = 0.1
+    "logist_N0", label = i18n$t("N0: Abundance"), value = 1.0, min = 0, max = 1000, step = 0.1
   ),
-  h2("Parameter"),
+  h2(i18n$t("Parameters")),
   sliderInput(
-    "logist_r", label = "r_max: Wachstumsrate", value = 0.1, min = 0, max = 1, step = 0.02
+    "logist_r", label = i18n$t("r_max: Growth rate"), value = 0.1, min = 0, max = 1, step = 0.02
   ),
   sliderInput(
-    "logist_K", label = "K: Kapazitätsgrenze", value = 100, min = 0, max = 1000, step = 10
+    "logist_K", label = i18n$t("K: Carrying capacity"), value = 100, min = 0, max = 1000, step = 10
   )
 )
 ```

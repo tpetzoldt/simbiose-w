@@ -1,6 +1,5 @@
 ## {width=22%}
 
-
 ```{r}
 #| context: server
 suppressMessages(library(deSolve))
@@ -25,36 +24,38 @@ simulate <- reactive({
 output$lotkavolterra <- renderPlotly({
   res <- simulate()
   
+  # Fetch dynamic translations for labels and group categories
+  label_time      <- i18n$t("Time")
+  label_abundance <- i18n$t("Abundance")
+  label_prey      <- i18n$t("Prey")
+  label_predator  <- i18n$t("Predator")
+  label_pop       <- i18n$t("Population")
+  
   lv_df <- res |>
     as.data.frame() |>
-    rename(Beute = B, Räuber = R) |>
-    pivot_longer(cols = c("Beute", "Räuber"), 
-                 names_to = "Population", values_to = "Abundanz") |>
-    rename(Zeit = time)
+    rename(!!sym(label_prey) := B, !!sym(label_predator) := R) |>
+    pivot_longer(cols = c(!!sym(label_prey), !!sym(label_predator)), 
+                 names_to = label_pop, values_to = label_abundance) |>
+    rename(!!sym(label_time) := time)
 
   if (input$lv_grid == FALSE) {
     gg <- lv_df |>
-      ggplot(aes(Zeit, Abundanz, color=Population)) + geom_line() + 
+      ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + geom_line() + 
       scale_color_manual(values=c("#69af22", "#009de0"))
  
-    
   } else {
     
-    # Simple peak detection
-    prey_peaks <- lv_df|>
-      dplyr::filter(Population == "Beute") |>
-      dplyr::slice(which(diff(sign(diff(Abundanz))) == -2))
+    # Simple peak detection utilizing translated group strings
+    prey_peaks <- lv_df |>
+      dplyr::filter(!!sym(label_pop) == label_prey) |>
+      dplyr::slice(which(diff(sign(diff(!!sym(label_abundance)))) == -2))
     
-    pred_peaks <- lv_df|>
-      dplyr::filter(Population == "Räuber") |>
-      dplyr::slice(which(diff(sign(diff(Abundanz))) == -2))
+    pred_peaks <- lv_df |>
+      dplyr::filter(!!sym(label_pop) == label_predator) |>
+      dplyr::slice(which(diff(sign(diff(!!sym(label_abundance)))) == -2))
     
-    
-    #write.table(lv_df, file="lv_df.log")
-    #write.table(prey_peaks, file="prey.log")
-
     gg <- lv_df |>
-      ggplot(aes(Zeit, Abundanz, color=Population)) + geom_line() + 
+      ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + geom_line() + 
       scale_color_manual(values = c("#69af22", "#009de0")) +
       scale_x_continuous(
         breaks = breaks_pretty(n = 10),      # ~10 major breaks, adapts to data
@@ -66,13 +67,11 @@ output$lotkavolterra <- renderPlotly({
 
     lwd <- 0.3 # line width for peaks and equilibria
     
-    gg <- gg + geom_vline(aes(xintercept = Zeit), colour = "#009de0", linetype = "dotted", linewidth = lwd, data = pred_peaks)
-    gg <- gg + geom_vline(aes(xintercept = Zeit), colour = "#69af22", linetype = "dotted", linewidth = lwd, data = prey_peaks)
-    
+    gg <- gg + geom_vline(aes(xintercept = !!sym(label_time)), colour = "#009de0", linetype = "dotted", linewidth = lwd, data = pred_peaks)
+    gg <- gg + geom_vline(aes(xintercept = !!sym(label_time)), colour = "#69af22", linetype = "dotted", linewidth = lwd, data = prey_peaks)
     
     gg <- gg + geom_hline(aes(yintercept = input$lv_a/input$lv_b), colour = "#009de0", linewidth = lwd, linetype = "dotted")
     gg <- gg + geom_hline(aes(yintercept = input$lv_d/input$lv_c), colour = "#69af22", linewidth = lwd, linetype = "dotted")
-
 
     ## Additional simulations
     ## we simulate it twice, one time for the periods of prey, one time for predator,
@@ -82,131 +81,112 @@ output$lotkavolterra <- renderPlotly({
     
     ## simulation with peakstepsize for prey
     npeaks <- nrow(prey_peaks)
-    times  <- c(0, seq(prey_peaks$Zeit[1], prey_peaks$Zeit[npeaks], length.out = 1 + 10 * (npeaks - 1)))
+    times  <- c(0, seq(prey_peaks[[label_time]][1], prey_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
 
     res <- ode(y0, times, lv, parms, method = "adams", rtol = 1e-12)
     
     period1 <- res |>
       as.data.frame() |>
       pivot_longer(cols=c("B", "R"), 
-                   names_to="Population", values_to="Abundanz") |>
-      rename(Zeit = time) |>
-      dplyr::filter(Population == "B") |>
-      dplyr::filter(Zeit > 0) # remove initial value
+                   names_to = label_pop, values_to = label_abundance) |>
+      rename(!!sym(label_time) := time) |>
+      dplyr::filter(!!sym(label_pop) == "B") |>
+      dplyr::filter(!!sym(label_time) > 0) # remove initial value
+    
+    # Standardize explicit labels back to translated variants for proper binding matching
+    period1[[label_pop]] <- label_prey
     
     ## simulation with peakstepsize for predator
     npeaks <- nrow(pred_peaks)
-    times  <- c(0, seq(pred_peaks$Zeit[1], pred_peaks$Zeit[npeaks], length.out = 1 + 10 * (npeaks - 1)))
+    times  <- c(0, seq(pred_peaks[[label_time]][1], pred_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
 
     res <- ode(y0, times, lv, parms, method = "adams", rtol = 1e-12)
     
     period2 <- res |>
       as.data.frame() |>
       pivot_longer(cols=c("B", "R"), 
-                   names_to="Population", values_to="Abundanz") |>
-      rename(Zeit = time) |>
-      dplyr::filter(Population == "R") |>
-      dplyr::filter(Zeit > 0) # remove initial value
+                   names_to = label_pop, values_to = label_abundance) |>
+      rename(!!sym(label_time) := time) |>
+      dplyr::filter(!!sym(label_pop) == "R") |>
+      dplyr::filter(!!sym(label_time) > 0) # remove initial value
+      
+    period2[[label_pop]] <- label_predator
     
     period <- bind_rows(period1, period2)
     
-    
     gg <- gg + 
-      geom_point(aes(Zeit, Abundanz, color = Population), data = period, size = 0.8) +
-     
-      scale_color_manual(values=c("forestgreen", "#69af22", "navy", "#009de0")) #+
-      #scale_color_manual(values=c("B"="forestgreen", "R"="blue"))
+      geom_point(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop)), data = period, size = 0.8) +
+      scale_color_manual(values=c("forestgreen", "#69af22", "navy", "#009de0"))
     
     query <- parseQueryString(session$clientData$url_search)
 
-      if (!is.null(query$cheat) &&  "cheat" %in% names(query())) {
-      gg <- gg +  geom_text(aes(Zeit, Abundanz, label = round(Abundanz, 2), color = Population), 
+    if (!is.null(query$cheat) &&  "cheat" %in% names(query())) {
+      gg <- gg + geom_text(aes(!!sym(label_time), !!sym(label_abundance), label = round(!!sym(label_abundance), 2), color = !!sym(label_pop)), 
         data=period, position = position_nudge(x = 4), size = 3, fontface = "bold")
     }
-
   }
   
-  gg <- gg +  theme(legend.position = "bottom")
+  gg <- gg + theme(legend.position = "bottom")
 
   ggplotly(gg)
-  
 })
 
 ## --------- download functionality ----------------------
 
-# Parse the query string to check for the "download" parameter
-# query <- reactive({
-#   parseQueryString(session$clientData$url_search)
-# })
-
-# Define the download handler
 output$downloadData <- downloadHandler(
   filename = function() {
     paste("simulation-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".csv", sep = "")
   },
   content = function(file) {
-    # Get the simulation data
     res <- simulate()
     
-    # Convert the simulation data to a data frame
+    # Keeping export headers in a clean structure
     lv_df <- res |>
       as.data.frame() |>
-      rename(Beute = B, Raeuber = R, Zeit = time)
+      rename(Prey = B, Predator = R, Time = time)
     
     # Write the data to a CSV file, German format with comma and semicolon
     write.table(lv_df, file, row.names = FALSE, quote = FALSE, dec=",", sep=";")
   }
 )
-
-# Conditionally render the download button based on the query parameter
-#output$downloadUI <- renderUI({
-  #query <- query()
-  #if (!is.null(query$download) &&  ("download" %in% names(query()))) {
-  #  downloadButton("downloadData", "Download")
-  #} else {
-  #  NULL  # Do not show the download button
-  #}
-#})
-
 ```
 
 ```{r}
 inputPanel(
-  h3("Anfangswerte"),
-  tags$div(title="Abundanz der Beute zum Zeitpunkt t=0",
+  h3(i18n$t("Initial Values")),
+  tags$div(title = i18n$t("Abundance of prey at time t=0"),
            numericInput(
-             "lv_B0", label = "B0: Beute", width="48%",
+             "lv_B0", label = i18n$t("B0: Prey"), width="48%",
              value = 1.0, min = 0, max = 2, step = 0.1
            )),
-  tags$div(title="Abundanz des Räubers zum Zeitpunkt t=0",
+  tags$div(title = i18n$t("Abundance of predator at time t=0"),
            numericInput(
-             "lv_R0", label = "R0: Räuber", width="48%",
+             "lv_R0", label = i18n$t("R0: Predator"), width="48%",
              value = 0.5, min = 0, max = 2, step = 0.1
            )),
-  h3("Parameter"),
-  tags$div(title="Vermehrungsrate des Phytoplanktons (Beutepopulation)",
+  h3(i18n$t("Parameters")),
+  tags$div(title = i18n$t("Reproduction rate of phytoplankton (prey population)"),
            sliderInput(
-             "lv_a", label = "a: Vermehrungsrate Beute", 
+             "lv_a", label = i18n$t("a: Reproduction rate prey"), 
              value = 0.1, min = 0, max = 1, step = 0.02
            )),
-  tags$div(title="Fraßverlust des Phytoplanktons (Beute) durch Fraß der Daphnien (Räuber)",
+  tags$div(title = i18n$t("Grazing loss of phytoplankton (prey) due to consumption by daphnia (predator)"),
            sliderInput(
-             "lv_b", label = "b: Verlust Beute durch Fraß", 
+             "lv_b", label = i18n$t("b: Loss prey by grazing"), 
              value = 0.1, min = 0, max = 1, step = 0.02
            )),
-  tags$div(title="Zuwachseffizienz der Daphnien (Räuber) durch Nahrungsaufnahme",
+  tags$div(title = i18n$t("Growth efficiency of daphnia (predator) via food intake"),
            sliderInput(
-             "lv_c", label = "c: Effizienz Räuber", 
+             "lv_c", label = i18n$t("c: Efficiency predator"), 
              value = 0.1, min = 0, max = 1, step = 0.02
            )),
-  tags$div(title="Sterberate der Daphnien (Räuber)",
+  tags$div(title = i18n$t("Mortality rate of daphnia (predator)"),
            sliderInput(
-             "lv_d", label = "d: Sterberate Räuber", 
+             "lv_d", label = i18n$t("d: Mortality rate predator"), 
              value = 0.1, min = 0, max = 1, step = 0.02
            )),
-  checkboxInput("lv_grid", "Werte abtasten", value = FALSE),
-  #uiOutput("downloadUI") # conditional version
-  downloadButton("downloadData", "Download")
+  checkboxInput("lv_grid", i18n$t("Sample values"), value = FALSE),
+  downloadButton("downloadData", i18n$t("Download"))
 )
 ```
 
@@ -214,4 +194,3 @@ inputPanel(
 ```{r}
 plotlyOutput("lotkavolterra")
 ```
-
