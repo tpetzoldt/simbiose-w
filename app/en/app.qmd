@@ -167,7 +167,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 :::
 
 <!-- contains code with 2 columns --->
-{{< include _exponential_code.qmd >}}
+{{< include ../_exponential_code.qmd >}}
 
 
 
@@ -203,7 +203,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 :::
 
 <!-- contains code with 2 columns --->
-{{< include _logistic_code.qmd >}}
+{{< include ../_logistic_code.qmd >}}
 
 <!---------------------------------------------------------------------------/-->
 # Nutrient Limited Growth
@@ -238,7 +238,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 :::
 
 <!-- contains code with 2 columns --->
-{{< include _resource_code.qmd >}}
+{{< include ../_resource_code.qmd >}}
 
 <!---------------------------------------------------------------------------/-->
 # Predator-Prey Model
@@ -271,7 +271,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 
 :::
 
-{{< include _lv_code.qmd >}}
+{{< include ../_lv_code.qmd >}}
 
 <!---------------------------------------------------------------------------/-->
 # Impressum
