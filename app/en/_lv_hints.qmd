@@ -1,16 +1,21 @@
-**Ein dimensionsloses Modell**
+**A dimensionless model**
 
-In der Regel lernen wir, dass die Koordinatenachsen immer mit Maßeinheiten beschriftet werden sollen. Das ist sehr wichtig aber es gibt Ausnahmen.  Bei theoretischen Modellen wird manchmal nur die Bedeutung ohne Maßeinheit an die Achse geschrieben, z.B. "Zeit", "Häufigkeit" oder "Abundanz". 
+We are usually taught that coordinate axes should always be labeled with units of measurement. This is very important, but there are exceptions.  In theoretical models, sometimes only the variable name -- without a unit of measurement -- is written on the axis, e.g., “time,” “frequency,” or “abundance.” 
 
-In der Physik geht man oft noch weiter und skaliert alle Achsen auf ein Intervall von Null bis Eins. In den vorliegenden Apps haben wir darauf verzichtet, so dass man sich unter den Werten etwas vorstellen kann.
-So können wir je nach Anwendung eine Maßeinheit festlegen, z.B."Stunden" bzw. "Tage" für schnell wachsende Algen und Daphnien oder "Jahre" für Schneeschuhhasen und Luchse.
+Physicists go even further and scale all axes to an interval from zero to one. In our apps, we have chosen not to do this, so that users can visualize what the values represent.
+This allows us to specify a unit of measurement depending on the application, e.g., “hours” or “days” for fast-growing algae and Daphnia, or “years” for snowshoe hares and lynx.
 
-Bei den Maßeinheiten für Abundanz und Biomasse muss beachtet werden, dass Algen und Daphnien unterschiedlich groß sind und eine unterschiedliche Körpermasse besitzen. Wenn man auf die Maßeinheit verzichtet, sind die Werte auf der y-Achse nur relative Größen, die nicht miteinander vergleichbar sind.
+When it comes to units of measurement for abundance and biomass, it is important to note that algae and Daphnia vary in size and have different body masses.
+If we omit the unit of measurement, the values on the y-axis are merely relative quantities that cannot be compared with one another.
 
-Betrachtet man die Biomasse, kann man mit einem Trick annähernd vergleichbare Verhältnisse herstellen. Als Faustregel gilt, dass in einer Nahrungskette etwa 10% der Energie von einer trophischen Ebene an die nächste weitergegeben wird.
+When considering biomass, we can use a trick to establish approximately comparable ratios.
+As a rule of thumb, about 10% of the energy is transferred from one trophic level to the next in a food chain.
 
-Wir können das berücksichtigen, wenn der Parameter $c$ ("Zuwachseffizienz") nur ein Zehntel von $b$ ("Fraßintensität") beträgt, also z.B. $b=0.2$ und $c=0.02$. Außerdem muss man in diesem Fall die Anfangswerte entsprechend anpassen, z.B. $B_0=1$ und $R_0=0.05$.
+We can account for this if we set the parameter $c$ (“growth efficiency”) to one-tenth of $b$ (“feeding intensity”), i.e., for example, $b=0.2$ and $c=0.02$.
+In this case, the initial values must also be adjusted accordingly, e.g., $B_0=1$ and $R_0=0.05$.
 
-Durch Änderung der Parameter können auch Kombinationen eingestellt werden, die nicht sinnvoll oder unrealistisch erscheinen. Dies liegt zum Teil daran, dass die Parameterwerte relativ zur Zeit angegeben werden, z.B. Wachstum pro Tag oder pro Stunde. Daher ist es manchmal notwendig, auch die Zeiteinheit anzupassen und die Werte und Maßeinheiten einer genauen Realitätsprüfung zu unterziehen.
+By changing the parameters, combinations can also be set that appear nonsensical or unrealistic.
+This is partly because the parameter values are specified relative to time, e.g., growth per day or per hour.
+Therefore, it is sometimes necessary to adjust the time unit as well and subject the values and units of measurement to a thorough reality check.
 
-Um das Verständnis zu erleichtern, können wir die Maßeinheiten außer Acht lassen und die Ergebnisse nur qualitativ betrachten, d.h. wenig - viel, Zyklus - Gleichgewicht, größere Amplitude - kleinere Amplitude, längerer Zyklus - kürzerer Zyklus.
+To make the results of the app easier to understand, we can disregard the units of measurement and consider the results only qualitatively, i.e., small-large, cycle–equilibrium, larger amplitude–smaller amplitude, longer cycle–shorter cycle.

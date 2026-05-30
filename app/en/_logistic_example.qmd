@@ -1,23 +1,17 @@
-![](../www/algen-logistisch.png){fig-alt="das Bild zeigt schematisch Algenzellen, die sich durch Teilung verdoppeln, bis das Wachstum eine Grenze erreicht. Es ergibt sich eine S-förmige Kurve, die das begrenzte Wachstum symbolisiert."}
+![](../www/algen-logistisch.png){fig-alt="The image shows a schematic representation of algae cells that multiply through division until growth reaches a limit. This results in an S-shaped curve."}
 ---
 
 
-**Wachstum kann nicht unbegrenzt fortdauern**
+**Growth cannot continue indefinitely**
 
-Die Simulationen zum exponentiellen Wachstum zeigen deutlich, dass ein ungebremstes Wachstum schon nach kurzer Zeit zu einer unvorstellbar großen Abundanz führt. 
+Simulations of exponential growth clearly show that unlimited growth can lead to an unimaginably large population size after a relatively short time. 
 
-Nehmen wir an, wir haben einen einzelnen Wasserfloh mit einer Länge von 1.5 mm und einer Masse von 0.25 mg bei einer Populationswachstumsrate von $r=0.1$ pro Tag (d^-1^). Bei ungebremster Vermehrung hätten wir nach 6 Monaten bereits 80 Millionen Daphien mit einer Gesamtmasse von 20 kg. Nach 14 Monaten wäre die Müritz, der größte deutsche See mit einem Volumen von 737 Mio m^3^, komplett mit Daphien ausgefüllt, in gut 15 Monaten sogar der Bodensee.
+Let’s assume we have a single water flea with a length of 1.5 mm and a mass of 0.25 mg, with a population growth rate of $r=0.1$ per day (d^-1^). With unlimited reproduction, after 6 months we would already have 80 million daphnia with a total mass of 20 kg. After 14 months, Lake Müritz, Germany’s largest lake with a volume of 737 million m^3, would be completely filled with Daphnia. In just over 15 months, even Lake Constance would be.
 
-<!---
-Müritz:  0.74 km^3
-Bodensee: 48 km^3
-mg                      ->kg   -> t = m3   / Mio m3 / km3
-0.25 * exp(0.1 * 468) / 1e6    / 1000      / 1e6    / 1000
---->
+In reality, population growth slows as abundance increases, resulting in an S-shaped growth curve. 
+One of the simplest models for this is so-called “logistic growth.”
 
+The logistic model is one of the most important formulas in population ecology. However, it does not account for what causes the limitation. 
+In daphnia, this can be caused by food scarcity or oxygen deficiency. In algae, self-shading occurs because the algae cells block light from one another. 
+Some microorganisms possess the ability to self-regulate. They can detect cell density through chemical secretions from other cells and divide less frequently before light and nutrients become scarce.  
 
-In der Realität verlangsamt sich das Populationswachstum mit steigender Abundanz, so dass sich eine S-förmige Wachstumskurve ergibt. Eines der einfachsten Modelle dafür ist das sogenannte "logistische Wachstum".
-
-Das logistische Modell ist eine der wichtigsten Formeln in der Populationsökologie. Allerdings wird dabei nicht berücksichtigt, wodurch die Limitation stattfindet. 
-Sie kann bei Daphnien durch Nahrungsknappheit oder Sauerstoffmangel hervorgerufen werden. Bei Algen kommt es zur Selbstbeschattung, weil sich die Algenzellen gegenseitig das Licht wegnehmen. 
-Manche Mikroorganismen besitzen die Fähigkeit zur Selbstregulation. Sie können die Zelldichte an chemischen Ausscheidungen der anderen Zellen erkennen und teilen sich weniger oft, bevor Licht und Nährstoffe knapp werden.  

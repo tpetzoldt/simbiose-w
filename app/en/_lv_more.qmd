@@ -1,40 +1,52 @@
-**Schneeschuhhasen und Luchse**
+**Snowshoe hares and lynx**
 
-Im Zusammenhang mit dem Räuber-Beute-Modell wird oft das Beispiel von Schneeschuhhase und Luchs genannt. Die beiden Arten leben in Nordamerika, vor allem in Kanada.
+The example of snowshoe hares and lynx is often cited in connection with the predator-prey model. Both species live in North America, primarily in Canada.
 
-Es konnte beobachtet werden, dass die Fellverkaufszahlen der Jäger in einem Zyklus von 9 bis 11 Jahren schwanken. Die Vermutung lag nahe, dass es sich hier um einen Lotka-Volterra-Zyklus handelt. Bei näherer Betrachtung zeigten sich allerdings Unstimmigkeiten und es wurden verschiedene andere Erklärungen gegeben. Eine Erklärung bestand darin, dass die schwankenden Fellverkäufe auf den Einfluss der Jäger zurückzuführen waren. Eine andere Erklärung besteht darin, dass der Räuber-Beute-Zyklus auf Wechselwirkungen einer niedrigeren trophischen Ebene resultiert, also nicht als Wechselwirkung zwischen Schneehaase und Luchs, sondern von Vegetation und den Schneehasen. Der Luchs folgt dem Zyklus lediglich nach. Näheres dazu findet man im Wikipedia-Artikel [Das Lotka-Volterra-Modell](https://de.wikipedia.org/wiki/R%C3%A4uber-Beute-Beziehung#Das_Lotka-Volterra-Modell).
-
-![](../www/lynx.png){fig-alt="Zeitreihe von Luchsfängen in Kanada, aus Brockwell and Davis (1991)" width="100%" fig-align="center"}
-[Klassischer Datensatz von Luchsfängen in Kanada, aus @Brockwell1991]{.gray}
-
-**Algen und Daphnien**
-
-Das System Algen-Daphnien wird in der theoretischen Ökologie ebenfalls als Lehrbuchbeispiel herangezogen.
-In realen Gewässern lässt sich jedoch meist nur ein kurzer Ausschnitt dieser Dynamik beobachten.
-Einem jährlichen Algen-Frühjahrsmaximum folgt unmittelbar ein ausgeprägtes Klarwasserstadium.
-Eine Fortsetzung der Schwingungen wird durch dämpfende Mechanismen wie die Ressourcenlimitierung (insbesondere Phosphor) sowie die Einbindung in ein komplexeres Nahrungsnetz verhindert [@Sommer2012].
+It has been observed that hunters’ fur sales fluctuate in a cycle of 9 to 11 years. It seemed likely that this was a Lotka–Volterra cycle. Upon closer examination, however, inconsistencies became apparent, and various other explanations were proposed. One explanation was that the fluctuating fur sales were due to the influence of hunters. Another explanation is that the predator-prey cycle results from interactions at a lower trophic level—that is, not as an interaction between snowshoe hares and lynx, but between vegetation and the snowshoe hares. The lynx merely follows the cycle. More details can be found in the Wikipedia article [Lotka–Volterra equations](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 
 
-**Elche und Wölfe**
+![](../www/lynx.png){fig-alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)" width="100%" fig-align="center"}
+[Historical dataset of lynx catches in Canada, from @Brockwell1991]{.gray}
 
-Ein weiteres prominentes Beispiel ist die Wechselbeziehung zwischen dem Elch und dem Wolf. Hierzu wurden im  [Isle Royale Nationalpark](https://de.wikipedia.org/wiki/Isle-Royale-Nationalpark) auf einer Insel in einem der Großen Seen in Amerika Untersuchungen durchgeführt. Es handelt sich um die längste Studie zu Räuber-Beute-Systemen der Welt.
-Auf der Insel leben mit Ausnahme der Forschenden und der sommerlichen Besucher keine Menschen.
+**Algae and Daphnia**
+
+The algae-Daphnia system is also used as a textbook example in theoretical ecology.
+In real water bodies, however, only short section of these dynamics can be observed.
+An annual spring peak in algae is immediately followed by a distinct clear-water phase.
+The continuation of these oscillations is then prevented by damping mechanisms such as resource limitations (particularly phosphorus) and integration into a more complex food web [@Sommer2012].
+
+
+**Moose and Wolves**
+
+Another prominent example is the interrelationship between moose and wolves.
+Research on this topic was conducted in the [Isle Royale National Park](https://de.wikipedia.org/wiki/Isle-Royale-Nationalpark), an island in one of the Great Lakes in North America.
+It is the longest-running study of predator-prey systems in the world.
+With the exception of researchers and summer visitors, no humans live on the island.
  
 
-Zwischen den Elchen und den Wölfen konnten tatsächlich Wechselwirkungen vom Lotka-Volterra-Typ beobachtet werden. Allerdings gab es nur kurze Abschnitte eines Zyklus. In der Realität wirken auch hier zusätzliche Einflussfaktoren, z.B. Parasiten, die die Elche schwächen. Umgekehrt wurden die Wölfe zeitweilig von einer Viruskrankheit infiziert und wären fast ausgestorben.
+Lotka–Volterra-type interactions were indeed observed between the moose and the wolves.
+However, these occurred only during brief phases of a cycle.
+In reality, additional factors also come into play here, such as parasites that weaken the moose.
+Conversely, the wolves were temporarily infected by a viral disease and nearly went extinct.
 
-In einem besonders kalten Winter wurden Wölfe beobachtet, die eine Strecke von 22km über den zugefrorenen See zur Insel zurückgelegt haben. Das bestätigte eine bereits länger bestehende Vermutung, dass die Wolfpopulation auf der Insel nicht vollständig isoliert ist. Der Austausch mit dem Festland ist für die Wolfpopulation offenbar überlebenswichtig, doch aufgrund der Klimaerwärmung bilden sich solche Eisbrücken nicht mehr alle 3 bis 4 Jahre, sondern nur noch alle 10 Jahre. 
+During a particularly cold winter, wolves were observed traveling a distance of 22 km across the frozen lake to reach the island.
+This confirmed a long-standing assumption that the wolf population on the island is not completely isolated.
+Interaction with the mainland is apparently vital for the wolf population’s survival, but due to global warming, such ice bridges no longer form every 3 to 4 years, but only once every 10 years. 
 
-Mehr dazu findet man auf den englischsprachigen Webseiten des Nationalparks und zum Forschungsprojekt ([https://isleroyalewolf.org/](https://isleroyalewolf.org/)) und im Buch von @Vucetich2024.
-Auch auf Wikipedia finden sich Artikel in englischer und deutscher Sprache dazu. Ganz besonders zu empfehlen sind die Videos zum Projekt auf Youtube, z.B. [https://youtu.be/DS-4IsDg7mA](https://youtu.be/DS-4IsDg7mA). Weitere Videos in englischer Sprache findet man über die Stichworte: `wolves isle royale`.
+More information can be found on the National Park’s website, on the research project’s website ([https://isleroyalewolf.org/](https://isleroyalewolf.org/)), and in the book by @Vucetich2024.
+There are also articles on Wikipedia on this topic. 
+The videos about the project on YouTube are highly recommended, e.g., [https://youtu.be/DS-4IsDg7mA](https://youtu.be/DS-4IsDg7mA). 
+Additional videos can be found by searching for the keywords: `wolves isle royale`.
 
-**Schlussfolgerungen**
+**Conclusions**
 
-Die Beispiele zeigen, dass Räuber-Beute-Wechselwirkungen in der Praxis weitaus komplizierter sind als das Lotka-Volterra-Modell. Für Vorhersagen ist das Modell nicht geeignet aber man kann, so wie in den Simulationsexperimenten der App, grundlegende Erkenntnisse über das Entstehen von Populationsschwankungen oder die Einstellung von Gleichgewichten ableiten.
+The examples show that predator-prey interactions are far more complex in practice than the Lotka-Volterra model.
+The model is not suitable for making predictions, but, as in the app’s simulation experiments, one can derive fundamental insights into the emergence of population fluctuations or the establishment of equilibria.
 
-In praktischen Modellen werden unterschiedliche Modellbausteine kombiniert: exponentielles Wachstum, logistisches Wachstum, mehrere Ressourcen und Räuber-Beute-Wechselwirkungen. Außerdem werden in den Modellen aktuelle Daten zur Beschreibung von Wetter, Klima und menschlichem Einfluss berücksichtigt.
+In practical models, various model components are combined: exponential growth, logistic growth, multiple resources, and predator-prey interactions.
+Additionally, the models incorporate current data on nutirients, weather, climate, and human influence.
 
-**Literatur**
+**References**
 
 Brockwell, P. J. and Davis, R. A. (1991). Time Series and Forecasting Methods. Second edition. Springer. Series G (p. 557).
 

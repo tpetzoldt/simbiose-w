@@ -1,30 +1,30 @@
-![](../www/graph_lv.svg){height="20%" fig-align="center"  fig-alt="Systemdiagramm für ein Räuber-Beute-Modell."}
+![](../www/graph_lv.svg){height="20%" fig-align="center"  fig-alt="System diagram of the predator-prey model."}
 
 ---
 
 
-**Das Räuber-Beute-Modell von Lotka und Volterra**
+**The Predator-Prey Model of Lotka and Volterra**
 
-Im Unterschied zum logistischen oder zum ressourcenlimitierten Wachstum lassen sich in der Natur nur selten stabile Gleichgewichte beobachten, sondern die Abundanz schwankt. Hierfür gibt es verschiedene Ursachen, z.B. den Vermehrungszyklus oder eine unterschiedliche Nahrungsverfügbarkeit durch die Jahreszeiten und das Wetter.
+Unlike in logistic or resource-limited growth, stable equilibria are rarely observed in nature; instead, population abundance fluctuates. There are various reasons for this, such as the reproductive cycle or variations in food availability due to the seasons and weather.
 
-Populationsschwankungen können aber auch aus Wechselwirkungen zwischen Populationen resultieren.
+However, population fluctuations can also result from interactions between populations.
 
-Solche Wechselwirkungen wurden Anfang des 20. Jahrhunderts vom italienischen Mathematiker und Physiker [Vito Volterra](https://de.wikipedia.org/wiki/Vito_Volterra) und dem österreich-amerikanischen Chemiker und Versicherungsmathematiker [Alfred Lotka](https://de.wikipedia.org/wiki/Alfred_J._Lotka) untersucht und mathematisch beschrieben.
+Such interactions were investigated and mathematically described in the early 20th century by the Italian mathematician and physicist [Vito Volterra](https://de.wikipedia.org/wiki/Vito_Volterra) and the Austrian-American chemist and actuary [Alfred Lotka](https://de.wikipedia.org/wiki/Alfred_J._Lotka).
 
-Ihr Modell besteht aus zwei Gleichungen, einer für die Beutepopulation (z.B. Algen) und einer für die Räuberpopulation (z.B. Daphnien). In Abwandlung zur von @Volterra1926b ursprünglich verwendeten Schreibweise der Gleichungen verwenden viele Wissenschaftler und Lehrbücher unterschiedliche Symbole und Varianten. Wir verwenden im folgenden eine vereinfachte Notation mit $B$ für die Beutepopulation und $R$ für die Räuberpopulation. Für die Modellparameter verwenden wir fortlaufende Buchstaben $a, b, c, d$, die man wie folgt interpretieren kann:
+Their model consists of two equations, one for the prey population (e.g., algae) and one for the predator population (e.g., daphnia). As a modification to the notation of the equations originally used by @Volterra1926b, many scientists and textbooks use different symbols and variants. In the following, we use a simplified notation with $B$ for the prey population and $R$ for the predator population. For the model parameters, we use consecutive letters $a, b, c, d$, which can be interpreted as follows:
 
-$a$: Vermehrungsrate des Phytoplanktons (Beutepopulation)
+$a$: Reproduction rate of phytoplankton (prey population)
 
-$b$: Fraßverlust des Phytoplanktons (Beute) durch Fraß der Daphnien (Räuber)
+$b$: Loss of phytoplankton (prey) due to predation by daphnia (predators)
 
-$c$: Zuwachseffizienz der Daphnien (Räuber) durch Nahrungsaufnahme
+$c$: Growth efficiency of daphnia (predators) due to food intake
 
-$d$: Sterberate der Daphnien (Räuber)
+$d$: Mortality rate of daphnia (predators)
 
 
-Das Modell besteht nun im Prinzip aus drei Prozessen. Das Wachstum der Beutepopulation (z.B. Algen) und das Absterben der Räuberpopulation (z.B. Daphnien) entsprechen jeweils einem exponentiellen Wachstumsmodell mit positiver bzw. negativer Änderungsrate.
+The model essentially consists of three processes. The growth of the prey population (e.g., algae) and the decline of the predator population (e.g., Daphnia) each correspond to an exponential growth model with a positive or negative rate of change, respectively.
 
-Exponentielles Wachstum der Beutepopulation:
+Exponential growth of the prey population:
 
 
 $$
@@ -37,11 +37,11 @@ $$
 \frac{dR}{dt} = - d \cdot R\\
 $$
 
-Der dritte Prozess beschreibt die Interaktion zwischen Räuber un Beute. Hierbei hängt die Verlustrate der Beutepopulation $(b \cdot R)$ von der Abundanz der Räuberpopulation ab und die Wachstumrate der Räuberpopulation von der Abundanz der Beutepopulation $(c  \cdot B)$. Wenn man $b$ und $c$ unterschiedlich wählt, kann man die trophische Effizienz ($c/b$) berücksichtigen, z.B. dass nur 10% der Nahrung für die Vermehrung genutzt werden.
+The third process describes the interaction between predators and prey. Here, the rate of decline in the prey population $(b \cdot R)$ depends on the abundance of the predator population, and the growth rate of the predator population depends on the abundance of the prey population $(c \cdot B)$. By choosing different values for $b$ and $c$, one can account for trophic efficiency ($c/b$), e.g., that only 10% of the food is used for reproduction.
 
-Somit ergibt sich das folgende Gleichungssystem, bei dem zur besseren Erkennbarkeit die Verlustrate der Beutepopulation durch Gefressenwerden und die Wachstumsrate der Räuberpopulation durch zusätzliche Klammern symbolisiert sind:
+This results in the following system of equations, in which, for clarity, the loss rate of the prey population due to predation and the growth rate of the predator population are denoted by additional parentheses:
 
-**Gleichungssystem**
+**System of Equations**
 
 $$
 \begin{align}
@@ -50,4 +50,4 @@ $$
 \end{align}
 $$
 
-Die Klammern dienen nur zur Veranschaulichung und werden normalerweise weggelassen.
+The parentheses are for illustrative purposes only and are usually omitted.

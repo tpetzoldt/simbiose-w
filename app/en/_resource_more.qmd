@@ -1,14 +1,16 @@
-**Düngereinsatz und Eutrophierung**
+**Fertilizer Use and Eutrophication**
 
-Der Einsatz von Düngemitteln in der Landwirtschaft ist für unsere Ernährung sehr 
-wichtig aber es kommt darauf an, Überdüngung zu vermeiden. Überschüssiger Phosphor und Stickstoff kann von den Pflanzen nicht mehr aufgenommen werden und landet in unseren Flüssen und Seen und schließlich in der Ost- oder Nordsee.
+The use of fertilizers in agriculture is very important for our food supply, but it is crucial to avoid overfertilization.
+Excess phosphorus and nitrogen cannot be absorbed by plants and ends up in our rivers and lakes, and ultimately in the sea.
 
-In den Gewässern führt erhöhter Phosphor- und Stickstoffeintrag zu verstärktem Phytoplanktonwachstum und das Wasser wird trübe.
-Im Tiefenwasser führen die absterbenden Algen dann zum Sauerstoffschwund.
-Verstärktes Wachstum von Plankton und Wasserpflanzen und die daraus resultierende Verschlechterung der Wasserqualität nennt man Eutrophierung. 
+In these bodies of water, increased phosphorus and nitrogen inputs lead to increased phytoplankton growth, and the water becomes turbid.
+In deep water, the decay of algae then leads to oxygen depletion.
+The increased growth of plankton and aquatic plants and the resulting deterioration of water quality is called eutrophication. 
 
-Weitere Informationen zum [Nährstoffeintrag](https://www.umweltbundesamt.de/themen/wasser/fluesse/zustand/naehrstoffe)
-und zur [Eutrophierung](https://www.umweltbundesamt.de/themen/wasser/gewaesser/meere/nutzung-belastungen/eutrophierung) findet man zum Beispiel auf den Internetseiten des Umweltbundesamts.
+Further information on [nutrient input](https://www.umweltbundesamt.de/themen/wasser/fluesse/zustand/naehrstoffe)
+and [eutrophication](https://www.umweltbundesamt.de/themen/wasser/gewaesser/meere/nutzung-belastungen/eutrophierung) can be found, for example, on the website of the German Federal Environment Agency.
+
+
 
 
 

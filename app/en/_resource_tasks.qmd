@@ -1,22 +1,21 @@
-**Wodurch wird das Wachstum begrenzt?**
+**What limits growth?**
 
 <br></br>
 
-1. Vergleiche das ressourcenlimitierte Wachstum mit dem logistischen Wachstum.
+1. Compare resource-limited growth with logistic growth.
 
-    a. Worin besteht der Vorteil des ressourcenlimitierten Wachstums gegenüber der logistischen Wachstumsfunktion?
+    a. What is the advantage of resource-limited growth over the logistic growth function?
 
-    b. Gibt es auch Nachteile?
+    b. Are there any disadvantages?
 
 ---
 
-2. Untersuche den Einfluss von $r$, $k_P$ und $Y$ auf das Wachstum.
+2. Examine the influence of $r$, $k_P$, and $Y$ on growth.
 
-    a. Bei welchen Werten von $r$ ist das Wachstum am schnellsten?
+    a. At what values of $r$ is growth fastest?
 
-    b. Bei welchen Werten von $k_P$ ist das Wachstum am schnellsten und die Nährstoffausnutzung am besten?
+    b. At what values of $k_P$ is growth fastest and nutrient utilization best?
 
-    c. Wovon hängt die Steilheit des Übergangs in die Limitierung ab?
+    c. What determines the steepness of the transition to the limiting phase?
 
-    d. Welcher Parameter und welcher Anfangswert bestimmt die erreichte maximale Phytoplanktonmenge? Die maximal erreichte Abundanz entspricht der Kapazitätsgrenze $K$ beim logistischen Modell.
-
+    d. Which parameter and which initial value determine the maximum phytoplankton abundance reached? This value corresponds to the carrying capacity $K$ in the logistic model.

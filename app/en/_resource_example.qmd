@@ -1,18 +1,22 @@
-![](../www/ressourcenlimitiert.png){fig-alt="Das Bild zeigt Erlenmeyerkolben, die durch das Algenwachstum eine stärker grüne farbe annehmen. Gleichzeitig wird der zeitlliche Verlauf der Algenabundanz mit einer ansteigenden und die Nährstoffkonzentration mit einer abnehmenden S-förmigen Kurve dargestellt." width="100%" fig-align="center"}
+![](../www/ressourcenlimitiert.png){fig-alt="The image shows Erlenmeyer flasks that have taken on a more intense green color due to algae growth. At the same time, the temporal trend in algae abundance is represented by an upward-sloping curve, while the nutrient concentration is represented by a downward-sloping S-shaped curve." width="100%" fig-align="center"}
 ---
 
 
-**Vom logistischen Wachstumsmodell zur Nährstofflimitation**
+**From the Logistic Growth Model to Nutrient Limitation**
 
-Das logistische Wachstumsmodell hat eine große theoretische Bedeutung und wird in der Praxis oft eingesetzt, z.B. für Wachstumsexperimente mit Bakterien und Algen im Labor oder für die biotechnologische Produktion von Medikamenten in der Industrie.
+The logistic growth model is of high theoretical importance and is frequently used in practice, for example in laboratory growth experiments with bacteria and algae or in the industrial biotechnological production of pharmaceuticals.
 
-Allerdings hat das logistische Modell zwei entscheidende Nachteile: 
+However, the logistic model has two major drawbacks: 
 
-1. Man muss von vornherein wissen, wo die Kapazitätsgrenze $K$ liegt, z.B. aus einem vorangegangenen Experiment.
+1. One must specify beforehand where the capacity limit $K$ lies, e.g., from a previous experiment.
 
-2. Es ist nicht bekannt, warum das Wachstum aufhört, ob z.B. ein Nährstoff aufgebraucht wurde oder ob sich die Algen gegenseitig zu stark beschatten.
+2. It is not known why growth stops -- whether, for example, a nutrient has been depleted or whether the algae are shading each other too much.
 
 
-Beim ressourcenlimitierten Wachstumsmodell wird dieses Problem dadurch gelöst, indem man für eine limitierende Ressource eine zusätzliche Gleichung angibt. Wenn das Phytoplankton wächst, wird eine Ressource verbraucht, z.B. der Phosphor. Wenn der Phosphor aufgebraucht ist, stoppt das Wachstum. Die Kurven von Phytoplankton und Phosphor zeigen ein spiegelbildliches Verhalten.
+In the resource-limited growth model, this problem is solved by specifying an additional equation for a limiting resource.
+As the phytoplankton grows, a resource is consumed, e.g., phosphorus.
+When the phosphorus is depleted, growth stops. The curves for phytoplankton and phosphorus exhibit mirroring behavior.
 
-Anstelle des Phosphors kann auch der Stickstoff limitieren oder auch beide. Dann benötigt man eine weitere Gleichung (Mehrfachlimitation). Der Einfluss von Licht und Temperatur kann ebenfalls berücksichtigt werden.
+Instead of phosphorus, nitrogen can also be the limiting factor, or both.
+In that case, an additional equation is required (multiple limitation).
+The influence of light and temperature can also be taken into account.

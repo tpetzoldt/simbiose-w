@@ -1,26 +1,29 @@
-![](../www/graph_logistic.svg){height="30%" fig-align="center"  fig-alt="Systemdiagramm für das logistische Wachstum."}
+![](../www/graph_logistic.svg){height="30%" fig-align="center"  fig-alt="System diagramm of logistic growth."}
 
 ---
 
 
-**Das Wachstum verzögert sich**
 
-Beim logistischen Wachstum ist die Wachstumsrate $r$ nicht mehr konstant, sondern eine Funktion der Abundanz:
+
+**Limits of Growth**
+
+In logistic growth, the growth rate $r$ is no longer constant but is a function of abundance:
 
 $$
 r = r_{max} \cdot \left(1 - \frac{N}{K}\right)
 $$ 
 
-Hierbei ergibt sich die eigentliche Wachstumsrate $r$ aus dem Produkt der artspezifischen (intrinsischen) Reproduktionsrate $r_{max}$ und einem dimensionslosen Term $\left(1 - \frac{N}{K}\right)$, wobei $r$ die realisierte Reproduktionsrate und $K$ die Kapazitätsgrenze (carrying capacity) ist.
+Here, the actual growth rate $r$ is given by the product of the species-specific (intrinsic) reproduction rate $r_{max}$ and a dimensionless term 
+$\left(1 - \frac{N}{K}\right)$, where $r$ is the realized reproduction rate and $K$ is the carrying capacity.
 
-Die Wachstumsgleichung dafür lautet jetzt:
+The growth equation can then be written as:
 
 $$
 N_t = \frac{K N_0 e^{r t}}{K + N_0 (e^{r t}-1)}
 $$
 
 
-Das sieht relativ kompliziert aus, aber man kann gut damit rechnen. In Wirklichkeit ist diese Formel die Lösung einer Differentialgleichung:
+This looks quite complicated, but it is easy to calculate. In reality, this formula is the solution to a differential equation:
 
 
 $$
@@ -28,11 +31,12 @@ $$
 \frac{dN}{dt} &= r_{max} \cdot \left(1 - \frac{N}{K}\right) \cdot N
 \end{align}
 $$
-Diese beschreibt die Änderung der Population pro Zeiteinheit, genau so wie im Systemdiagramm.
+
+This equation describes the change in population per unit of time, exactly as shown in the system diagram.
 
 
-**Erklärung**
+**Explanation**
 
-Das Wachstum findet so lange statt, bis die **Umweltkapazität** $K$ erreicht ist. Bei geringer Populationsdichte, also wenn $N \ll K$ ist, dann ist der Term in Klammern annähernd gleich 1 und das Wachstum maximal. Das Produkt $r \cdot \left(1 - \frac{N}{K}\right)$ beträgt annähernd $r$.
+Growth continues until the **carrying capacity** $K$ is reached. At low population density, i.e., when $N \ll K$, the term in parentheses is approximately equal to 1 and growth is at its maximum. The product $r \cdot \left(1 - \frac{N}{K}\right)$ is approximately $r$.
 
-Je mehr sich die Abundanz $N$ der Kapazitätsgrenze annähert, desto kleiner wird $r \cdot \left(1 - \frac{N}{K}\right)$ und konvergiert bei $N \rightarrow K$ gegen Null.
+The closer the abundance $N$ approaches the carrying capacity, the smaller $r \cdot \left(1 - \frac{N}{K}\right)$ becomes, converging to zero as $N \rightarrow K$.

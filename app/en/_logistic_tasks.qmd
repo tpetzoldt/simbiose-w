@@ -1,30 +1,30 @@
-**Gleichgewichte beim logistischen Wachstum**
+**Equilibria in the Logistic Growth Model**
 
 <br></br>
 
-1. Setze die logistische Wachstumsrate auf den kleinstmöglichen Wert ($r_{max}=0.02$) und die Kapazitätsgrenze $K=500$:
+1. Set the logistic growth rate to the smallest possible value ($r_{max}=0.02$) and the carrying capacity $K=500$:
  
-    * Welche Form zeigt die Wachstumskurve?
+    * What shape does the growth curve take?
 
 ---
 
-2. Verschiebe nun den Regler von $K$.
+2. Now adjust the $K$ slider.
  
-    * Warum hat eine Vergrößerung von $K$ nur einen geringen Einfluss?
+    * Why does increasing $K$ have only a minor effect?
     
-    * Warum hat eine Verkleinerung von $K$ einen größeren Einfluss?
+    * Why does decreasing $K$ have a greater effect?
 
 ---
 
-3. Setze jetzt wieder $r_{max}=0.1$ und $K=100$.
+3. Now set $r_{max}=0.1$ and $K=100$ again.
  
-    * Was passiert, wenn man die Anfangsabundanz $N_0$ verändert?
+    * What happens if you change the initial abundance $N_0$?
     
-    * Setzte nun die Anfangsabundanz auf eine größeren Wert, z.B. 120. Was passiert?
+    * Now set the initial abundance to a larger value, e.g., 120. What happens?
 
 ---
 
-4. Im Folgenden wollen wir verschiedene Arten des Gleichgewichts untersuchen:
+4. In the following, we will examine different types of equilibrium:
  
     * $N_0=0, r_{max}=0.1, K=100$
     
@@ -33,7 +33,7 @@
     * $N_0=100, r_{max}=0.1, K=100$
 
 
-a) Erläutere zunächst durch Interpretation, wie die unterschiedlichen Gleichgewichtszustände entstehen. 
+a) First, explain by interpretation how the different equilibrium states arise. 
 
-b) Versuche durch Einsetzen der Werte in die Gleichungen zu verstehen, warum es zum Gleichgewicht kommt.
-Hierfür ist die Gleichung der Ableitung $dN/dt= ...$ einfacher zu verstehen als die integrierte Form.
+b) Try to understand why equilibrium is reached by substituting the values into the equations.
+For this, the derivative equation $dN/dt= ...$ is easier to understand than the integral form.

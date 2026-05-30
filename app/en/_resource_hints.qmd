@@ -1,47 +1,48 @@
-![](../www/blackman.svg){width="49%" fig-alt="Graphische Darstellung des Blackman-Modells."}
-![](../www/monod.svg){width="49%" fig-alt="Graphische Darstellung des Monod-Modells."}
+![](../www/blackman.svg){width="49%" fig-alt="Graphical representation of the Blackman model."}
+![](../www/monod.svg){width="49%" fig-alt="Graphical representation of the Monod model."}
 
-**Die Wachstumskinetik**
 
-Die Abhängigkeit der Wachstumsrate $r$ von der Nährstoffkonzentration
-wird über eine sogenannte **Kinetik** beschrieben. Hierbei geht es
-darum, wie schnell die Algen wachsen, das nennt man auch eine
-**funktionelle Reaktion** (engl.: functional response). Im Gegensatz
-dazu beschreiben die eigentlichen Wachstumsmodelle (z.B. das logistische
-und das ressourcenlimitierte Modell) wie viele Algen insgesamt wachsen
-können. Das nennt man **numerische Reaktion** (engl.: numerical
-response).
+**Growth Kinetics**
 
-Für die Abhängigkeit der Wachstumsrate von einer Ressource (z.B.
-Phosphor) wird eine Sättigungskinetik verwendet. Je mehr Nährstoffe
-vorhanden sind, umso schneller ist das Wachstum. Ab einer bestimmten
-Nährstoffkonzentration wird eine Sättigung erreicht, das heißt noch mehr
-Nährstoffe führen nicht zu noch mehr Wachstum.
+The relationship between the growth rate $r$ and the nutrient concentration
+is described by what is known as **kinetics**. This refers to
+how fast the algae grow; this is also called a
+**functional response**. In contrast,
+the actual growth models (e.g., the logistic
+and resource-limited models) describe how many algae can grow
+in total. This is called a **numerical response**.
 
-Zur mathematischen Beschreibung existieren verschiedene Möglichkeiten.
-Beim **Blackman-Modell** steigt die Wachstumsrate zunächst
-proportional mit der Nährstoffkonzentration an. Hierbei ist $k_b$ der
-Proportionalitätsfaktor. Wenn die Nährstoffkonzentration ($P$) für die
-maximal mögliche Wachstumsrate ($r_{max}$) überschritten wird, bleibt
-die Wachstumsrate $r$ konstant bei $r_{max}$:
+For the dependence of the growth rate on a resource (e.g.,
+phosphorus), saturation kinetics are used. The more nutrients
+are available, the faster the growth. Above a certain
+nutrient concentration, saturation is reached, meaning that even more
+nutrients do not lead to further growth.
+
+There are various ways to describe this mathematically.
+In the **Blackman model**, the growth rate initially increases
+proportionally with the nutrient concentration. Here, $k_b$ is the
+proportionality factor. When the nutrient concentration ($P$) exceeds the
+maximum possible growth rate ($r_{max}$),
+the growth rate $r$ remains constant at $r_{max}$:
 
 $$
 r = r_{max} \cdot \min(k_b \cdot P, 1) 
 $$
-
-Beim **Monod-Modell** wird allmählicher Übergang vom Anstieg in die
-Sättigung angenommen. In der hierfür verwendeten Gleichung:
+The **Monod model** assumes a gradual transition from the growth phase to
+saturation. In the equation used for this purpose:
 
 $$
 r = r_{max} \cdot \frac{P}{k_P + P} 
-$$ wird die Limitation durch ein Verhältnis realisiert, bei dem im
-Nenner eine sogenannte Halbsättigungsrate $k_P$ steht, die die gleiche
-Maßeinheit wie $P$ hat. Dadurch ist dieser Term dimensionslos. Wenn
-Phosphorkonzentration und Halbsättigungsrate gleich sind (also $P=k_P$) ist,
-dann ist das Verhältnis $P/(P + P) = 0.5$. Wenn jedoch $P$ sehr groß ist
-($P >> k_p$), dann konvergiert das Verhältnis gegen 1
-und die Wachstumsrate $r$ gegen $r_{max}$.
+$$ 
 
-Schnell wachsende Phytoplanktonarten haben eine **große** maximale Wachstumsrate, 
-Arten, die mit wenigen Nährstoffen auskommen, haben eine **kleine**
-Halbsättigungskonstante.
+the limitation is achieved through a ratio in which the
+denominator is a so-called half-saturation rate $k_P$, which has the same
+unit of measurement as $P$. This makes this term dimensionless. If
+the phosphorus concentration and the half-saturation rate are equal (i.e., $P=k_P$),
+then the ratio $P/(P + P) = 0.5$. However, if $P$ is very large
+($P >> k_P$), then the ratio converges to 1
+and the growth rate $r$ converges to $r_{max}$.
+
+Fast-growing phytoplankton species have a **high** maximum growth rate, 
+while species that can survive on few nutrients have a **low**
+semi-saturation constant.

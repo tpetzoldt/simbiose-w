@@ -1,11 +1,10 @@
-![](../www/lotka-volterra.png){fig-alt="Das Bild zeigt, wie Algen von Dahnien gefressen werden. Ohne Daphnien würden die Algen exponentiell wachsen. Von den Daphnien stirbt pro Zeiteinheit ein Teil oder wird durch Fische gefressen. Durch die Wechselwirkung zwischen Algen und Daphnien werden die Algen verringert und die Daphnien könne sich vermehren." fig-height="18%" fig-align="center"}
+![](../www/lotka-volterra.png){fig-alt="The image shows how algae are eaten by daphnia. Without daphnia, the algae would grow exponentially. A portion of the daphnia die each time unit or are eaten by fish. The interaction between algae and daphnia reduces the algae population and allows the daphnia to reproduce.“ fig-height=”18%“ fig-align=”center"}
 ---
 
 
-**Interaktion zwischen Populationen**
+**Interaction Between Populations**
 
-Die bisher betrachteten Modelle beschreiben jeweils nur das Wachstum einer einzelnen 
-Population. In der Realität findet man fast immer mehrere Populationen 
-gemeinsam, die entweder in Konkurrenz zueinander stehen oder Nahrungsketten und Nahrungsnetze bilden.
+The models considered so far each describe only the growth of a single population.
+In reality, multiple populations are almost always found together, either competing with one another or forming food chains and food webs.
 
-Im folgenden betrachten wir einen Ausschnitt aus einer Nahrungskette mit einer Beutepopulation und einer Räuberpopulation, z.B. Phytoplankton (Algen) und Zooplankton (Daphnien).
+In the following, we will examine a segment of a food chain involving a prey population and a predator population, e.g., phytoplankton (algae) and zooplankton (daphnia).

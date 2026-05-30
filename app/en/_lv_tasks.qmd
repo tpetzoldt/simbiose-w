@@ -1,82 +1,70 @@
-**Einstellung von Gleichgewichten**
+**Identification of Equilibrium Points**
 
 
-Gegeben sind zunächst die Standardparameter und Startwerte wie folgt:
+The initial standard parameters and starting values are as follows:
 
 $a=b=c=d=0.1$, $B_0=1$, $R_0=0.5$.
 
 
-1. Verändere den Anfangswert für den Räuber ($R_0$) auf 2 bzw. auf 1.
+1. Change the initial value for the predator ($R_0$) to 2 or 1.
 
-* Was passiert?
-
----
-
-2. Setze nochmals $R_0=2$. Versuche nun, eine
-  Vermehrungsrate der Beute ($a$) zu finden, bei dem wieder ein
-  Gleichgewicht auftritt.
-
-* Man kann den gesuchten Wert entweder durch Probieren oder durch Umstellen 
-  des Gleichungssystems finden.
+* What happens?
 
 ---
 
-**Periodendauer und Amplitude**
+2. Set $R_0=2$ again. Now try to find a   prey reproduction rate ($a$) at which an equilibrium is reached again.
 
-Stelle zunächst die Standardparameter wieder her, z.B. indem die App neu geladen wird.
+* You can find the desired value either by trial and error or by rearranging the system of equations.
+
+---
+
+**Period and Amplitude**
+
+First, restore the default parameters, e.g., by reloading the app.
 
 
-3. Durch Veränderung der Parameter $a, b, c, d$ lässt sich die Periodendauer ändern. 
-Zur Vereinfachung sollen alle Parameterwerte zunächst gleich sein ($a = b = c = d$). 
-Finde nun Werte, so dass sich die Periodendauer:
+3. By changing the parameters $a, b, c, d$, you can alter the period. 
+For simplicity, let all parameter values be equal at first ($a = b = c = d$). 
+Now find values such that the period:
 
-    a. verkürzt
+    a. shortens
 
-    b. verlängert
+    b. lengthens
 
-    c. Warum wirken die Parameter in die jeweils beobachtete Richtung?
+    c. Why do the parameters affect the period in the observed direction?
     
-Hinweis: Die Checkbox "Werte abtasten" aktiviert zusätzliche Hilfslinien. 
-  Mit Hilfe der Maus lassen sich konkrete Werte ablesen.
+Note: Checking the “Scan values” box activates additional guide lines. You can read specific values using the mouse.
 
 ---
 
-4. Setze nun wieder die Standardparameterwerte ein.
+4. Now set the parameter values back to their defaults.
 
-    a. Verdopple die Beute-Vermehrungsrate $a$ auf 0.2. Wie ist das
-      Ergebnis zu erklären?
+    a. Double the prey reproduction rate $a$ to 0.2. How can the result be explained?
 
-    b. Verdopple die Räuber-Sterberate $d$ auf 0.2. Wie ist das
-      Ergebnis zu erklären?
+    b. Double the predator mortality rate $d$ to 0.2. How can the result be explained?
 
-    c. Welche Folgerungen lassen sich zu **Umsatz** und **Populationsdichte**
-      in realen Systemen treffen?
+    c. What conclusions can be drawn regarding **turnover** and **population density** in real-world systems?
 
 ---
 
-5. Verdopple und halbiere den Umsatz zwischen $B$ und $R$.
-  Verwenden dazu Parameter im Bereich: $b = c = 0.05 \dots 0.2$.
+5. Double and halve the turnover between $B$ and $R$. Use parameters in the range: $b = c = 0.05 \dots 0.2$.
   
-* Wie lässt sich das Ergebnis erklären? Welche Informationen sind erforderlich, um beurteilen zu können, ob das Ergebnis realistisch ist?
+* How can the result be explained? What information is needed to assess whether the result is realistic?
 
 ---
 
-**Analytische Ermittlung von Gleichgewichten und Mittelwerten**
+**Analytical Determination of Equilibrium and Mean Values**
 
-6. Stelle das Gleichungssystem um und ermittle den Gleichgewichtszustand.
+6. Rearrange the system of equations and determine the equilibrium state.
 
-    a. Im Gleichgewichtszustand sind die ersten Ableitungen beider Gleichungen 
-      gleich 0. Gehe zu Aufgabe (2) zurück und finde den Wert des Parameters a
-      durch Umstellung und Lösung des Gleichungsystems.
+    a. At equilibrium, the first derivatives of both equations are equal to 0. Return to Problem (2) and find the value of the parameter a
+      by rearranging and solving the system of equations.
       
-    b. Über die Checkbox "Werte ablesen" kann man aus den angezeigten Punkten
-      die Mittelwerte von Beute und Räuber für jeden Zyklus abschätzen. Hierbei
-      reicht ein Zyklus immer von einem Maximum zum nächsten.
+    b. Using the “Read Values” checkbox, you can estimate the mean values of prey and predator for each cycle from the displayed points.
+      Here, a cycle always extends from one maximum to the next.
       
-    c. Vergleiche den Gleichgewichtstand (horizontale gepunktete Linien) mit 
-      den nach (b) abgeschätzten Mittelwerten. Überlege bzw. recherchiere,
-      wie man den Mittelwert aus den Anfangswerten und den Modellparametern
-      direkt erhalten kann.
+    c. Compare the equilibrium state (horizontal dotted lines) with the mean values estimated in (b). Consider or research
+      how the mean value can be obtained directly from the initial values and the model parameters.
 
 
 $$
