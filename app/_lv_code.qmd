@@ -132,7 +132,6 @@ output$lotkavolterra <- renderPlotly({
 })
 
 ## --------- download functionality ----------------------
-
 output$downloadData <- downloadHandler(
   filename = function() {
     paste("simulation-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".csv", sep = "")
@@ -145,8 +144,18 @@ output$downloadData <- downloadHandler(
       as.data.frame() |>
       rename(Prey = B, Predator = R, Time = time)
     
-    # Write the data to a CSV file, German format with comma and semicolon
-    write.table(lv_df, file, row.names = FALSE, quote = FALSE, dec=",", sep=";")
+    # Determine localization formats based on the active language
+    if (i18n$get_translation_language() == "en") {
+      decimal_sep   <- "."
+      column_sep    <- ","
+    } else {
+      decimal_sep   <- ","
+      column_sep    <- ";"
+    }
+    
+    # Write the data to a CSV file matching the regional format
+    write.table(lv_df, file, row.names = FALSE, quote = FALSE, 
+                dec = decimal_sep, sep = column_sep)
   }
 )
 ```
