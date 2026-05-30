@@ -1,11 +1,11 @@
-**Tipps zur App**
+**Tips for the App**
 
-* Wenn die Zahlen zu groß werden, kann man den Simulationszeitraum verkürzen.
-* Man kann Zahlen mit dem Mauszeiger direkt aus der Grafik ablesen.
-* Das Ergebnisdiagramm kann mit Hilfe des Kamerasymbols abgespeichert werden.
-* Statt Simulation sind manchmal auch Papier und Bleistift oder ein Taschenrechner nützlich, Nachdenken sowieso.
+* If the numbers get too large, you can shorten the simulation period.
+* You can read the numbers directly from the graph using the mouse pointer.
+* You can save the results graph by clicking the camera icon.
+* Instead of a simulation, a pen and paper or a calculator can sometimes be useful—and thinking things through is always a good idea.
 
-**Tipps zu den Aufgaben**
+**Tips for the exercises**
 
-* Wenn eine Population abstirbt, also $b < d$ ist, dann ist die Reproduktionsrate $r$ negativ.
-* Die Dichte von Algen ist nur wenig größer als die von Wasser. Wir können praktisch mit 1 g cm^-3^ rechnen.
+* If a population is dying off, i.e., $b < d$, then the reproduction rate $r$ is negative.
+* The density of algae is only slightly greater than that of water. We can practically assume a density of 1 g cm^-3^.

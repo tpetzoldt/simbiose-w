@@ -1,0 +1,16 @@
+{
+  "languages": ["en", "de"],
+  "translation": [
+    {"en": "Initial Values", "de": "Anfangswerte"},
+    {"en": "N0: Abundance", "de": "N0: Abundanz"},
+    {"en": "Parameters", "de": "Parameter"},
+    {"en": "r: Growth rate", "de": "r: Wachstumsrate"},
+    {"en": "Control", "de": "Steuerung"},
+    {"en": "Time steps", "de": "Zeitschritte"},
+    {"en": "discrete", "de": "diskret"},
+    {"en": "continuous", "de": "kontinuierlich"},
+    {"en": "Simulation time", "de": "Simulationszeit"},
+    {"en": "Time", "de": "Zeit"},
+    {"en": "Abundance", "de": "Abundanz"}
+  ]
+}

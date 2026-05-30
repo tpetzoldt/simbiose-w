@@ -1,22 +1,23 @@
-**Exponentielles Wachstum verstehen**
+**Understanding Exponential Growth**
 
-1. Wie viele Zellen entwickeln sich bei einer Wachstumsrate von $r=1$ d^-1^ aus einer einzelnen Zelle an einem Tag:
+1. Given a growth rate of $r=1$ d^-1^, how many cells will develop from a single cell in one day:
 
-a. beim diskreten Wachstum in festen Zeitschritten?
-b. beim kontinuierlichen (exponentiellen) Wachstum?
-
----
-
-2. Eine Grünalgenpopulation startet mit 10 Zellen pro Liter und einer Wachstumsrate von $r=1$ d^-1^. Wieviele Zellen pro Liter findet man bei exponentiellem Wachstum nach 7 Tagen?
+a. in discrete growth at fixed time intervals?
+b. with continuous (exponential) growth?
 
 ---
 
-3. Eine Cyanobakterienpopulation (Blaualgen) wächst mit einer Wachstumsrate von $r=0.5$ d^-1^. Nach etwa wieviel Tagen hat sich bei einem exponentiellem Wachstum die Abundanz verzehnfacht?
+2. A green algae population starts with 10 cells per liter and a growth rate of $r=1$ d^-1^. How many cells per liter will there be after 7 days of exponential growth?
 
 ---
 
-4. In einem See ist eine Klarwassersituation entstanden. Die Daphnienpopulation mit einer Konzentration von 50 Individuen pro Liter leidet unter akutem Nahrungsmangel und vermehrt sich nicht mehr. Allerdings beträgt auf Grund des Fischfraßdrucks die exponentielle Mortalitätsrate $d=0.1$ d^-1^. Nach wieviel Tagen befindet sich nur noch eine Daphnie in einem Liter Wasser?
+3. A cyanobacteria population (blue-green algae) grows at a rate of $r=0.5$ d^-1^. After approximately how many days will the abundance have increased tenfold under exponential growth?
 
 ---
 
-5. Ein Gedankenexperiment: In einem Becherglas mit 1 L Nährlösung befinden sich Algen mit einem Frischmasse von 1 mg L^-1^, die Wachstumsrate beträgt 1 d^-1^. Nach welcher Zeit wäre das Becherglas komplett mit Algenbiomasse gefüllt, wenn die Algen unlimitiert wachsen könnten?
+4. A clear-water situation has developed in a lake. The Daphnia population, with a concentration of 50 individuals per liter, is suffering from acute food shortage and is no longer reproducing. However, due to predation by fish, the exponential mortality rate is $d=0.1$ d^-1^. After how many days will there be only one Daphnia left in one liter of water?
+
+---
+
+5. A thought experiment: A beaker containing 1 L of nutrient solution holds algae with a fresh mass of 1 mg L^-1^, and the growth rate is 1 d^-1^. 
+How long would it take until the beaker is completely filled with algal biomass if the algae could grow without limitation?

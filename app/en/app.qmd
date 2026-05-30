@@ -1,6 +1,6 @@
 ---
 title: "[![](www/TUD_Logos_final_RGB_TUD_Logo_horizontal_weiss_de.png){height=40}](https://tu-dresden.de/hydrobiologie){target='_blank'}&nbsp;[SimBioSe-W]"
-lang: de
+lang: en
 format: 
   dashboard:
     orientation: columns
@@ -13,6 +13,10 @@ format:
     #logo-href: https://tu-dresden.de/hydrobiologie/
     expandable: false
     search: true
+    nav-buttons:
+      - text: "DE"
+        href: "../de/app.qmd"
+        align: right
 server: shiny
 #embed-resources: true
 #html-math-method: katex
@@ -44,8 +48,15 @@ library("shiny")
 library("plotly")
 library("scales")
 library("fontawesome")
+library("shiny.i18n")
 
+# 1. Map the central media/style folder
 shiny::addResourcePath(prefix = "www", directoryPath = "../www")
+
+# 2. Setup the translation engine for the shared R code and force English
+#i18n <- Translator$new(translation_json_path = "../translation.json")
+i18n <- Translator$new(translation_json_path = "../translation.json")
+i18n$set_translation_language("en")
 
 mypar <- list(las = 1, cex.lab = 1.4, cex.axis=1.4, lwd = 2)
 
@@ -119,7 +130,6 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 **Technologies**
 
 [R](https://www.r-project.org), [Quarto](https://quarto.org), [Shiny](https://shiny.posit.co/), [deSolve](https://github.com/tpetzoldt/deSolve), [ggplot2](https://ggplot2.tidyverse.org/)
-
 
 ::: {.card-footer}
 ![](../www/TUD_Logo_RGB_horizontal_blau_de.svg){height=44px fig-alt="Logo TU Dresden"}
@@ -271,3 +281,4 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 # &#9855; <!--- Wheelchair Symbol /--->
 
 {{< include ../barrierefreiheit.qmd >}}
+
