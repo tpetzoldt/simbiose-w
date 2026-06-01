@@ -1,5 +1,5 @@
 ---
-title: "Lotka-Volterra Simulation"
+title: "Lotka-Volterra webR-Ready Simulation"
 format: 
   dashboard:
     orientation: columns
@@ -13,13 +13,37 @@ library(shiny)
 library(shiny.i18n)
 library(tidyverse)
 library(plotly)
-library(PBSddesolve)
 
 # Initialize translator locally for the standalone file
 i18n <- Translator$new(translation_json_path = "translation.json")
-i18n$set_translation_language("de") # Set your default language testing environment
+i18n$set_translation_language("de") # Set default language testing environment
 
-# Placeholder style variable for the standalone run
+# A classic, vectorized Runge-Kutta 4th Order numerical solver written in pure R.
+# Designed to process inputs exactly like deSolve::ode.
+rk4_pure <- function(y, times, func, parms) {
+  out <- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  out[1, ] <- c(times[1], y)
+  colnames(out) <- c("time", names(y))
+  
+  current_y <- y
+  
+  for (i in 1:(length(times) - 1)) {
+    t_curr <- times[i]
+    t_next <- times[i + 1]
+    h <- t_next - t_curr
+    
+    # Calculate the 4 standard RK4 increments
+    k1 <- unlist(func(t_curr,          current_y,          parms))
+    k2 <- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+    k3 <- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+    k4 <- unlist(func(t_next,          current_y + h * k3,     parms))
+    
+    current_y <- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    out[i + 1, ] <- c(t_next, current_y)
+  }
+  return(out)
+}
+
 figure_theme <- theme_minimal()
 ```
 
@@ -27,11 +51,11 @@ figure_theme <- theme_minimal()
 
 ```{r}
 #| context: server
-suppressMessages(library(deSolve))
 library(tidyverse)
 library(plotly)
 library(shiny)
 
+# The core model remains identical
 lv <- function (t, x, parms) {
   with(as.list(c(x, parms)),{
     dB <- a * B - b * R * B
@@ -39,14 +63,16 @@ lv <- function (t, x, parms) {
     list(c(dB, dR))
   })
 }
-parms  <- c(a = 0.1, b=0.1, c = 0.1, d = 0.1)
+parms  <- c(a = 0.1, b = 0.1, c = 0.1, d = 0.1)
 times  <- seq(0, 200, by = 0.2)
 y0     <- c(B = 1, R = 0.5)
 
 simulate <- reactive({
   parms  <- c(a = input$lv_a,  b = input$lv_b, c = input$lv_c, d = input$lv_d)
   y0     <- c(B = input$lv_B0, R = input$lv_R0)
-  res    <- ode(y0, times, lv, parms, method = "adams")
+  
+  # Swapped deSolve::ode out for our pure-R rk4 solver
+  res    <- rk4_pure(y0, times, lv, parms)
 })
 
 output$lotkavolterra <- renderPlotly({
@@ -86,11 +112,11 @@ output$lotkavolterra <- renderPlotly({
       ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + geom_line() + 
       scale_color_manual(values = c("#69af22", "#009de0")) +
       scale_x_continuous(
-        breaks = scales::breaks_pretty(n = 10),      # ~10 major breaks, adapts to data
-        minor_breaks = scales::breaks_width(5)       # minor breaks every 5 units, adapts to data
+        breaks = scales::breaks_pretty(n = 10),
+        minor_breaks = scales::breaks_width(5)
       ) +
       scale_y_continuous(
-        breaks = scales::breaks_pretty(n = 10)       # ~10 major breaks for y, adapts to data
+        breaks = scales::breaks_pretty(n = 10)
       )
 
     lwd <- 0.3 # line width for peaks and equilibria
@@ -101,42 +127,39 @@ output$lotkavolterra <- renderPlotly({
     gg <- gg + geom_hline(aes(yintercept = input$lv_a/input$lv_b), colour = "#009de0", linewidth = lwd, linetype = "dotted")
     gg <- gg + geom_hline(aes(yintercept = input$lv_d/input$lv_c), colour = "#69af22", linewidth = lwd, linetype = "dotted")
 
-    ## Additional simulations
-    ## we simulate it twice, one time for the periods of prey, one time for predator,
-    ## where periods are defined from maximum to maximum
+    ## Additional simulations processed via our custom rk4 engine
     parms  <- c(a=input$lv_a,  b=input$lv_b, c=input$lv_c, d=input$lv_d)
     y0 <- c(B = input$lv_B0, R = input$lv_R0)
     
     ## simulation with peakstepsize for prey
     npeaks <- nrow(prey_peaks)
-    times  <- c(0, seq(prey_peaks[[label_time]][1], prey_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
+    times_prey  <- c(0, seq(prey_peaks[[label_time]][1], prey_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
 
-    res <- ode(y0, times, lv, parms, method = "adams", rtol = 1e-12)
+    res_prey <- rk4_pure(y0, times_prey, lv, parms)
     
-    period1 <- res |>
+    period1 <- res_prey |>
       as.data.frame() |>
       pivot_longer(cols=c("B", "R"), 
                    names_to = label_pop, values_to = label_abundance) |>
       rename(!!sym(label_time) := time) |>
       dplyr::filter(!!sym(label_pop) == "B") |>
-      dplyr::filter(!!sym(label_time) > 0) # remove initial value
+      dplyr::filter(!!sym(label_time) > 0)
     
-    # Standardize explicit labels back to translated variants for proper binding matching
     period1[[label_pop]] <- label_prey
     
     ## simulation with peakstepsize for predator
     npeaks <- nrow(pred_peaks)
-    times  <- c(0, seq(pred_peaks[[label_time]][1], pred_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
+    times_pred  <- c(0, seq(pred_peaks[[label_time]][1], pred_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
 
-    res <- ode(y0, times, lv, parms, method = "adams", rtol = 1e-12)
+    res_pred <- rk4_pure(y0, times_pred, lv, parms)
     
-    period2 <- res |>
+    period2 <- res_pred |>
       as.data.frame() |>
       pivot_longer(cols=c("B", "R"), 
                    names_to = label_pop, values_to = label_abundance) |>
       rename(!!sym(label_time) := time) |>
       dplyr::filter(!!sym(label_pop) == "R") |>
-      dplyr::filter(!!sym(label_time) > 0) # remove initial value
+      dplyr::filter(!!sym(label_time) > 0)
       
     period2[[label_pop]] <- label_predator
     
@@ -167,12 +190,10 @@ output$downloadData <- downloadHandler(
   content = function(file) {
     res <- simulate()
     
-    # Keeping export headers in a clean structure
     lv_df <- res |>
       as.data.frame() |>
       rename(Prey = B, Predator = R, Time = time)
     
-    # Determine localization formats based on the active language
     if (i18n$get_translation_language() == "en") {
       decimal_sep   <- "."
       column_sep    <- ","
@@ -181,7 +202,6 @@ output$downloadData <- downloadHandler(
       column_sep    <- ";"
     }
     
-    # Write the data to a CSV file matching the regional format
     write.table(lv_df, file, row.names = FALSE, quote = FALSE, 
                 dec = decimal_sep, sep = column_sep)
   }
