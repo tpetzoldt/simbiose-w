@@ -1,0 +1,234 @@
+---
+title: "Lotka-Volterra Simulation"
+format: 
+  dashboard:
+    orientation: columns
+server: shiny
+---
+
+```{r}
+#| context: setup
+#| include: false
+library(shiny)
+library(shiny.i18n)
+library(tidyverse)
+library(plotly)
+library(deSolve)
+
+# Initialize translator locally for the standalone file
+i18n <- Translator$new(translation_json_path = "translation.json")
+i18n$set_translation_language("de") # Set your default language testing environment
+
+# Placeholder style variable for the standalone run
+figure_theme <- theme_minimal()
+```
+
+## Column {width=22%}
+
+```{r}
+#| context: server
+suppressMessages(library(deSolve))
+library(tidyverse)
+library(plotly)
+library(shiny)
+
+lv <- function (t, x, parms) {
+  with(as.list(c(x, parms)),{
+    dB <- a * B - b * R * B
+    dR <- c * R * B - d * R
+    list(c(dB, dR))
+  })
+}
+parms  <- c(a = 0.1, b=0.1, c = 0.1, d = 0.1)
+times  <- seq(0, 200, by = 0.2)
+y0     <- c(B = 1, R = 0.5)
+
+simulate <- reactive({
+  parms  <- c(a = input$lv_a,  b = input$lv_b, c = input$lv_c, d = input$lv_d)
+  y0     <- c(B = input$lv_B0, R = input$lv_R0)
+  res    <- ode(y0, times, lv, parms, method = "adams")
+})
+
+output$lotkavolterra <- renderPlotly({
+  res <- simulate()
+  
+  # Fetch dynamic translations for labels and group categories
+  label_time      <- i18n$t("Time")
+  label_abundance <- i18n$t("Abundance")
+  label_prey      <- i18n$t("Prey")
+  label_predator  <- i18n$t("Predator")
+  label_pop       <- i18n$t("Population")
+  
+  lv_df <- res |>
+    as.data.frame() |>
+    rename(!!sym(label_prey) := B, !!sym(label_predator) := R) |>
+    pivot_longer(cols = c(!!sym(label_prey), !!sym(label_predator)), 
+                 names_to = label_pop, values_to = label_abundance) |>
+    rename(!!sym(label_time) := time)
+
+  if (input$lv_grid == FALSE) {
+    gg <- lv_df |>
+      ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + geom_line() + 
+      scale_color_manual(values=c("#69af22", "#009de0"))
+ 
+  } else {
+    
+    # Simple peak detection utilizing translated group strings
+    prey_peaks <- lv_df |>
+      dplyr::filter(!!sym(label_pop) == label_prey) |>
+      dplyr::slice(which(diff(sign(diff(!!sym(label_abundance)))) == -2))
+    
+    pred_peaks <- lv_df |>
+      dplyr::filter(!!sym(label_pop) == label_predator) |>
+      dplyr::slice(which(diff(sign(diff(!!sym(label_abundance)))) == -2))
+    
+    gg <- lv_df |>
+      ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + geom_line() + 
+      scale_color_manual(values = c("#69af22", "#009de0")) +
+      scale_x_continuous(
+        breaks = scales::breaks_pretty(n = 10),      # ~10 major breaks, adapts to data
+        minor_breaks = scales::breaks_width(5)       # minor breaks every 5 units, adapts to data
+      ) +
+      scale_y_continuous(
+        breaks = scales::breaks_pretty(n = 10)       # ~10 major breaks for y, adapts to data
+      )
+
+    lwd <- 0.3 # line width for peaks and equilibria
+    
+    gg <- gg + geom_vline(aes(xintercept = !!sym(label_time)), colour = "#009de0", linetype = "dotted", linewidth = lwd, data = pred_peaks)
+    gg <- gg + geom_vline(aes(xintercept = !!sym(label_time)), colour = "#69af22", linetype = "dotted", linewidth = lwd, data = prey_peaks)
+    
+    gg <- gg + geom_hline(aes(yintercept = input$lv_a/input$lv_b), colour = "#009de0", linewidth = lwd, linetype = "dotted")
+    gg <- gg + geom_hline(aes(yintercept = input$lv_d/input$lv_c), colour = "#69af22", linewidth = lwd, linetype = "dotted")
+
+    ## Additional simulations
+    ## we simulate it twice, one time for the periods of prey, one time for predator,
+    ## where periods are defined from maximum to maximum
+    parms  <- c(a=input$lv_a,  b=input$lv_b, c=input$lv_c, d=input$lv_d)
+    y0 <- c(B = input$lv_B0, R = input$lv_R0)
+    
+    ## simulation with peakstepsize for prey
+    npeaks <- nrow(prey_peaks)
+    times  <- c(0, seq(prey_peaks[[label_time]][1], prey_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
+
+    res <- ode(y0, times, lv, parms, method = "adams", rtol = 1e-12)
+    
+    period1 <- res |>
+      as.data.frame() |>
+      pivot_longer(cols=c("B", "R"), 
+                   names_to = label_pop, values_to = label_abundance) |>
+      rename(!!sym(label_time) := time) |>
+      dplyr::filter(!!sym(label_pop) == "B") |>
+      dplyr::filter(!!sym(label_time) > 0) # remove initial value
+    
+    # Standardize explicit labels back to translated variants for proper binding matching
+    period1[[label_pop]] <- label_prey
+    
+    ## simulation with peakstepsize for predator
+    npeaks <- nrow(pred_peaks)
+    times  <- c(0, seq(pred_peaks[[label_time]][1], pred_peaks[[label_time]][npeaks], length.out = 1 + 10 * (npeaks - 1)))
+
+    res <- ode(y0, times, lv, parms, method = "adams", rtol = 1e-12)
+    
+    period2 <- res |>
+      as.data.frame() |>
+      pivot_longer(cols=c("B", "R"), 
+                   names_to = label_pop, values_to = label_abundance) |>
+      rename(!!sym(label_time) := time) |>
+      dplyr::filter(!!sym(label_pop) == "R") |>
+      dplyr::filter(!!sym(label_time) > 0) # remove initial value
+      
+    period2[[label_pop]] <- label_predator
+    
+    period <- bind_rows(period1, period2)
+    
+    gg <- gg + 
+      geom_point(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop)), data = period, size = 0.8) +
+      scale_color_manual(values=c("forestgreen", "#69af22", "navy", "#009de0"))
+    
+    query <- parseQueryString(session$clientData$url_search)
+
+    if (!is.null(query$cheat) &&  "cheat" %in% names(query())) {
+      gg <- gg + geom_text(aes(!!sym(label_time), !!sym(label_abundance), label = round(!!sym(label_abundance), 2), color = !!sym(label_pop)), 
+        data=period, position = position_nudge(x = 4), size = 3, fontface = "bold")
+    }
+  }
+  
+  gg <- gg + theme(legend.position = "bottom") + figure_theme
+
+  ggplotly(gg)
+})
+
+## --------- download functionality ----------------------
+output$downloadData <- downloadHandler(
+  filename = function() {
+    paste("simulation-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".csv", sep = "")
+  },
+  content = function(file) {
+    res := simulate()
+    
+    # Keeping export headers in a clean structure
+    lv_df <- res |>
+      as.data.frame() |>
+      rename(Prey = B, Predator = R, Time = time)
+    
+    # Determine localization formats based on the active language
+    if (i18n$get_translation_language() == "en") {
+      decimal_sep   <- "."
+      column_sep    <- ","
+    } else {
+      decimal_sep   <- ","
+      column_sep    <- ";"
+    }
+    
+    # Write the data to a CSV file matching the regional format
+    write.table(lv_df, file, row.names = FALSE, quote = FALSE, 
+                dec = decimal_sep, sep = column_sep)
+  }
+)
+```
+
+```{r}
+inputPanel(
+  h3(i18n$t("Initial Values")),
+  tags$div(title = i18n$t("Abundance of prey at time t=0"),
+           numericInput(
+             "lv_B0", label = i18n$t("B0: Prey"), width="48%",
+             value = 1.0, min = 0, max = 2, step = 0.1
+           )),
+  tags$div(title = i18n$t("Abundance of predator at time t=0"),
+           numericInput(
+             "lv_R0", label = i18n$t("R0: Predator"), width="48%",
+             value = 0.5, min = 0, max = 2, step = 0.1
+           )),
+  h3(i18n$t("Parameters")),
+  tags$div(title = i18n$t("Reproduction rate of phytoplankton (prey population)"),
+           sliderInput(
+             "lv_a", label = i18n$t("a: Reproduction rate prey"), 
+             value = 0.1, min = 0, max = 1, step = 0.02
+           )),
+  tags$div(title = i18n$t("Grazing loss of phytoplankton (prey) due to consumption by daphnia (predator)"),
+           sliderInput(
+             "lv_b", label = i18n$t("b: Loss prey by grazing"), 
+             value = 0.1, min = 0, max = 1, step = 0.02
+           )),
+  tags$div(title = i18n$t("Growth efficiency of daphnia (predator) via food intake"),
+           sliderInput(
+             "lv_c", label = i18n$t("c: Efficiency predator"), 
+             value = 0.1, min = 0, max = 1, step = 0.02
+           )),
+  tags$div(title = i18n$t("Mortality rate of daphnia (predator)"),
+           sliderInput(
+             "lv_d", label = i18n$t("d: Mortality rate predator"), 
+             value = 0.1, min = 0, max = 1, step = 0.02
+           )),
+  checkboxInput("lv_grid", i18n$t("Sample values"), value = FALSE),
+  downloadButton("downloadData", i18n$t("Download"))
+)
+```
+
+## Column {width=40%}
+
+```{r}
+plotlyOutput("lotkavolterra")
+```
