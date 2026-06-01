@@ -4,7 +4,7 @@ Das Institut für Hydrobiologie der Technischen Universität Dresden ist bemüht
 
 **Erstellung dieser Erklärung zur Barrierefreiheit**
 
-Diese Erklärung wurde am 09.09.2020 erstellt und zuletzt am 10.12.2024 aktualisiert. Grundlage der Erstellung dieser Erklärung zur Barrierefreiheit ist eine am 28.09.2020 durch die Professur für Mensch-Computer Interaktion der TU Dresden für unsere Apps durchgeführte Selbstbewertung.
+Diese Erklärung wurde am 09.09.2020 erstellt und zuletzt am 01.06.2026 aktualisiert. Grundlage der Erstellung dieser Erklärung zur Barrierefreiheit ist eine am 28.09.2020 durch die Professur für Mensch-Computer Interaktion der TU Dresden für unsere Apps durchgeführte Selbstbewertung.
 
 **Stand der Barrierefreiheit**
 

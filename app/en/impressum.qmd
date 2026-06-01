@@ -1,43 +1,4 @@
-<span lang="de">
-
-**Datenschutz und Impressum**<br></br>
-
-**Verwendung von Cookies**
-
-Wir verwenden nur Cookies, die zwingend erforderlich sind, damit unsere Website und deren Funktionen ordnungsgemäß arbeiten können. Diese Cookies werden automatisch bei Aufruf der Website oder einer bestimmten Funktion gesetzt, es sei denn, Sie haben das Setzen von Cookies durch Einstellungen in Ihrem Browser verhindert. Die durch den Einsatz dieser Cookies erhobenen Daten verarbeiten wir auf Basis des Artikels 6 Absatz 1 Buchstabe f) DSGVO.
-
-* Name des Cookies: weblab.hydro.tu-dresden.de
-* Cookie Anbieter: TU Dresden
-* Speicherdauer: aktuelle Browser-Session, das Cookie wird beim Schließen des Browsers gelöscht
-* Verwendungszweck: ermöglicht es dem Server, Nutzereingaben entgegenzunehmen und Daten an den Browser zurückzusenden
-
-Es werden keine sogenannten Tracking-Cookies genutzt, um Nutzerbewegungen und das Surfverhalten der Nutzenden unserer Seite zu erfassen bzw. zu analysieren.
-
-
-**Impressum**
-
-Es gilt das [Impressum der TU Dresden](https://tu-dresden.de/impressum) mit folgenden Änderungen:
-
-Ansprechpartner:<br>
-Technische Universität Dresden<br>
-Institut für Hydrobiologie<br>
-Dr. Thomas Petzoldt<br>
-01062 Dresden<br>
-Tel.: +49 351 463-34954<br>
-Fax:  +49 351 463-37108<br>
-E-Mail: thomas.petzoldt@tu-dresden.de<br>
-
-
-![](www/TUD_Logo_RGB_horizontal_blau_de.svg){height=44px fig-alt="Logo TU Dresden"}
-![](www/ihb-color.svg){height=40px fig-alt="Logo Institut für Hydrobiologie"}
-
-
-----
-
-</span>
-
 <span lang="en">
-
 
 **Privacy policy**<br></br>
 
@@ -77,11 +38,10 @@ Sie dürfen die App als Ganzes sowie einzelne Bausteine gemäß der [Creative Co
 
 The app is an "open educational resource". You may freely use (share, edit) the app as a whole as well as individual components in accordance with the [Creative Commons License CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) as long as you attribute its authors. If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original. No guarantee is given for the correctness of content and technical function.
 
-![](www/by-sa.png){height=40px fig-alt="Logo CC BY-SA"}
-![](www/oer-banner.png){height=40px fig-alt="Logo: Open Educational Resources"}
+![](../www/by-sa.png){height=40px fig-alt="Logo CC BY-SA"}
+![](../www/oer-banner.png){height=40px fig-alt="Logo: Open Educational Resources"}
 
 ----
-202-12-19, 2026-03-23
+202-12-19, 2026-06-01
 </span>
-
 

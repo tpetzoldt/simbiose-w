@@ -170,11 +170,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 :::
 
 <!-- contains code with 2 columns --->
-<!---
-{{< include _exponentiell_code.qmd >}}
---->
-
-{{< include ../_exponential_code.qmd >}}
+{{< include ../code/_exponential_code.qmd >}}
 
 
 <!---------------------------------------------------------------------------/-->
@@ -209,7 +205,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 :::
 
 <!-- contains code with 2 columns --->
-{{< include ../_logistic_code.qmd >}}
+{{< include ../code/_logistic_code.qmd >}}
 
 <!---------------------------------------------------------------------------/-->
 # Nährstofflimitiertes Wachstum
@@ -244,7 +240,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 :::
 
 <!-- contains code with 2 columns --->
-{{< include ../_resource_code.qmd >}}
+{{< include ../code/_resource_code.qmd >}}
 
 <!---------------------------------------------------------------------------/-->
 # Räuber-Beute-Modell
@@ -277,13 +273,13 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 
 :::
 
-{{< include ../_lv_code.qmd >}}
+{{< include ../code/_lv_code.qmd >}}
 
 <!---------------------------------------------------------------------------/-->
 # Impressum
 
-{{< include ../impressum.qmd >}}
+{{< include impressum.qmd >}}
 
 # &#9855; <!--- Wheelchair Symbol /--->
 
-{{< include ../barrierefreiheit.qmd >}}
+{{< include barrierefreiheit.qmd >}}
