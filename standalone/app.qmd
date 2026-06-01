@@ -165,7 +165,7 @@ output$downloadData <- downloadHandler(
     paste("simulation-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".csv", sep = "")
   },
   content = function(file) {
-    res := simulate()
+    res <- simulate()
     
     # Keeping export headers in a clean structure
     lv_df <- res |>
