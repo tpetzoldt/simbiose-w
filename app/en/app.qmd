@@ -54,10 +54,12 @@ library("shiny.i18n")
 shiny::addResourcePath(prefix = "www", directoryPath = "../www")
 
 # 2. Setup the translation engine for the shared R code and force English
-#i18n <- Translator$new(translation_json_path = "../translation.json")
 i18n <- Translator$new(translation_json_path = "../translation.json")
 i18n$set_translation_language("en")
 
+Sys.setlocale("LC_NUMERIC", "C")
+
+# 4. Some predefined variables
 mypar <- list(las = 1, cex.lab = 1.4, cex.axis=1.4, lwd = 2)
 
 figure_theme <- theme(
@@ -180,7 +182,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 ::: {.panel-tabset width="38%"}
 
 
-### example
+### Example
 
 {{< include _logistic_example.qmd >}}
 
