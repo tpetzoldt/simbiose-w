@@ -1,0 +1,16 @@
+---
+title: "Minimal Test"
+filters:
+  - shinylive
+embed-resources: false  
+---
+
+```{shinylive-r}
+#| standalone: true
+library(shiny)
+ui <- fluidPage("Hallo WebAssembly!")
+server <- function(input, output, session) {}
+shinyApp(ui, server)
+```
+
+

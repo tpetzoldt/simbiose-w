@@ -11,7 +11,7 @@ server: shiny
 #| include: false
 library(shiny)
 library(shiny.i18n)
-library(tidyverse)
+library(ggplot2)
 library(plotly)
 
 # Initialize translator locally for the standalone file

@@ -1,0 +1,191 @@
+---
+title: "WebAssembly Lotka-Volterra Simulator"
+format: html
+filters:
+  - shinylive
+shinylive:
+  shinylive-repo: "https://posit-dev.github.io/shinylive/r/repo/"  
+embed-resources: false  
+---
+
+This simulation runs entirely inside your web browser using WebAssembly via webR. No background R server is required.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 800
+library(shiny)
+library(tidyverse)
+library(plotly)
+
+# 1. Lokale Übersetzungsdatenbank für den Standalone-Betrieb
+translation_data <- '{
+  "languages": ["en", "de"],
+  "translation": [
+    {"en": "Initial Values", "de": "Anfangswerte"},
+    {"en": "Parameters", "de": "Parameter"},
+    {"en": "Time", "de": "Zeit"},
+    {"en": "Abundance", "de": "Abundanz"},
+    {"en": "Prey", "de": "Beute"},
+    {"en": "Predator", "de": "Räuber"},
+    {"en": "Population", "de": "Population"},
+    {"en": "B0: Prey", "de": "B0: Beute"},
+    {"en": "R0: Predator", "de": "R0: Räuber"},
+    {"en": "a: Reproduction rate prey", "de": "a: Vermehrungsrate Beute"},
+    {"en": "b: Loss prey by grazing", "de": "b: Verlust Beute durch Fraß"},
+    {"en": "c: Efficiency predator", "de": "c: Effizienz Räuber"},
+    {"en": "d: Mortality rate predator", "de": "d: Sterberate Räuber"},
+    {"en": "Sample values", "de": "Werte abtasten"},
+    {"en": "Download", "de": "Download"},
+    {"en": "Abundance of prey at time t=0", "de": "Abundanz der Beute zum Zeitpunkt t=0"},
+    {"en": "Abundance of predator at time t=0", "de": "Abundanz des Räubers zum Zeitpunkt t=0"},
+    {"en": "Reproduction rate of phytoplankton (prey population)", "de": "Vermehrungsrate des Phytoplanktons (Beutepopulation)"},
+    {"en": "Grazing loss of phytoplankton (prey) due to consumption by daphnia (predator)", "de": "Fraßverlust des Phytoplanktons (Beute) durch Fraß der Daphnien (Räuber)"},
+    {"en": "Growth efficiency of daphnia (predator) via food intake", "de": "Zuwachseffizienz der Daphnien (Räuber) durch Nahrungsaufnahme"},
+    {"en": "Mortality rate of daphnia (predator)", "de": "Sterberate der Daphnien (Räuber)"}
+  ]
+}'
+
+t_dict <- jsonlite::fromJSON(translation_data)$translation
+current_lang <- "de" # "de" oder "en" zur Sprachsteuerung
+
+translate <- function(text) {
+  match <- t_dict[t_dict$en == text, current_lang]
+  if (length(match) == 0 || is.na(match) || match == "") return(text)
+  return(match)
+}
+
+# 2. Reiner R-Runge-Kutta-Solver (kein deSolve benötigt!)
+rk4_pure <- function(y, times, func, parms) {
+  out <- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  out[1, ] <- c(times[1], y)
+  colnames(out) <- c("time", names(y))
+  current_y <- y
+  for (i in 1:(length(times) - 1)) {
+    t_curr <- times[i]
+    t_next <- times[i + 1]
+    h <- t_next - t_curr
+    k1 <- unlist(func(t_curr,          current_y,          parms))
+    k2 <- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+    k3 <- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+    k4 <- unlist(func(t_next,          current_y + h * k3,     parms))
+    current_y <- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    out[i + 1, ] <- c(t_next, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+# Modellgleichungen
+lv <- function (t, x, parms) {
+  with(as.list(c(x, parms)),{
+    dB <- a * B - b * R * B
+    dR <- c * R * B - d * R
+    list(c(dB, dR))
+  })
+}
+
+# 3. Shiny Benutzeroberfläche (UI)
+ui <- fluidPage(
+  theme = bslib::bs_theme(version = 5, bootswatch = "flatly"),
+  titlePanel(div("Lotka-Volterra webR (Shinylive)", style = "color: #2c3e50; font-weight: bold;")),
+  sidebarLayout(
+    sidebarPanel(
+      h4(translate("Initial Values"), style = "border-bottom: 2px solid #69af22; padding-bottom: 5px;"),
+      fluidRow(
+        column(6, numericInput("lv_B0", label = translate("B0: Prey"), value = 1.0, min = 0, max = 2, step = 0.1)),
+        column(6, numericInput("lv_R0", label = translate("R0: Predator"), value = 0.5, min = 0, max = 2, step = 0.1))
+      ),
+      br(),
+      h4(translate("Parameters"), style = "border-bottom: 2px solid #009de0; padding-bottom: 5px;"),
+      sliderInput("lv_a", label = translate("a: Reproduction rate prey"), value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("lv_b", label = translate("b: Loss prey by grazing"), value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("lv_c", label = translate("c: Efficiency predator"), value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("lv_d", label = translate("d: Mortality rate predator"), value = 0.1, min = 0, max = 1, step = 0.02),
+      br(),
+      checkboxInput("lv_grid", translate("Sample values"), value = FALSE),
+      downloadButton("downloadData", translate("Download"), class = "btn-dark w-100")
+    ),
+    mainPanel(
+      plotlyOutput("lotkavolterra", height = "600px")
+    )
+  )
+)
+
+# 4. Shiny Server-Logik
+server <- function(input, output, session) {
+  times <- seq(0, 200, by = 0.2)
+  
+  simulate <- reactive({
+    parms <- c(a = input$lv_a, b = input$lv_b, c = input$lv_c, d = input$lv_d)
+    y0    <- c(B = input$lv_B0, R = input$lv_R0)
+    rk4_pure(y0, times, lv, parms)
+  })
+  
+  output$lotkavolterra <- renderPlotly({
+    res <- simulate()
+    
+    label_time      <- translate("Time")
+    label_abundance <- translate("Abundance")
+    label_prey      <- translate("Prey")
+    label_predator  <- translate("Predator")
+    label_pop       <- translate("Population")
+    
+    lv_df <- res |>
+      rename(!!sym(label_prey) := B, !!sym(label_predator) := R) |>
+      pivot_longer(cols = c(!!sym(label_prey), !!sym(label_predator)), 
+                   names_to = label_pop, values_to = label_abundance) |>
+      rename(!!sym(label_time) := time)
+      
+    if (input$lv_grid == FALSE) {
+      gg <- lv_df |>
+        ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + 
+        geom_line(linewidth = 1) + 
+        scale_color_manual(values = c("#69af22", "#009de0"))
+    } else {
+      prey_peaks <- lv_df |>
+        dplyr::filter(!!sym(label_pop) == label_prey) |>
+        dplyr::slice(which(diff(sign(diff(!!sym(label_abundance)))) == -2))
+      
+      pred_peaks <- lv_df |>
+        dplyr::filter(!!sym(label_pop) == label_predator) |>
+        dplyr::slice(which(diff(sign(diff(!!sym(label_abundance)))) == -2))
+      
+      gg <- lv_df |>
+        ggplot(aes(!!sym(label_time), !!sym(label_abundance), color = !!sym(label_pop))) + 
+        geom_line(linewidth = 1) + 
+        scale_color_manual(values = c("#69af22", "#009de0"))
+        
+      lwd <- 0.3
+      if (nrow(pred_peaks) > 0) {
+        gg <- gg + geom_vline(aes(xintercept = !!sym(label_time)), colour = "#009de0", linetype = "dotted", linewidth = lwd, data = pred_peaks)
+      }
+      if (nrow(prey_peaks) > 0) {
+        gg <- gg + geom_vline(aes(xintercept = !!sym(label_time)), colour = "#69af22", linetype = "dotted", linewidth = lwd, data = prey_peaks)
+      }
+      
+      gg <- gg + 
+        geom_hline(aes(yintercept = input$lv_a/input$lv_b), colour = "#009de0", linewidth = lwd, linetype = "dotted") +
+        geom_hline(aes(yintercept = input$lv_d/input$lv_c), colour = "#69af22", linewidth = lwd, linetype = "dotted")
+    }
+    
+    gg <- gg + 
+      labs(x = label_time, y = label_abundance, color = NULL) +
+      theme_minimal() + 
+      theme(legend.position = "bottom")
+      
+    ggplotly(gg)
+  })
+  
+  output$downloadData <- downloadHandler(
+    filename = function() { paste("simulation-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".csv", sep = "") },
+    content = function(file) {
+      res <- simulate()
+      lv_df <- res |> rename(Prey = B, Predator = R, Time = time)
+      decimal_sep <- if(current_lang == "en") "." else ","
+      column_sep  <- if(current_lang == "en") "," else ";"
+      write.table(lv_df, file, row.names = FALSE, quote = FALSE, dec = decimal_sep, sep = column_sep)
+    }
+  )
+}
+
+shinyApp(ui = ui, server = server)
+```

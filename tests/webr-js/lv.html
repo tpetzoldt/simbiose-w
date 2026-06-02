@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotka-Volterra webR Simulator</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Plotly.js (Zuverlässigeres cdnjs Spiegel-Archiv) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.24.1/plotly.min.js"></script>
+
+  <style>
+    /* Custom loader styling */
+    .loader {
+      border-top-color: #69af22;
+      animation: spinner 1.5s linear infinite;
+    }
+    @keyframes spinner {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200 py-4 px-6 flex justify-between items-center shadow-sm">
+    <div class="flex items-center space-x-3">
+      <div class="bg-green-600 text-white p-2 rounded-lg font-bold text-xl">LV</div>
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-gray-900">Lotka-Volterra Simulator</h1>
+        <p class="text-xs text-gray-500">Powered by WebAssembly & webR</p>
+      </div>
+    </div>
+    
+    <!-- Language Selector -->
+    <div class="flex items-center space-x-2">
+      <button id="btn-lang-de" onclick="setLanguage('de')" class="px-3 py-1 text-sm font-semibold rounded border border-gray-300 bg-white hover:bg-gray-50 transition">DE</button>
+      <button id="btn-lang-en" onclick="setLanguage('en')" class="px-3 py-1 text-sm font-semibold rounded border border-gray-300 bg-white hover:bg-gray-50 transition">EN</button>
+    </div>
+  </header>
+
+  <!-- WebR Loading Status Overlay -->
+  <div id="loading-overlay" class="fixed inset-0 bg-white bg-opacity-95 z-50 flex flex-col items-center justify-center transition-all duration-500">
+    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-16 w-16 mb-4"></div>
+    <h2 class="text-xl font-semibold text-gray-700" id="loading-text">Initialisiere R-WebAssembly...</h2>
+    <p class="text-sm text-gray-500 mt-2" id="loading-subtext">R wird direkt in Ihrem Browser geladen (kein Server benötigt)</p>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <main class="flex-grow p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-7xl mx-auto w-full">
+    
+    <!-- Left Panel: Inputs (4 Columns) -->
+    <section class="lg:col-span-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col space-y-6">
+      
+      <!-- Initial Values Group -->
+      <div>
+        <h3 class="text-lg font-bold border-b border-gray-100 pb-2 mb-4 text-gray-900 flex items-center" id="lbl-initial-values">
+          <span class="mr-2">📍</span> Anfangswerte
+        </h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label class="text-xs font-semibold text-gray-500 mb-1" id="lbl-b0" title="Abundanz der Beute zum Zeitpunkt t=0">B0: Beute</label>
+            <input type="number" id="input-B0" value="1.0" min="0" max="2" step="0.1" class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-green-500 outline-none transition">
+          </div>
+          <div class="flex flex-col">
+            <label class="text-xs font-semibold text-gray-500 mb-1" id="lbl-r0" title="Abundanz des Räubers zum Zeitpunkt t=0">R0: Räuber</label>
+            <input type="number" id="input-R0" value="0.5" min="0" max="2" step="0.1" class="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 outline-none transition">
+          </div>
+        </div>
+      </div>
+
+      <!-- Parameters Group -->
+      <div class="flex-grow">
+        <h3 class="text-lg font-bold border-b border-gray-100 pb-2 mb-4 text-gray-900 flex items-center" id="lbl-parameters">
+          <span class="mr-2">⚙️</span> Parameter
+        </h3>
+        <div class="space-y-4">
+          <!-- Parameter a -->
+          <div class="flex flex-col">
+            <div class="flex justify-between text-xs font-semibold text-gray-500 mb-1">
+              <span id="lbl-param-a" title="Vermehrungsrate des Phytoplanktons (Beutepopulation)">a: Vermehrungsrate Beute</span>
+              <span id="val-a" class="text-green-600">0.10</span>
+            </div>
+            <input type="range" id="input-a" min="0" max="1" step="0.02" value="0.1" class="accent-green-600 cursor-pointer">
+          </div>
+          
+          <!-- Parameter b -->
+          <div class="flex flex-col">
+            <div class="flex justify-between text-xs font-semibold text-gray-500 mb-1">
+              <span id="lbl-param-b" title="Fraßverlust des Phytoplanktons (Beute) durch Fraß der Daphnien (Räuber)">b: Verlust Beute durch Fraß</span>
+              <span id="val-b" class="text-green-600">0.10</span>
+            </div>
+            <input type="range" id="input-b" min="0" max="1" step="0.02" value="0.1" class="accent-green-600 cursor-pointer">
+          </div>
+
+          <!-- Parameter c -->
+          <div class="flex flex-col">
+            <div class="flex justify-between text-xs font-semibold text-gray-500 mb-1">
+              <span id="lbl-param-c" title="Zuwachseffizienz der Daphnien (Räuber) durch Nahrungsaufnahme">c: Effizienz Räuber</span>
+              <span id="val-c" class="text-blue-600">0.10</span>
+            </div>
+            <input type="range" id="input-c" min="0" max="1" step="0.02" value="0.1" class="accent-blue-600 cursor-pointer">
+          </div>
+
+          <!-- Parameter d -->
+          <div class="flex flex-col">
+            <div class="flex justify-between text-xs font-semibold text-gray-500 mb-1">
+              <span id="lbl-param-d" title="Sterberate der Daphnien (Räuber)">d: Sterberate Räuber</span>
+              <span id="val-d" class="text-blue-600">0.10</span>
+            </div>
+            <input type="range" id="input-d" min="0" max="1" step="0.02" value="0.1" class="accent-blue-600 cursor-pointer">
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid Toggle & Download -->
+      <div class="space-y-3 pt-4 border-t border-gray-100">
+        <label class="flex items-center space-x-3 cursor-pointer">
+          <input type="checkbox" id="input-grid" class="h-5 w-5 rounded border-gray-300 text-green-600 focus:ring-green-500 cursor-pointer">
+          <span class="text-sm font-semibold text-gray-700" id="lbl-grid">Werte abtasten</span>
+        </label>
+        
+        <button onclick="downloadCSV()" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg shadow-sm flex items-center justify-center space-x-2 transition">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span id="lbl-btn-download">Download</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Panel: Plots (8 Columns) -->
+    <section class="lg:col-span-8 bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
+      <div id="plot-area" class="w-full h-[550px]"></div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-100 text-center py-4 border-t border-gray-200 text-xs text-gray-500">
+    Local webR Numerical Engine • No tracking, all computations execute client-side inside your sandbox.
+  </footer>
+
+  <!-- webR Scripting -->
+  <script type="module">
+    import { WebR } from 'https://webr.r-wasm.org/v0.3.3/webr.mjs';
+
+    // Global variables
+    let webr;
+    let currentData = { time: [], prey: [], predator: [], preyPeaks: [], predPeaks: [] };
+
+    // Set up standard language definitions
+    const translations = {
+      de: {
+        loadingText: "Initialisiere R-WebAssembly...",
+        loadingSub: "R wird direkt in Ihrem Browser geladen (kein Server benötigt)",
+        initialValues: "📍 Anfangswerte",
+        parameters: "⚙️ Parameter",
+        b0: "B0: Beute",
+        r0: "R0: Räuber",
+        paramA: "a: Vermehrungsrate Beute",
+        paramB: "b: Verlust Beute durch Fraß",
+        paramC: "c: Effizienz Räuber",
+        paramD: "d: Sterberate Räuber",
+        grid: "Werte abtasten",
+        download: "Download",
+        timeTitle: "Zeit",
+        abundanceTitle: "Abundanz",
+        preyLegend: "Beute",
+        predLegend: "Räuber"
+      },
+      en: {
+        loadingText: "Initializing R-WebAssembly...",
+        loadingSub: "R is loading directly in your browser (no backend server needed)",
+        initialValues: "📍 Initial Values",
+        parameters: "⚙️ Parameters",
+        b0: "B0: Prey",
+        r0: "R0: Predator",
+        paramA: "a: Reproduction rate prey",
+        paramB: "b: Loss prey by grazing",
+        paramC: "c: Efficiency predator",
+        paramD: "d: Mortality rate predator",
+        grid: "Sample values",
+        download: "Download",
+        timeTitle: "Time",
+        abundanceTitle: "Abundance",
+        preyLegend: "Prey",
+        predLegend: "Predator"
+      }
+    };
+
+    // Make functions globally available outside the ES module context
+    window.setLanguage = function(lang) {
+      window.current_lang = lang;
+      applyTranslations();
+      updateSliders();
+      runSimulation();
+    };
+
+    window.downloadCSV = function() {
+      if (!currentData.time.length) return;
+      
+      const isEn = window.current_lang === 'en';
+      const decimal_sep = isEn ? "." : ",";
+      const column_sep = isEn ? "," : ";";
+      
+      // Build output CSV structure
+      let csvContent = `Time${column_sep}Prey${column_sep}Predator\n`;
+      for (let i = 0; i < currentData.time.length; i++) {
+        let t = currentData.time[i].toString().replace(".", decimal_sep);
+        let prey = currentData.prey[i].toFixed(4).replace(".", decimal_sep);
+        let pred = currentData.predator[i].toFixed(4).replace(".", decimal_sep);
+        csvContent += `${t}${column_sep}${prey}${column_sep}${pred}\n`;
+      }
+      
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", `simulation-${new Date().toISOString().slice(0,10)}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    function applyTranslations() {
+      const lang = window.current_lang;
+      const dict = translations[lang];
+
+      document.getElementById("lbl-initial-values").innerText = dict.initialValues;
+      document.getElementById("lbl-parameters").innerText = dict.parameters;
+      document.getElementById("lbl-b0").innerText = dict.b0;
+      document.getElementById("lbl-r0").innerText = dict.r0;
+      
+      // Store tooltips
+      document.getElementById("lbl-param-a").innerText = dict.paramA;
+      document.getElementById("lbl-param-b").innerText = dict.paramB;
+      document.getElementById("lbl-param-c").innerText = dict.paramC;
+      document.getElementById("lbl-param-d").innerText = dict.paramD;
+      
+      document.getElementById("lbl-grid").innerText = dict.grid;
+      document.getElementById("lbl-btn-download").innerText = dict.download;
+      
+      // Update toggle highlighting
+      const btnDe = document.getElementById("btn-lang-de");
+      const btnEn = document.getElementById("btn-lang-en");
+      if (lang === 'de') {
+        btnDe.classList.add("bg-green-600", "text-white", "border-green-600");
+        btnDe.classList.remove("bg-white", "text-gray-800");
+        btnEn.classList.remove("bg-green-600", "text-white", "border-green-600");
+        btnEn.classList.add("bg-white", "text-gray-800");
+      } else {
+        btnEn.classList.add("bg-green-600", "text-white", "border-green-600");
+        btnEn.classList.remove("bg-white", "text-gray-800");
+        btnDe.classList.remove("bg-green-600", "text-white", "border-green-600");
+        btnDe.classList.add("bg-white", "text-gray-800");
+      }
+    }
+
+    // Initialize translations & engine
+    window.current_lang = 'de';
+    applyTranslations();
+
+    // Helper to wait until Plotly script is fully downloaded and parsed
+    async function checkPlotlyLoaded() {
+      return new Promise((resolve) => {
+        if (window.Plotly) {
+          resolve();
+        } else {
+          const interval = setInterval(() => {
+            if (window.Plotly) {
+              clearInterval(interval);
+              resolve();
+            }
+          }, 50);
+        }
+      });
+    }
+
+    async function initWebR() {
+      try {
+        // Wait for Plotly to avoid race conditions
+        await checkPlotlyLoaded();
+
+        webr = new WebR();
+        await webr.init();
+
+        // Register the math RK4 solver directly in the R session memory
+        await webr.evalRVoid(`
+          rk4_pure <- function(y, times, func, parms) {
+            out <- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+            out[1, ] <- c(times[1], y)
+            colnames(out) <- c("time", names(y))
+            current_y <- y
+            for (i in 1:(length(times) - 1)) {
+              t_curr <- times[i]
+              t_next <- times[i + 1]
+              h <- t_next - t_curr
+              k1 <- unlist(func(t_curr,          current_y,          parms))
+              k2 <- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+              k3 <- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+              k4 <- unlist(func(t_next,          current_y + h * k3,     parms))
+              current_y <- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+              out[i + 1, ] <- c(t_next, current_y)
+            }
+            return(as.data.frame(out))
+          }
+
+          lv <- function (t, x, parms) {
+            with(as.list(c(x, parms)),{
+              dB <- a * B - b * R * B
+              dR <- c * R * B - d * R
+              list(c(dB, dR))
+            })
+          }
+        `);
+
+        // Close loading overlay with slide animation
+        const overlay = document.getElementById("loading-overlay");
+        overlay.classList.add("opacity-0", "pointer-events-none");
+        
+        // Initial Draw
+        updateSliders();
+        runSimulation();
+
+      } catch (err) {
+        console.error("Initialization of webR failed:", err);
+        document.getElementById("loading-text").innerText = "Fehler beim Laden von R!";
+        document.getElementById("loading-subtext").innerText = err.message;
+      }
+    }
+
+    // Numeric inputs change events
+    document.getElementById("input-B0").addEventListener("input", runSimulation);
+    document.getElementById("input-R0").addEventListener("input", runSimulation);
+    document.getElementById("input-grid").addEventListener("change", runSimulation);
+
+    // Dynamic label changes for sliders
+    const sliders = ["a", "b", "c", "d"];
+    sliders.forEach(id => {
+      document.getElementById(`input-${id}`).addEventListener("input", () => {
+        updateSliders();
+        runSimulation();
+      });
+    });
+
+    function updateSliders() {
+      sliders.forEach(id => {
+        const val = parseFloat(document.getElementById(`input-${id}`).value).toFixed(2);
+        document.getElementById(`val-${id}`).innerText = val;
+      });
+    }
+
+    async function runSimulation() {
+      if (!webr) return;
+
+      const B0 = parseFloat(document.getElementById("input-B0").value) || 1.0;
+      const R0 = parseFloat(document.getElementById("input-R0").value) || 0.5;
+      const a  = parseFloat(document.getElementById("input-a").value);
+      const b  = parseFloat(document.getElementById("input-b").value);
+      const c  = parseFloat(document.getElementById("input-c").value);
+      const d  = parseFloat(document.getElementById("input-d").value);
+      const showGrid = document.getElementById("input-grid").checked;
+
+      // Pass input state directly into WebAssembly variables
+      await webr.evalRVoid(`
+        times <- seq(0, 200, by = 0.2)
+        y0    <- c(B = ${B0}, R = ${R0})
+        parms <- c(a = ${a}, b = ${b}, c = ${c}, d = ${d})
+        res   <- rk4_pure(y0, times, lv, parms)
+      `);
+
+      // Retrieve simulation data safely from WebAssembly to JavaScript in-memory
+      const simResults = await (await webr.evalR("as.list(res)")).toJs();
+      
+      currentData.time = simResults.values[0].values;
+      currentData.prey = simResults.values[1].values;
+      currentData.predator = simResults.values[2].values;
+
+      // Peak detection performed directly in JS to keep performance ultra-fast
+      currentData.preyPeaks = [];
+      currentData.predPeaks = [];
+
+      if (showGrid) {
+        // Detect peaks for prey (local maxima)
+        for (let i = 1; i < currentData.prey.length - 1; i++) {
+          if (currentData.prey[i] > currentData.prey[i-1] && currentData.prey[i] > currentData.prey[i+1]) {
+            currentData.preyPeaks.push({ time: currentData.time[i], value: currentData.prey[i] });
+          }
+        }
+        // Detect peaks for predators
+        for (let i = 1; i < currentData.predator.length - 1; i++) {
+          if (currentData.predator[i] > currentData.predator[i-1] && currentData.predator[i] > currentData.predator[i+1]) {
+            currentData.predPeaks.push({ time: currentData.time[i], value: currentData.predator[i] });
+          }
+        }
+      }
+
+      drawPlot(showGrid, a, b, c, d);
+    }
+
+    function drawPlot(showGrid, a, b, c, d) {
+      if (!window.Plotly) return; // Guard clause in case drawPlot is called before Plotly is bound
+      
+      const dict = translations[window.current_lang];
+
+      const preyTrace = {
+        x: currentData.time,
+        y: currentData.prey,
+        mode: 'lines',
+        name: dict.preyLegend,
+        line: { color: '#69af22', width: 2.5 }
+      };
+
+      const predTrace = {
+        x: currentData.time,
+        y: currentData.predator,
+        mode: 'lines',
+        name: dict.predLegend,
+        line: { color: '#009de0', width: 2.5 }
+      };
+
+      const data = [preyTrace, predTrace];
+      const shapes = [];
+
+      // Calculate critical equilibria boundaries if grid sampling is activated
+      if (showGrid) {
+        const preyEquilibrium = d / c;
+        const predEquilibrium = a / b;
+
+        // Plotly line geometries
+        shapes.push(
+          {
+            type: 'line',
+            x0: 0, x1: 200,
+            y0: preyEquilibrium, y1: preyEquilibrium,
+            line: { color: '#69af22', width: 1, dash: 'dot' }
+          },
+          {
+            type: 'line',
+            x0: 0, x1: 200,
+            y0: predEquilibrium, y1: predEquilibrium,
+            line: { color: '#009de0', width: 1, dash: 'dot' }
+          }
+        );
+
+        // Add Vertical peaks dashed traces to match original R grid aesthetics
+        currentData.preyPeaks.forEach(p => {
+          shapes.push({
+            type: 'line',
+            x0: p.time, x1: p.time,
+            y0: 0, y1: p.value,
+            line: { color: '#69af22', width: 0.8, dash: 'dot' }
+          });
+        });
+
+        currentData.predPeaks.forEach(p => {
+          shapes.push({
+            type: 'line',
+            x0: p.time, x1: p.time,
+            y0: 0, y1: p.value,
+            line: { color: '#009de0', width: 0.8, dash: 'dot' }
+          });
+        });
+
+        // Add discrete sampling points representing numerical steps
+        const samplePrey = {
+          x: currentData.preyPeaks.map(p => p.time),
+          y: currentData.preyPeaks.map(p => p.value),
+          mode: 'markers',
+          name: `${dict.preyLegend} Peaks`,
+          marker: { color: '#3f7311', size: 6 }
+        };
+
+        const samplePred = {
+          x: currentData.predPeaks.map(p => p.time),
+          y: currentData.predPeaks.map(p => p.value),
+          mode: 'markers',
+          name: `${dict.predLegend} Peaks`,
+          marker: { color: '#006591', size: 6 }
+        };
+
+        data.push(samplePrey, samplePred);
+      }
+
+      const layout = {
+        xaxis: { title: dict.timeTitle, gridcolor: '#f0f0f0' },
+        yaxis: { title: dict.abundanceTitle, gridcolor: '#f0f0f0' },
+        margin: { t: 40, b: 40, l: 50, r: 20 },
+        legend: { orientation: 'h', y: -0.15, x: 0.5, xanchor: 'center' },
+        shapes: shapes,
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff'
+      };
+
+      window.Plotly.newPlot('plot-area', data, layout, { responsive: true, displayModeBar: false });
+    }
+
+    // Fire off R assembly initialization on load
+    window.onload = initWebR;
+  </script>
+</body>
+</html>
