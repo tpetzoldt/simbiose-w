@@ -91,7 +91,7 @@ No warranty is provided for the accuracy of the content or the technical functio
 <br>
 
 :::{.smallfont}
-**Quelltext für Entwickler**<br>
+**Developer source code**<br>
 [https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w](https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w)
 :::
 
@@ -172,7 +172,7 @@ Thomas Petzoldt, Luisa Henze, Monique Meier
 
 
 <!---------------------------------------------------------------------------/-->
-# Limitierted Growth
+# Limited Growth
 
 
 ## Description
