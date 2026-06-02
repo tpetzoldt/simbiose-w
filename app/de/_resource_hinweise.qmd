@@ -1,5 +1,5 @@
-![](../www/blackman.svg){width="49%" fig-alt="Graphische Darstellung des Blackman-Modells."}
-![](../www/monod.svg){width="49%" fig-alt="Graphische Darstellung des Monod-Modells."}
+![](../www/blackman_de.svg){width="49%" fig-alt="Graphische Darstellung des Blackman-Modells."}
+![](../www/monod_de.svg){width="49%" fig-alt="Graphische Darstellung des Monod-Modells."}
 
 **Die Wachstumskinetik**
 

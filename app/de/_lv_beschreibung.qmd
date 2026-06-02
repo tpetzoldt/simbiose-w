@@ -1,4 +1,4 @@
-![](../www/graph_lv.svg){height="20%" fig-align="center"  fig-alt="Systemdiagramm für ein Räuber-Beute-Modell."}
+![](../www/graph_lv_de.svg){height="20%" fig-align="center"  fig-alt="Systemdiagramm für ein Räuber-Beute-Modell."}
 
 ---
 

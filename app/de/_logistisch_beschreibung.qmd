@@ -1,4 +1,4 @@
-![](../www/graph_logistic.svg){height="30%" fig-align="center"  fig-alt="Systemdiagramm für das logistische Wachstum."}
+![](../www/graph_logistic_de.svg){height="30%" fig-align="center"  fig-alt="Systemdiagramm für das logistische Wachstum."}
 
 ---
 

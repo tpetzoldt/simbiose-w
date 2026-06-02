@@ -1,4 +1,4 @@
-![](../www/graph_exponential.svg){height="30%" fig-align="center" fig-alt="System diagram of exponential growth."}
+![](../www/graph_exponential_en.svg){height="30%" fig-align="center" fig-alt="System diagram of exponential growth."}
 
 ---
 

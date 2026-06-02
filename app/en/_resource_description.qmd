@@ -1,4 +1,4 @@
-![](../www/graph_resource.svg){height="30%" fig-align="center"  fig-alt="System diagramm of resource limited growth."}
+![](../www/graph_resource_en.svg){height="30%" fig-align="center"  fig-alt="System diagramm of resource limited growth."}
 
 ---
 

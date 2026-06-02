@@ -13,7 +13,7 @@ Swimming in the lake is then prohibited.
 When extracting drinking water from reservoirs, the algae must be removed at the water treatment plant.
 
 
-![](../www/see-nahrungskette.jpg){fig-alt="Part of a food chain in a lake. The image shows a lake in the background and, in the foreground, graphic symbols representing phosphate (PO4 3-) as a limiting nutrient, phytoplankton, and daphnia" width="100%" fig-align=“center”}
+![](../www/lake-foodweb.jpg){fig-alt="Part of a food chain in a lake. The image shows a lake in the background and, in the foreground, graphic symbols representing phosphate (PO4 3-) as a limiting nutrient, phytoplankton, and daphnia" width="100%" fig-align=“center”}
 [photo: tpetzoldt]{.gray}
 
 ## A segment of the Food Chain
