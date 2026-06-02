@@ -15,7 +15,7 @@ format:
     search: true
     nav-buttons:
       - text: "DE"
-        href: "../de/app.qmd"
+        href: "../de/"
         align: right
 server: shiny
 #embed-resources: true
@@ -52,6 +52,7 @@ library("shiny.i18n")
 
 # 1. Map the central media/style folder
 shiny::addResourcePath(prefix = "www", directoryPath = "../www")
+shiny::addResourcePath(prefix = "code", directoryPath = "../code")
 
 # 2. Setup the translation engine for the shared R code and force English
 i18n <- Translator$new(translation_json_path = "../translation.json")

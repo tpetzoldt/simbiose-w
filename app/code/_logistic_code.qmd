@@ -24,21 +24,25 @@ simulate_logist <- reactive({
 output$logist <- renderPlotly({
   res <- simulate_logist()
   
-  # Dynamically translate the plot axis labels
+  # 1. Übersetzungen als reine Text-Variablen holen
   label_time      <- i18n$t("Time")
   label_abundance <- i18n$t("Abundance")
   
-  gg <- res |>
+  # 2. Daten mit festen, sicheren Spaltennamen verarbeiten (kein !!sym nötig!)
+  df_plot <- res |>
     as.data.frame() |>
-    pivot_longer(cols=c("N"), names_to="Population", values_to=label_abundance) |>
-    rename(!!sym(label_time) := time) |>
-    ggplot(aes(!!sym(label_time), !!sym(label_abundance), color=Population)) + geom_line() + 
-      scale_color_manual(values=c("#69af22")) +
-      theme(legend.position="none") +
-      figure_theme
-
-  ggplotly(gg)  
+    pivot_longer(cols = c("N"), names_to = "Population", values_to = "value_abundance")
   
+  # 3. Plot erstellen: Ästhetiken (aes) nutzen statische Namen
+  gg <- ggplot(df_plot, aes(x = time, y = value_abundance, color = Population)) + 
+    geom_line() + 
+    scale_color_manual(values = c("#69af22")) +
+    labs(x = label_time, y = label_abundance) + 
+    theme(legend.position = "none") + 
+    figure_theme
+
+  # 4. Übergabe an Plotly
+  ggplotly(gg)  
 })
 ```
 
