@@ -4,14 +4,18 @@
   <meta charset="utf-8">
   <title>SimBioSe-W</title>
   <script>
-    // Get the preferred language of the browser
+    // 1. Die bevorzugte Browsersprache ermitteln
     var userLang = navigator.language || navigator.userLanguage; 
     
-    // If the language starts with "en" redirect to /en/ otherwise to /de/
+    // 2. Den aktuellen URL-Anker (z.B. #räuber-beute-modell) auslesen
+    var currentHash = window.location.hash;
+    
+    // 3. Sprachgesteuert weiterleiten UND den Anker anhängen
+    // window.location.replace ist besser als .href, damit der "Zurück"-Button im Browser nicht blockiert wird
     if (userLang.startsWith('en')) {
-      window.location.href = "./en/"; // English app version
+      window.location.replace("./en/" + currentHash); // Zur englischen Version + Anker
     } else {
-      window.location.href = "./de/"; // German app version
+      window.location.replace("./de/" + currentHash); // Zur deutschen Version + Anker
     }
   </script>
 </head>
