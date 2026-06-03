@@ -1,4 +1,4 @@
-![](../www/algen-exponentiell.png){fig-alt="The image shows a schematic representation of algae cells multiplying through division."}
+![](../www/algae-exp_en.png){fig-alt="The image shows a schematic representation of algae cells multiplying through division."}
 ---
 
 **Population Growth by Doubling**

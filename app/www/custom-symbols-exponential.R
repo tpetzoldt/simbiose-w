@@ -36,7 +36,13 @@ p <- d |>
   #my_theme
 print(p)
 
-png("algen-exponentiell.png", width=1800, height=900, res=250)
+png("algae-exp_de.png", width=1800, height=900, res=250)
+print(p)
+dev.off()
+
+p <- p + xlab("Time") + ylab("Abundance")
+print(p)
+png("algae-exp_en.png", width=1800, height=900, res=250)
 print(p)
 dev.off()
 

@@ -46,6 +46,14 @@ p <- d |>
 
 print(p)
 
-png("algen-logistisch.png", width=1800, height=900, res=250)
+
+png("algae-logist_de.png", width=1800, height=900, res=250)
 print(p)
 dev.off()
+
+p <- p + xlab("Time") + ylab("Abundance")
+print(p)
+png("algae-logist_en.png", width=1800, height=900, res=250)
+print(p)
+dev.off()
+

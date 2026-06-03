@@ -1,4 +1,4 @@
-![](../www/algen-exponentiell.png){fig-alt="Das Bild zeigt schematisch Algenzellen, die sich durch Teilung verdoppeln."}
+![](../www/algae-exp_de.png){fig-alt="Das Bild zeigt schematisch Algenzellen, die sich durch Teilung verdoppeln."}
 ---
 
 **Populationswachstum durch Verdopplung**

@@ -1,4 +1,4 @@
-![](../www/algen-logistisch.png){fig-alt="das Bild zeigt schematisch Algenzellen, die sich durch Teilung verdoppeln, bis das Wachstum eine Grenze erreicht. Es ergibt sich eine S-förmige Kurve, die das begrenzte Wachstum symbolisiert."}
+![](../www/algae-logist_de.png){fig-alt="das Bild zeigt schematisch Algenzellen, die sich durch Teilung verdoppeln, bis das Wachstum eine Grenze erreicht. Es ergibt sich eine S-förmige Kurve, die das begrenzte Wachstum symbolisiert."}
 ---
 
 

@@ -5,7 +5,7 @@ The example of snowshoe hares and lynx is often cited in connection with the pre
 It has been observed that hunters’ fur sales fluctuate in a cycle of 9 to 11 years. It seemed likely that this was a Lotka–Volterra cycle. Upon closer examination, however, inconsistencies became apparent, and various other explanations were proposed. One explanation was that the fluctuating fur sales were due to the influence of hunters. Another explanation is that the predator-prey cycle results from interactions at a lower trophic level—that is, not as an interaction between snowshoe hares and lynx, but between vegetation and the snowshoe hares. The lynx merely follows the cycle. More details can be found in the Wikipedia article [Lotka–Volterra equations](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 
 
-![](../www/lynx.png){fig-alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)" width="100%" fig-align="center"}
+![](../www/lynx_en.png){fig-alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)" width="100%" fig-align="center"}
 [Historical dataset of lynx catches in Canada, from @Brockwell1991]{.gray}
 
 **Algae and Daphnia**

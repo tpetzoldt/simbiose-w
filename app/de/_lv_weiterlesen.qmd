@@ -4,7 +4,7 @@ Im Zusammenhang mit dem Räuber-Beute-Modell wird oft das Beispiel von Schneesch
 
 Es konnte beobachtet werden, dass die Fellverkaufszahlen der Jäger in einem Zyklus von 9 bis 11 Jahren schwanken. Die Vermutung lag nahe, dass es sich hier um einen Lotka-Volterra-Zyklus handelt. Bei näherer Betrachtung zeigten sich allerdings Unstimmigkeiten und es wurden verschiedene andere Erklärungen gegeben. Eine Erklärung bestand darin, dass die schwankenden Fellverkäufe auf den Einfluss der Jäger zurückzuführen waren. Eine andere Erklärung besteht darin, dass der Räuber-Beute-Zyklus auf Wechselwirkungen einer niedrigeren trophischen Ebene resultiert, also nicht als Wechselwirkung zwischen Schneehaase und Luchs, sondern von Vegetation und den Schneehasen. Der Luchs folgt dem Zyklus lediglich nach. Näheres dazu findet man im Wikipedia-Artikel [Das Lotka-Volterra-Modell](https://de.wikipedia.org/wiki/R%C3%A4uber-Beute-Beziehung#Das_Lotka-Volterra-Modell).
 
-![](../www/lynx.png){fig-alt="Zeitreihe von Luchsfängen in Kanada, aus Brockwell and Davis (1991)" width="100%" fig-align="center"}
+![](../www/lynx_de.png){fig-alt="Zeitreihe von Luchsfängen in Kanada, aus Brockwell and Davis (1991)" width="100%" fig-align="center"}
 [Klassischer Datensatz von Luchsfängen in Kanada, aus @Brockwell1991]{.gray}
 
 **Algen und Daphnien**
