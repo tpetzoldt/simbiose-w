@@ -1,4 +1,4 @@
-![](../www/ressourcenlimitiert.png){fig-alt="Das Bild zeigt Erlenmeyerkolben, die durch das Algenwachstum eine stärker grüne farbe annehmen. Gleichzeitig wird der zeitlliche Verlauf der Algenabundanz mit einer ansteigenden und die Nährstoffkonzentration mit einer abnehmenden S-förmigen Kurve dargestellt." width="100%" fig-align="center"}
+![](../www/ressource-utilization_de.png){fig-alt="Das Bild zeigt den zeitllichen Verlauf der Algenabundanz mit einer ansteigenden und die Nährstoffkonzentration mit einer abnehmenden S-förmigen Kurve." width="100%" fig-align="center"}
 ---
 
 

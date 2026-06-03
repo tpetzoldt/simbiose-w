@@ -1,4 +1,4 @@
-![](../www/ressourcenlimitiert.png){fig-alt="The image shows Erlenmeyer flasks that have taken on a more intense green color due to algae growth. At the same time, the temporal trend in algae abundance is represented by an upward-sloping curve, while the nutrient concentration is represented by a downward-sloping S-shaped curve." width="100%" fig-align="center"}
+![](../www/ressource-utilization_en.png){fig-alt="The image the temporal trend in algae abundance represented by an upward-sloping curve, while the nutrient concentration is represented by a downward-sloping S-shaped curve." width="100%" fig-align="center"}
 ---
 
 

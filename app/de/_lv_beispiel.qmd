@@ -1,4 +1,4 @@
-![](../www/lotka-volterra.png){fig-alt="Das Bild zeigt, wie Algen von Dahnien gefressen werden. Ohne Daphnien würden die Algen exponentiell wachsen. Von den Daphnien stirbt pro Zeiteinheit ein Teil oder wird durch Fische gefressen. Durch die Wechselwirkung zwischen Algen und Daphnien werden die Algen verringert und die Daphnien könne sich vermehren." fig-height="18%" fig-align="center"}
+![](../www/lotka-volterra_de.png){fig-alt="Das Bild zeigt, wie Algen von Dahnien gefressen werden. Ohne Daphnien würden die Algen exponentiell wachsen. Von den Daphnien stirbt pro Zeiteinheit ein Teil oder wird durch Fische gefressen. Durch die Wechselwirkung zwischen Algen und Daphnien werden die Algen verringert und die Daphnien könne sich vermehren." fig-height="18%" fig-align="center"}
 ---
 
 

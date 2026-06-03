@@ -1,4 +1,4 @@
-![](../www/lotka-volterra.png){fig-alt="The image shows how algae are eaten by daphnia. Without daphnia, the algae would grow exponentially. A portion of the daphnia die each time unit or are eaten by fish. The interaction between algae and daphnia reduces the algae population and allows the daphnia to reproduce.“ fig-height=”18%“ fig-align=”center"}
+![](../www/lotka-volterra_en.png){fig-alt="The image shows how algae are eaten by daphnia. Without daphnia, the algae would grow exponentially. A portion of the daphnia die each time unit or are eaten by fish. The interaction between algae and daphnia reduces the algae population and allows the daphnia to reproduce.“ fig-height=”18%“ fig-align=”center"}
 ---
 
 
