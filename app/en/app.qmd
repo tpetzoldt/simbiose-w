@@ -14,15 +14,15 @@ format:
     expandable: false
     search: true
     nav-buttons:
-      - text: "DE"
+      - text: "DE 🇩🇪"
         href: "../de/"
         align: right
 server: shiny
 #embed-resources: true
 #html-math-method: katex
 html-math-method: mathjax
-bibliography: ../growth_and_lv_models.bib
-csl: ../apa.csl
+bibliography: ../www/growth_and_lv_models.bib
+csl: ../www/apa.csl
 header-includes: |
   <script>
   $(document).on('shiny:connected', function() {
@@ -86,6 +86,9 @@ If you remix, modify, or otherwise build directly upon the material, you may dis
 
 No warranty is provided for the accuracy of the content or the technical functionality.
 
+
+<!--- Link to the production version disabled
+
 **Short link**
 
 ![](../www/simbiose-w-qrcode.png){width="6em" height="6em" fig-alt="QR Code auf diese Seite"}
@@ -93,9 +96,11 @@ No warranty is provided for the accuracy of the content or the technical functio
 [https://tud.link/q25ufy](https://tud.link/q25ufy)
 <br>
 
+/--->
+
 :::{.smallfont}
 **Developer source code**<br>
-[https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w](https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w)
+[https://github.com/tpetzoldt/simbiose-w](https://github.com/tpetzoldt/simbiose-w)
 :::
 
 ::: {.card-footer}

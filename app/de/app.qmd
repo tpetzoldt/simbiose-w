@@ -14,15 +14,15 @@ format:
     expandable: false
     search: true
     nav-buttons:
-      - text: "EN"
+      - text: "EN 🇬🇧"
         href: "../en/"
         align: right
 server: shiny
 #embed-resources: true
 #html-math-method: katex
 html-math-method: mathjax
-bibliography: ../growth_and_lv_models.bib
-csl: ../apa.csl
+bibliography: ../www/growth_and_lv_models.bib
+csl: ../www/apa.csl
 header-includes: |
   <script>
   $(document).on('shiny:connected', function() {
@@ -88,6 +88,8 @@ dürfen Sie Ihre Beiträge nur unter derselben Lizenz wie das Original verbreite
 
 Es wird keine Gewähr für die inhaltliche Richtigkeit und technische Funktion übernommen.
 
+<!--- Link auf die Produktiv-Version
+
 **Kurzlink**
 
 ![](../www/simbiose-w-qrcode.png){width="6em" height="6em" fig-alt="QR Code auf diese Seite"}
@@ -95,9 +97,11 @@ Es wird keine Gewähr für die inhaltliche Richtigkeit und technische Funktion �
 [https://tud.link/q25ufy](https://tud.link/q25ufy)
 <br>
 
+/--->
+
 :::{.smallfont}
 **Quelltext für Entwickler**<br>
-[https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w](https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w)
+[https://github.com/tpetzoldt/simbiose-w](https://github.com/tpetzoldt/simbiose-w)
 :::
 
 ::: {.card-footer}
