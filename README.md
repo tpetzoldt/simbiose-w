@@ -4,14 +4,14 @@ The repository contains the source code for an app that visualizes growth models
 
 # Development Fork!
 
-Please note: This repository contains an unstable developer version. The source code of the stable version can be found at https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w
+Please note: This repository contains the **bilingual** developer Version `simbiose-w2`. The source code of the stable German-only version can be found at https://gitlab.hrz.tu-chemnitz.de/simbiose/simbiose-w
 
 
 ## Try the app
 
-The [app](https://weblab.hydro.tu-dresden.de/app/simbiose-w/) runs without installation in a web browser on Windows, Linux, iOS, and Android. For the best viewing experience, a sufficiently large screen (laptop, PC, tablet) is recommended.
+The [app](https://weblab.hydro.tu-dresden.de/app/simbiose-w2/) runs without installation in a web browser on Windows, Linux, iOS, and Android. For the best viewing experience, a sufficiently large screen (laptop, PC, tablet) is recommended.
 
-* Click here for the app: [https://weblab.hydro.tu-dresden.de/app/simbiose-w/](https://weblab.hydro.tu-dresden.de/app/simbiose-w/)
+* Click here for the app: [https://weblab.hydro.tu-dresden.de/app/simbiose-w2/](https://weblab.hydro.tu-dresden.de/app/simbiose-w2/)
 
 ## Authors
 
@@ -32,9 +32,9 @@ You may freely use the app as a whole as well as individual components in accord
 
 
 ----
-May 30, 2026
+June 04, 2026
 
 
 ## Project Status
 
-The app will be further developed as needed; constructive feedback is welcome. The English translation is in progress.
+The app will be further developed as needed; constructive feedback is welcome.
