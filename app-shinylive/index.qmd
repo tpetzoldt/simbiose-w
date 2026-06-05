@@ -17,6 +17,78 @@ reticulate::py_run_string("import shinylive; print('Erfolg! shinylive Version:',
 system("quarto add quarto-ext/shinylive --no-prompt")
 -----------------------------------------------------------------------------/-->
 
+# Introduction
+
+
+::: {.card width="20%" .gray}
+**Simbiose-W, version 2.0-1 - shinylive**
+
+The app is an open educational resource funded through the SimBiose project by the [Digital Teaching Fund](https://tu-dresden.de/zill/foerdermoeglichkeiten/fondsdll) at TU Dresden. 
+
+You may freely use the app as a whole as well as individual components in accordance with the Creative Commons license [CC BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/deed.de)  (share, edit, attribution, redistribute under the same terms). 
+If you remix, modify, or otherwise build directly upon the material, you may distribute your contributions only under the same license as the original. 
+
+No warranty is provided for the accuracy of the content or the technical functionality.
+
+
+<!--- Link to the production version disabled
+
+**Short link**
+
+![](../www/simbiose-w-qrcode.png){width="6em" height="6em" fig-alt="QR Code auf diese Seite"}
+
+[https://tud.link/q25ufy](https://tud.link/q25ufy)
+<br>
+
+/--->
+
+:::{.smallfont}
+**Developer source code**<br>
+[https://github.com/tpetzoldt/simbiose-w](https://github.com/tpetzoldt/simbiose-w)
+:::
+
+::: {.card-footer}
+![](../www/by-sa.png){height=36px fig-alt="Logo CC BY-SA"}&nbsp;
+![](../www/oer-banner.png){height=32px fig-alt="Logo: Open Educational Resources"}
+:::
+:::
+
+::: {.card width="60%"}
+{{< include _introduction.qmd >}}
+:::
+
+::: {.card width="20%" .gray}
+**Usage Tips**
+
+The app is optimized for display on laptop and PC monitors and on popular tablets.
+
+If the text is still too large or too small, you can adjust the font size in your system settings or web browser:
+
+* Windows: [Ctrl] + [-] or [Ctrl] + [+]
+* Android/Chrome: Settings -- Accessibility
+* iPad: if text overlaps, close all other tabs
+
+Portrait mode is supported on smartphones.
+
+**Development team at TU Dresden**
+
+* [Chair of Limnology](https://tu-dresden.de/hydrobiologie) and 
+* [Chair of Didactics of Biology](https://tu-dresden.de/mn/biologie/didaktik).
+
+
+Thomas Petzoldt, Luisa Henze, Monique Meier
+
+
+**Technologies**
+
+[R](https://www.r-project.org), [Quarto](https://quarto.org), [Shiny](https://shiny.posit.co/), [deSolve](https://github.com/tpetzoldt/deSolve), [ggplot2](https://ggplot2.tidyverse.org/)
+
+::: {.card-footer}
+![](../www/TUD_Logo_RGB_horizontal_blau_de.svg){height=44px fig-alt="Logo TU Dresden"}
+![](../www/ihb-color.svg){height=40px fig-alt="Logo Institut für Hydrobiologie"}
+:::
+:::
+
 
 
 

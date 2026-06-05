@@ -3,3 +3,25 @@ project:
   output-dir: ../docs   # Tells Quarto to compile everything directly into /docs
   resources:
     - "www"       # Copies the entire www folder into docs/www
+title: "[![](www/TUD_Logos_final_RGB_TUD_Logo_horizontal_weiss_de.png){height=40}](https://tu-dresden.de/hydrobiologie){target='_blank'}&nbsp;[SimBioSe-W]"
+lang: en
+
+format: 
+  dashboard:
+    orientation: columns
+    expandable: false
+    search: true
+bibliography: ./www/growth_and_lv_models.bib
+csl: ./www/apa.csl
+header-includes: |
+  <script>
+  $(document).on('shiny:connected', function() {
+    // Wait a brief moment for the Quarto dashboard UI to finish settling
+    setTimeout(function() {
+      var logo = $('.navbar-brand img.logo');
+      if (logo.length > 0 && !logo.parent().is('a')) {
+        logo.wrap('<a href="https://tu-dresden.de/hydrobiologie/" target="_blank" style="text-decoration: none;"></a>');
+      }
+    }, 100); 
+  });
+  </script>

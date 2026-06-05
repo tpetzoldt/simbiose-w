@@ -23,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -54,6 +74,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="index_files/libs/quarto-contrib/shinylive-0.10.8/shinylive/run-python-blocks.js" type="module"></script>
 <link href="index_files/libs/quarto-contrib/shinylive-0.10.8/shinylive/shinylive.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script>
+$(document).on('shiny:connected', function() {
+  // Wait a brief moment for the Quarto dashboard UI to finish settling
+  setTimeout(function() {
+    var logo = $('.navbar-brand img.logo');
+    if (logo.length > 0 && !logo.parent().is('a')) {
+      logo.wrap('<a href="https://tu-dresden.de/hydrobiologie/" target="_blank" style="text-decoration: none;"></a>');
+    }
+  }, 100); 
+});
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -79,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
         
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-exponential-growth" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#exponential-growth" data-scrolling="false" href="#exponential-growth" aria-controls="exponential-growth" aria-selected="true"><span class="nav-link-text">Exponential Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-limited-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#limited-growth" data-scrolling="false" href="#limited-growth" aria-controls="limited-growth" aria-selected="false"><span class="nav-link-text">Limited Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-nutrient-limited-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#nutrient-limited-growth" data-scrolling="false" href="#nutrient-limited-growth" aria-controls="nutrient-limited-growth" aria-selected="false"><span class="nav-link-text">Nutrient Limited Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-predator-prey-model" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#predator-prey-model" data-scrolling="false" href="#predator-prey-model" aria-controls="predator-prey-model" aria-selected="false"><span class="nav-link-text">Predator-Prey Model</span></a></li></ul></div></div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-introduction" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#introduction" data-scrolling="false" href="#introduction" aria-controls="introduction" aria-selected="true"><span class="nav-link-text">Introduction</span></a></li><li class="nav-item" role="presentation"><a id="tab-exponential-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#exponential-growth" data-scrolling="false" href="#exponential-growth" aria-controls="exponential-growth" aria-selected="false"><span class="nav-link-text">Exponential Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-limited-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#limited-growth" data-scrolling="false" href="#limited-growth" aria-controls="limited-growth" aria-selected="false"><span class="nav-link-text">Limited Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-nutrient-limited-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#nutrient-limited-growth" data-scrolling="false" href="#nutrient-limited-growth" aria-controls="nutrient-limited-growth" aria-selected="false"><span class="nav-link-text">Nutrient Limited Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-predator-prey-model" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#predator-prey-model" data-scrolling="false" href="#predator-prey-model" aria-controls="predator-prey-model" aria-selected="false"><span class="nav-link-text">Predator-Prey Model</span></a></li></ul></div></div>
 </nav>
 </header>
 <div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">  
@@ -91,13 +122,107 @@ reticulate::py_config()$python
 reticulate::py_run_string("import shinylive; print('Erfolg! shinylive Version:', shinylive.__version__)")
 system("quarto add quarto-ext/shinylive --no-prompt")
 -----------------------------------------------------------------------------/-->
-<!---------------------------------------------------------------------------/-->
 <div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-columns: minmax(3em, 1fr);
 grid-auto-rows: minmax(0, 1fr);">
-<div id="exponential-growth" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-exponential-growth">
+<div id="introduction" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-introduction">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 20fr) minmax(3em, 60fr) minmax(3em, 20fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card gray html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<strong>Simbiose-W, version 2.0-1 - shinylive</strong>
+<p>The app is an open educational resource funded through the SimBiose project by the <a href="https://tu-dresden.de/zill/foerdermoeglichkeiten/fondsdll">Digital Teaching Fund</a> at TU Dresden.</p>
+<p>You may freely use the app as a whole as well as individual components in accordance with the Creative Commons license <a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY-SA 4.0</a> (share, edit, attribution, redistribute under the same terms). If you remix, modify, or otherwise build directly upon the material, you may distribute your contributions only under the same license as the original.</p>
+<p>No warranty is provided for the accuracy of the content or the technical functionality.</p>
+<!--- Link to the production version disabled
+
+**Short link**
+
+![](../www/simbiose-w-qrcode.png){width="6em" height="6em" fig-alt="QR Code auf diese Seite"}
+
+[https://tud.link/q25ufy](https://tud.link/q25ufy)
+<br>
+
+/--->
+<div class="smallfont html-fill-item html-fill-container">
+<p><strong>Developer source code</strong><br> <a href="https://github.com/tpetzoldt/simbiose-w">https://github.com/tpetzoldt/simbiose-w</a></p>
+</div>
+</div>
+<div class="card-footer">
+<p><img src="../www/by-sa.png" alt="Logo CC BY-SA" height="36">&nbsp; <img src="../www/oer-banner.png" alt="Logo: Open Educational Resources" height="32"></p>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<p><img src="www/see-klar-gruen.jpg" class="img-fluid quarto-figure quarto-figure-“center”" style="width:100.0%" title="View of Lake Stechlin" alt="Illustration of a near-natural lake, along with images of clear water and heavy algae growth"> <span class="gray">photo: Felix Grunicke</span></p>
+<div class="h4">
+A
+
+Clear
+
+or
+
+a
+
+Turbid
+
+Lake?
+</div>
+<p>When we look into a swimming lake from the shore, the water is sometimes so clear that we can see to the bottom. If we look closely, we might even spot some animals, such as daphnia (water fleas).</p>
+<p>Anyone who often walks along the shore can observe that a lake might not always be clear. Sometimes it is turbid from microscopic algae (phytoplankton) and turns green. Phytoplankton is very important for the food chain, because it feeds the zooplankton, which in turn feeds the fish. On the other hand, heavy phytoplankton blooms can lead to serious problems. Swimming in the lake is then prohibited. When extracting drinking water from reservoirs, the algae must be removed at the water treatment plant.</p>
+<p><img src="www/lake-foodweb.jpg" class="img-fluid quarto-figure quarto-figure-“center”" style="width:100.0%" alt="Part of a food chain in a lake. The image shows a lake in the background and, in the foreground, graphic symbols representing phosphate (PO4 3-) as a limiting nutrient, phytoplankton, and daphnia"> <span class="gray">photo: tpetzoldt</span></p>
+<div class="h4">
+A
+
+segment
+
+of
+
+the
+
+Food
+
+Chain
+</div>
+<p>The shift from clear to green, turbid water results from <strong>fluctuations in population density</strong>. This can happen quickly because microalgae and daphnia grow and reproduce very rapidly. In nature, the rate of growth depends on many factors, such as the season, the weather, nutrient availability, and fish stock.</p>
+<p>Scientists around the world are working to better understand these processes and describe them mathematically in order to understand the condition of water bodies and, for example, predict algal blooms. To do this, they use mathematical models and, more recently, machine learning. In addition, a great amount of data must be collected.</p>
+<div class="h4">
+Modeling
+
+Growth
+
+Processes
+</div>
+<p>The exact timeline of algal growth is difficult to predict in reality because many different species of phytoplankton and zooplankton are present in a lake, and many environmental factors act simultaneously. Nevertheless, the example of “algal growth in a lake” can help us understand basic growth processes. Growth can be found everywhere in nature – in plants, insects, and wildlife. Similar models are also used to model the spread of diseases, for example during the COVID-19 pandemic.</p>
+<p>In the “Population Growth” app, we will explore some fundamental growth processes. We will start with an unlimited, exponential growth model, then examine forms of limited growth, and finally look at a predator-prey interaction between two populations.</p>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card gray html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<strong>Usage Tips</strong>
+<p>The app is optimized for display on laptop and PC monitors and on popular tablets.</p>
+<p>If the text is still too large or too small, you can adjust the font size in your system settings or web browser:</p>
+<ul>
+<li>Windows: [Ctrl] + [-] or [Ctrl] + [+]</li>
+<li>Android/Chrome: Settings – Accessibility</li>
+<li>iPad: if text overlaps, close all other tabs</li>
+</ul>
+<p>Portrait mode is supported on smartphones.</p>
+<strong>Development team at TU Dresden</strong>
+<ul>
+<li><a href="https://tu-dresden.de/hydrobiologie">Chair of Limnology</a> and</li>
+<li><a href="https://tu-dresden.de/mn/biologie/didaktik">Chair of Didactics of Biology</a>.</li>
+</ul>
+<p>Thomas Petzoldt, Luisa Henze, Monique Meier</p>
+<strong>Technologies</strong>
+<p><a href="https://www.r-project.org">R</a>, <a href="https://quarto.org">Quarto</a>, <a href="https://shiny.posit.co/">Shiny</a>, <a href="https://github.com/tpetzoldt/deSolve">deSolve</a>, <a href="https://ggplot2.tidyverse.org/">ggplot2</a></p>
+</div>
+<div class="card-footer">
+<p><img src="../www/TUD_Logo_RGB_horizontal_blau_de.svg" alt="Logo TU Dresden" height="44"> <img src="../www/ihb-color.svg" alt="Logo Institut für Hydrobiologie" height="40"></p>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><!---------------------------------------------------------------------------/-->
+</div>
+</div><div id="exponential-growth" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-exponential-growth">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
 grid-auto-rows: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
 <div class="panel-tabset html-fill-item html-fill-container" width="38%">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Read More</a></li></ul>
@@ -216,19 +341,17 @@ N_t = N_0 \cdot e^{r\cdot t}
 </div>
 </div>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
+<div style="margin-top: 18px;" class="html-fill-item html-fill-container">
+
+</div>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 570
+#| viewerHeight: 900
 
 ## Fixed step Runge-Kutta solver
 rk4 &lt;- function(y, times, func, parms) {
@@ -424,18 +547,13 @@ server &lt;- function(input, output, session) {
 shinyApp(ui = ui, server = server)</code></pre>
 <!---------------------------------------------------------------------------/-->
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
 </div>
 </div><div id="limited-growth" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-limited-growth">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
 grid-auto-rows: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
 <div class="panel-tabset html-fill-item html-fill-container" width="38%">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false" href="">Read More</a></li></ul>
@@ -542,19 +660,17 @@ N_t = \frac{K N_0 e^{r t}}{K + N_0 (e^{r t}-1)}
 </div>
 </div>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
+<div style="margin-top: 18px;" class="html-fill-item html-fill-container">
+
+</div>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 550
+#| viewerHeight: 900
 
 ## Fixed step Runge-Kutta solver
 rk4 &lt;- function(y, times, func, parms) {
@@ -715,18 +831,13 @@ server &lt;- function(input, output, session) {
 shinyApp(ui = ui, server = server)</code></pre>
 <!---------------------------------------------------------------------------/-->
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
 </div>
 </div><div id="nutrient-limited-growth" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-nutrient-limited-growth">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
 grid-auto-rows: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
 <div class="panel-tabset html-fill-item html-fill-container" width="38%">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">Read More</a></li></ul>
@@ -805,19 +916,17 @@ r = r_{max} \cdot \frac{P}{k_P + P}
 </div>
 </div>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
+<div style="margin-top: 18px;" class="html-fill-item html-fill-container">
+
+</div>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 650
+#| viewerHeight: 900
 
 ## Fixed step Runge-Kutta solver
 rk4 &lt;- function(y, times, func, parms) {
@@ -988,18 +1097,13 @@ server &lt;- function(input, output, session) {
 shinyApp(ui = ui, server = server)</code></pre>
 <!---------------------------------------------------------------------------/-->
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
 </div>
 </div><div id="predator-prey-model" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-predator-prey-model">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
 grid-auto-rows: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
 <div class="panel-tabset html-fill-item html-fill-container" width="38%">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false" href="">Read More</a></li></ul>
@@ -1017,7 +1121,7 @@ grid-auto-rows: minmax(0, 1fr);">
 <p>Unlike in logistic or resource-limited growth, stable equilibria are rarely observed in nature; instead, population abundance fluctuates. There are various reasons for this, such as the reproductive cycle or variations in food availability due to the seasons and weather.</p>
 <p>However, population fluctuations can also result from interactions between populations.</p>
 <p>Such interactions were investigated and mathematically described in the early 20th century by the Italian mathematician and physicist <a href="https://de.wikipedia.org/wiki/Vito_Volterra">Vito Volterra</a> and the Austrian-American chemist and actuary <a href="https://de.wikipedia.org/wiki/Alfred_J._Lotka">Alfred Lotka</a>.</p>
-<p>Their model consists of two equations, one for the prey population (e.g., algae) and one for the predator population (e.g., daphnia). As a modification to the notation of the equations originally used by <span class="citation" data-cites="Volterra1926b">@Volterra1926b</span>, many scientists and textbooks use different symbols and variants. In the following, we use a simplified notation with <span class="math inline">\(B\)</span> for the prey population and <span class="math inline">\(R\)</span> for the predator population. For the model parameters, we use consecutive letters <span class="math inline">\(a, b, c, d\)</span>, which can be interpreted as follows:</p>
+<p>Their model consists of two equations, one for the prey population (e.g., algae) and one for the predator population (e.g., daphnia). As a modification to the notation of the equations originally used by <span class="citation" data-cites="Volterra1926b">Volterra (<a href="#ref-Volterra1926b" role="doc-biblioref">1926</a>)</span>, many scientists and textbooks use different symbols and variants. In the following, we use a simplified notation with <span class="math inline">\(B\)</span> for the prey population and <span class="math inline">\(R\)</span> for the predator population. For the model parameters, we use consecutive letters <span class="math inline">\(a, b, c, d\)</span>, which can be interpreted as follows:</p>
 <p><span class="math inline">\(a\)</span>: Reproduction rate of phytoplankton (prey population)</p>
 <p><span class="math inline">\(b\)</span>: Loss of phytoplankton (prey) due to predation by daphnia (predators)</p>
 <p><span class="math inline">\(c\)</span>: Growth efficiency of daphnia (predators) due to food intake</p>
@@ -1118,14 +1222,14 @@ grid-auto-rows: minmax(0, 1fr);">
 <strong>Snowshoe hares and lynx</strong>
 <p>The example of snowshoe hares and lynx is often cited in connection with the predator-prey model. Both species live in North America, primarily in Canada.</p>
 <p>It has been observed that hunters’ fur sales fluctuate in a cycle of 9 to 11 years. It seemed likely that this was a Lotka–Volterra cycle. Upon closer examination, however, inconsistencies became apparent, and various other explanations were proposed. One explanation was that the fluctuating fur sales were due to the influence of hunters. Another explanation is that the predator-prey cycle results from interactions at a lower trophic level—that is, not as an interaction between snowshoe hares and lynx, but between vegetation and the snowshoe hares. The lynx merely follows the cycle. More details can be found in the Wikipedia article <a href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">Lotka–Volterra equations</a>.</p>
-<p><img src="www/lynx_en.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%" alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)"> <span class="gray">Historical dataset of lynx catches in Canada, from <span class="citation" data-cites="Brockwell1991">@Brockwell1991</span></span></p>
+<p><img src="www/lynx_en.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%" alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)"> <span class="gray">Historical dataset of lynx catches in Canada, from <span class="citation" data-cites="Brockwell1991">Brockwell &amp; Davis (<a href="#ref-Brockwell1991" role="doc-biblioref">1991</a>)</span></span></p>
 <strong>Algae and Daphnia</strong>
-<p>The algae-Daphnia system is also used as a textbook example in theoretical ecology. In real water bodies, however, only short section of these dynamics can be observed. An annual spring peak in algae is immediately followed by a distinct clear-water phase. The continuation of these oscillations is then prevented by damping mechanisms such as resource limitations (particularly phosphorus) and integration into a more complex food web <span class="citation" data-cites="Sommer2012">[@Sommer2012]</span>.</p>
+<p>The algae-Daphnia system is also used as a textbook example in theoretical ecology. In real water bodies, however, only short section of these dynamics can be observed. An annual spring peak in algae is immediately followed by a distinct clear-water phase. The continuation of these oscillations is then prevented by damping mechanisms such as resource limitations (particularly phosphorus) and integration into a more complex food web <span class="citation" data-cites="Sommer2012">(<a href="#ref-Sommer2012" role="doc-biblioref">Sommer et al., 2012</a>)</span>.</p>
 <strong>Moose and Wolves</strong>
 <p>Another prominent example is the interrelationship between moose and wolves. Research on this topic was conducted in the <a href="https://de.wikipedia.org/wiki/Isle-Royale-Nationalpark">Isle Royale National Park</a>, an island in one of the Great Lakes in North America. It is the longest-running study of predator-prey systems in the world. With the exception of researchers and summer visitors, no humans live on the island.</p>
 <p>Lotka–Volterra-type interactions were indeed observed between the moose and the wolves. However, these occurred only during brief phases of a cycle. In reality, additional factors also come into play here, such as parasites that weaken the moose. Conversely, the wolves were temporarily infected by a viral disease and nearly went extinct.</p>
 <p>During a particularly cold winter, wolves were observed traveling a distance of 22 km across the frozen lake to reach the island. This confirmed a long-standing assumption that the wolf population on the island is not completely isolated. Interaction with the mainland is apparently vital for the wolf population’s survival, but due to global warming, such ice bridges no longer form every 3 to 4 years, but only once every 10 years.</p>
-<p>More information can be found on the National Park’s website, on the research project’s website (<a href="https://isleroyalewolf.org/">https://isleroyalewolf.org/</a>), and in the book by <span class="citation" data-cites="Vucetich2024">@Vucetich2024</span>. There are also articles on Wikipedia on this topic. The videos about the project on YouTube are highly recommended, e.g., <a href="https://youtu.be/DS-4IsDg7mA">https://youtu.be/DS-4IsDg7mA</a>. Additional videos can be found by searching for the keywords: <code>wolves isle royale</code>.</p>
+<p>More information can be found on the National Park’s website, on the research project’s website (<a href="https://isleroyalewolf.org/">https://isleroyalewolf.org/</a>), and in the book by <span class="citation" data-cites="Vucetich2024">Vucetich (<a href="#ref-Vucetich2024" role="doc-biblioref">2024</a>)</span>. There are also articles on Wikipedia on this topic. The videos about the project on YouTube are highly recommended, e.g., <a href="https://youtu.be/DS-4IsDg7mA">https://youtu.be/DS-4IsDg7mA</a>. Additional videos can be found by searching for the keywords: <code>wolves isle royale</code>.</p>
 <strong>Conclusions</strong>
 <p>The examples show that predator-prey interactions are far more complex in practice than the Lotka-Volterra model. The model is not suitable for making predictions, but, as in the app’s simulation experiments, one can derive fundamental insights into the emergence of population fluctuations or the establishment of equilibria.</p>
 <p>In practical models, various model components are combined: exponential growth, logistic growth, multiple resources, and predator-prey interactions. Additionally, the models incorporate current data on nutirients, weather, climate, and human influence.</p>
@@ -1137,20 +1241,17 @@ grid-auto-rows: minmax(0, 1fr);">
 </div>
 </div>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()">
 <div class="card-body html-fill-item html-fill-container">
+<div style="margin-top: 18px;" class="html-fill-item html-fill-container">
+
+</div>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 100%
-#| classes: .fill
+#| viewerHeight: 900
 
 ## Fixed step Runge-Kutta solver
 rk4 &lt;- function(y, times, func, parms) {
@@ -1345,12 +1446,7 @@ server &lt;- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)</code></pre>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 <div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
 
 </div>
@@ -1358,6 +1454,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 </div>
 </div>
 </div>
+
 
 
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1760,7 +1857,20 @@ shinyApp(ui = ui, server = server)</code></pre>
     }
   });
   </script>
-</div> <!-- /container fluid -->
+<div id="quarto-appendix" class="default bslib-grid-item html-fill-item"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Brockwell1991" class="csl-entry" role="listitem">
+Brockwell, P. J., &amp; Davis, R. A. (1991). <em>Time series and forecasting methods</em> (Second edition). <span>Springer Verlag</span>.
+</div>
+<div id="ref-Sommer2012" class="csl-entry" role="listitem">
+Sommer, U., Adrian, R., De Senerpont Domis, L., Elser, J. J., Gaedke, U., Ibelings, B., Jeppesen, E., Lürling, M., Molinero, J. C., Mooij, W. M., Donk, E. van, &amp; Winder, M. (2012). Beyond the plankton ecology group (PEG) model: Mechanisms driving plankton succession. <em>Annual Review of Ecology, Evolution, and Systematics</em>, <em>43</em>, 429–448. <a href="https://doi.org/10.1146/annurev-ecolsys-110411-160251">https://doi.org/10.1146/annurev-ecolsys-110411-160251</a>
+</div>
+<div id="ref-Volterra1926b" class="csl-entry" role="listitem">
+Volterra, V. (1926). <em><span>Variazioni e fluttuazioni del numero d’individui in specie animali conviventi</span></em>. Societ<span>á</span> anonima tipografica "Leonardo da Vinci".
+</div>
+<div id="ref-Vucetich2024" class="csl-entry" role="listitem">
+Vucetich, J. A. (2024). <em>Restoring the balance: What wolves tell us about our relationship with nature</em> (John Hopkins Paperback edition). Johns Hopkins University Press.
+</div>
+</div></section></div></div> <!-- /container fluid -->
 
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (_event) {

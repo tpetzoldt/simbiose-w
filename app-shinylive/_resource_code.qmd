@@ -1,6 +1,8 @@
+<div style="margin-top: 18px;"></div>
+
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 650
+#| viewerHeight: 900
 
 {{< include solvers.R >}}
 
