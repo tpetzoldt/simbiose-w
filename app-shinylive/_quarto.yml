@@ -1,3 +1,5 @@
 project:
   type: default
   output-dir: ../docs   # Tells Quarto to compile everything directly into /docs
+  resources:
+    - "www"       # Copies the entire www folder into docs/www
