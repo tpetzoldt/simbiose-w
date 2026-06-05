@@ -1,0 +1,11 @@
+**Tips for the App**
+
+* If the numbers get too large, you can shorten the simulation period.
+* You can read the numbers directly from the graph using the mouse pointer.
+* You can save the results graph by clicking the camera icon.
+* Instead of a simulation, a pen and paper or a calculator can sometimes be useful—and thinking things through is always a good idea.
+
+**Tips for the exercises**
+
+* If a population is dying off, i.e., $b < d$, then the reproduction rate $r$ is negative.
+* The density of algae is only slightly greater than that of water. We can practically assume a density of 1 g cm^-3^.

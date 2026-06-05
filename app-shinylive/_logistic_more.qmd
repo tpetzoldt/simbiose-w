@@ -1,0 +1,25 @@
+**r- and K-strategies**
+
+The logistic model provides the theoretical basis for distinguishing between so-called r- and K-strategists.
+An r-strategist refers to species that reproduce rapidly, “at any cost”.
+K-strategists, on the other hand, are species that can achieve a high abundance (a high K).
+According to a more modern interpretation, these are organisms that can survive well and minimize losses even during resource shortages.
+
+See also [r/K selection theory](https://en.wikipedia.org/wiki/R/K_selection_theory) on Wikipedia.
+
+**Discrete growth can lead to chaos**
+
+The logistic model and its equilibria are a textbook example from chaos theory. 
+The experiments described under “Exercises” assume that population growth occurs continuously, i.e., can be described mathematically by a differential equation.
+
+If population growth occurs in the form of generations, e.g., in wild animals that reproduce only once a year, then the time step is “discrete”. 
+Mathematically, this is a difference equation.
+
+In this case, the carrying capacity may be temporarily exceeded.
+This is then followed by a partial collapse of the population, e.g., due to a lack of food. 
+In the following time step, the population can recover again, and so on.
+This creates a cycle and, under certain conditions, a chaotic pattern.
+
+More information on this can be found under [Logistic Map]https://en.wikipedia.org/wiki/Logistic_map#Discretization_of_the_logistic_equation) on Wikipedia.
+
+If you want to try it out yourself, you can send an email to the app’s developers. Perhaps they will then incorporate the chaos model into the app.

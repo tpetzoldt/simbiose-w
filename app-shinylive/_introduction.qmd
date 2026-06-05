@@ -1,0 +1,35 @@
+![](../www/see-klar-gruen.jpg){title="View of Lake Stechlin" fig-alt="Illustration of a near-natural lake, along with images of clear water and heavy algae growth" width="100%" fig-align=“center”}
+[photo: Felix Grunicke]{.gray}
+
+## A Clear or a Turbid Lake?
+
+When we look into a swimming lake from the shore, the water is sometimes so clear that we can see to the bottom.
+If we look closely, we might even spot some animals, such as daphnia (water fleas).
+
+Anyone who often walks along the shore can observe that a lake might not always be clear. Sometimes it is turbid from microscopic algae (phytoplankton) and turns green. 
+Phytoplankton is very important for the food chain, because it feeds the zooplankton, which in turn feeds the fish. 
+On the other hand, heavy phytoplankton blooms can lead to serious problems. 
+Swimming in the lake is then prohibited. 
+When extracting drinking water from reservoirs, the algae must be removed at the water treatment plant.
+
+
+![](../www/lake-foodweb.jpg){fig-alt="Part of a food chain in a lake. The image shows a lake in the background and, in the foreground, graphic symbols representing phosphate (PO4 3-) as a limiting nutrient, phytoplankton, and daphnia" width="100%" fig-align=“center”}
+[photo: tpetzoldt]{.gray}
+
+## A segment of the Food Chain
+
+The shift from clear to green, turbid water results from **fluctuations in population density**.
+This can happen quickly because microalgae and daphnia grow and reproduce very rapidly.
+In nature, the rate of growth depends on many factors, such as the season, the weather, nutrient availability, and fish stock.
+
+Scientists around the world are working to better understand these processes and describe them mathematically in order to understand the condition of water bodies and, for example, predict algal blooms.
+To do this, they use mathematical models and, more recently, machine learning. In addition, a great amount of data must be collected.
+
+## Modeling Growth Processes
+
+The exact timeline of algal growth is difficult to predict in reality because many different species of phytoplankton and zooplankton are present in a lake, and many environmental factors act simultaneously. Nevertheless, the example of “algal growth in a lake” can help us understand basic growth processes.
+Growth can be found everywhere in nature -- in plants, insects, and wildlife. 
+Similar models are also used to model the spread of diseases, for example during the COVID-19 pandemic. 
+
+In the “Population Growth” app, we will explore some fundamental growth processes. 
+We will start with an unlimited, exponential growth model, then examine forms of limited growth, and finally look at a predator-prey interaction between two populations.

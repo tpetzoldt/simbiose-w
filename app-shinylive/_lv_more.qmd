@@ -1,0 +1,58 @@
+**Snowshoe hares and lynx**
+
+The example of snowshoe hares and lynx is often cited in connection with the predator-prey model. Both species live in North America, primarily in Canada.
+
+It has been observed that hunters’ fur sales fluctuate in a cycle of 9 to 11 years. It seemed likely that this was a Lotka–Volterra cycle. Upon closer examination, however, inconsistencies became apparent, and various other explanations were proposed. One explanation was that the fluctuating fur sales were due to the influence of hunters. Another explanation is that the predator-prey cycle results from interactions at a lower trophic level—that is, not as an interaction between snowshoe hares and lynx, but between vegetation and the snowshoe hares. The lynx merely follows the cycle. More details can be found in the Wikipedia article [Lotka–Volterra equations](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
+
+
+![](../www/lynx_en.png){fig-alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)" width="100%" fig-align="center"}
+[Historical dataset of lynx catches in Canada, from @Brockwell1991]{.gray}
+
+**Algae and Daphnia**
+
+The algae-Daphnia system is also used as a textbook example in theoretical ecology.
+In real water bodies, however, only short section of these dynamics can be observed.
+An annual spring peak in algae is immediately followed by a distinct clear-water phase.
+The continuation of these oscillations is then prevented by damping mechanisms such as resource limitations (particularly phosphorus) and integration into a more complex food web [@Sommer2012].
+
+
+**Moose and Wolves**
+
+Another prominent example is the interrelationship between moose and wolves.
+Research on this topic was conducted in the [Isle Royale National Park](https://de.wikipedia.org/wiki/Isle-Royale-Nationalpark), an island in one of the Great Lakes in North America.
+It is the longest-running study of predator-prey systems in the world.
+With the exception of researchers and summer visitors, no humans live on the island.
+ 
+
+Lotka–Volterra-type interactions were indeed observed between the moose and the wolves.
+However, these occurred only during brief phases of a cycle.
+In reality, additional factors also come into play here, such as parasites that weaken the moose.
+Conversely, the wolves were temporarily infected by a viral disease and nearly went extinct.
+
+During a particularly cold winter, wolves were observed traveling a distance of 22 km across the frozen lake to reach the island.
+This confirmed a long-standing assumption that the wolf population on the island is not completely isolated.
+Interaction with the mainland is apparently vital for the wolf population’s survival, but due to global warming, such ice bridges no longer form every 3 to 4 years, but only once every 10 years. 
+
+More information can be found on the National Park’s website, on the research project’s website ([https://isleroyalewolf.org/](https://isleroyalewolf.org/)), and in the book by @Vucetich2024.
+There are also articles on Wikipedia on this topic. 
+The videos about the project on YouTube are highly recommended, e.g., [https://youtu.be/DS-4IsDg7mA](https://youtu.be/DS-4IsDg7mA). 
+Additional videos can be found by searching for the keywords: `wolves isle royale`.
+
+**Conclusions**
+
+The examples show that predator-prey interactions are far more complex in practice than the Lotka-Volterra model.
+The model is not suitable for making predictions, but, as in the app’s simulation experiments, one can derive fundamental insights into the emergence of population fluctuations or the establishment of equilibria.
+
+In practical models, various model components are combined: exponential growth, logistic growth, multiple resources, and predator-prey interactions.
+Additionally, the models incorporate current data on nutirients, weather, climate, and human influence.
+
+**References**
+
+Brockwell, P. J. and Davis, R. A. (1991). Time Series and Forecasting Methods. Second edition. Springer. Series G (p. 557).
+
+Sommer, U., Adrian, R., De Senerpont Domis, L., Elser, J. J., Gaedke, U., Ibelings, B., Jeppesen, E., Lürling, M., Molinero, J. C., Mooij, W. M., van Donk, E., & Winder, M. (2012). Beyond the Plankton Ecology Group (PEG) Model: Mechanisms Driving Plankton Succession. Annual Review of Ecology, Evolution, and Systematics, 43, 429–448. [doi:10.1146/annurev-ecolsys-110411-160251](https://doi.org/10.1146/annurev-ecolsys-110411-160251)
+
+Vucetich, J.A. (2021) Restoring the Balance: What Wolves Tell Us about Our Relationship with Nature. Johns Hopkins University Press.
+
+
+

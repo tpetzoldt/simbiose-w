@@ -1,0 +1,91 @@
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 650
+
+{{< include solvers_pure.R >}}
+
+library(shiny)
+
+# ==============================================================================
+# 1. MODEL EQUATIONS (Algae growth and nutrient depletion)
+# ==============================================================================
+resource <- function (time, y, parms) {
+  with(as.list(c(y, parms)), {
+    f <- P / (kP + P)
+    dA_dt <- r * f * A
+    dP_dt <- - r * 1/Y * f * A
+    list(c(dA_dt, dP_dt))
+  })
+}
+
+# ==============================================================================
+# 2. SHINY USER INTERFACE (Simulates the 2-column Dashboard layout)
+# ==============================================================================
+ui <- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      /* Seamless integration into the Quarto Dashboard */
+      body { background-color: transparent; padding: 0; margin: 0; } 
+      .container-fluid { padding: 5px; }
+      .well { background-color: #f8f9fa; border: 1px solid #e3e3e3; box-shadow: none; }
+    "))
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      width = 4, # Left panel (approx. 33% width)
+      h4("Initial Values"),
+      numericInput("resource_A", "A0: Algae (C, mg/m3)", value = 1.0, min = 0, max = 2, step = 0.1),
+      numericInput("resource_P", "P0: Phosphorus (P, mg/m3)", value = 10, min = 0, max = 20, step = 0.1),
+      hr(),
+      h4("Parameters"),
+      sliderInput("resource_r", "r: Growth rate (1/h)", value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("resource_kP", "Kp: Half-saturation (P, mg/m3)", value = 5, min = 0.5, max = 20, step = 0.5),
+      sliderInput("resource_Y", "Y: C/P ratio", value = 41, min = 1, max = 200, step = 5)
+    ),
+    mainPanel(
+      width = 8, # Right panel (approx. 66% width)
+      plotOutput("resource_plot", height = "580px")
+    )
+  )
+)
+
+# ==============================================================================
+# 3. SHINY SERVER LOGIC (Fast Base-R Version with stacked plots)
+# ==============================================================================
+server <- function(input, output, session) {
+  times <- seq(0, 200, by = 1)
+  
+  output$resource_plot <- renderPlot({
+    req(input$resource_r, input$resource_kP, input$resource_Y, input$resource_A, input$resource_P)
+    
+    parms <- c(r = input$resource_r, kP = input$resource_kP, Y = input$resource_Y)
+    y0    <- c(A = input$resource_A, P = input$resource_P)
+    
+    # Run standalone simulation locally via webR
+    res <- ode45_pure(y0, times, resource, parms, atol = 1e-4, rtol = 1e-4)
+    
+    # Setup a 2-row, 1-column layout for the two state variables (simulating facet_wrap)
+    # mar sets margins: c(bottom, left, top, right)
+    # oma sets outer margins to perfectly align labels
+    par(mfrow = c(2, 1), mar = c(4.5, 4.5, 2, 1), oma = c(1, 0, 0, 0))
+    
+    # --------------------------------------------------------------------------
+    # PLOT 1: Phytoplankton (Algae)
+    # --------------------------------------------------------------------------
+    plot(res$time, res$A, type = "l", col = "#69af22", lwd = 3,
+         xlab = "", ylab = "C (mg/m3)", 
+         main = "Phytoplankton (Algae)",
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+    
+    # --------------------------------------------------------------------------
+    # PLOT 2: Phosphorus (Nutrient)
+    # --------------------------------------------------------------------------
+    plot(res$time, res$P, type = "l", col = "#f2aa8d", lwd = 3,
+         xlab = "Time (h)", ylab = "P (mg/m3)", 
+         main = "Phosphorus (Nutrient)",
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```

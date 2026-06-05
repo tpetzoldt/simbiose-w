@@ -1,0 +1,38 @@
+**Background Information**
+
+The introduction assumed a doubling rate, but for continuous growth, an exponential function is used. 
+Why an exponential function and not a power law??
+
+In reality, not all algae cells divide at the same time.
+Some divide earlier, others later, and the ones that divide earlier may already be dividing for the second time. 
+As a result, we do not obtain a geometric sequence, but rather exponential growth.
+
+From the step-by-step (iterative) equation:
+
+$$
+N_{t+1} = N_{t} + r \cdot N_{t}
+$$
+we obtain, by rearranging, a difference equation:
+
+$$
+\frac{N_{t+1} - N_t}{\Delta t} = r \cdot N_t
+$$
+or:
+
+$$
+\frac{\Delta N}{\Delta t} = r \cdot N_t
+$$
+
+If we consider a very large number of cells and short time intervals, we obtain a differential equation:
+
+$$
+\frac{dN}{dt} = r \cdot N
+$$
+
+This equation can be analytically integrated using the so-called variable separation method to yield the exponential formula:
+
+$$
+N_t = N_0 \cdot e^{r\cdot t}
+$$
+
+The exponential formula has the advantage that one does not have to iterate step by step, but can calculate the values for all time steps directly.

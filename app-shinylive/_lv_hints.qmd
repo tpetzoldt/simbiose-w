@@ -1,0 +1,21 @@
+**A dimensionless model**
+
+We are usually taught that coordinate axes should always be labeled with units of measurement. This is very important, but there are exceptions.  In theoretical models, sometimes only the variable name -- without a unit of measurement -- is written on the axis, e.g., “time,” “frequency,” or “abundance.” 
+
+Physicists go even further and scale all axes to an interval from zero to one. In our apps, we have chosen not to do this, so that users can visualize what the values represent.
+This allows us to specify a unit of measurement depending on the application, e.g., “hours” or “days” for fast-growing algae and Daphnia, or “years” for snowshoe hares and lynx.
+
+When it comes to units of measurement for abundance and biomass, it is important to note that algae and Daphnia vary in size and have different body masses.
+If we omit the unit of measurement, the values on the y-axis are merely relative quantities that cannot be compared with one another.
+
+When considering biomass, we can use a trick to establish approximately comparable ratios.
+As a rule of thumb, about 10% of the energy is transferred from one trophic level to the next in a food chain.
+
+We can account for this if we set the parameter $c$ (“growth efficiency”) to one-tenth of $b$ (“feeding intensity”), i.e., for example, $b=0.2$ and $c=0.02$.
+In this case, the initial values must also be adjusted accordingly, e.g., $B_0=1$ and $R_0=0.05$.
+
+By changing the parameters, combinations can also be set that appear nonsensical or unrealistic.
+This is partly because the parameter values are specified relative to time, e.g., growth per day or per hour.
+Therefore, it is sometimes necessary to adjust the time unit as well and subject the values and units of measurement to a thorough reality check.
+
+To make the results of the app easier to understand, we can disregard the units of measurement and consider the results only qualitatively, i.e., small-large, cycle–equilibrium, larger amplitude–smaller amplitude, longer cycle–shorter cycle.

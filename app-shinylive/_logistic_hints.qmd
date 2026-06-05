@@ -1,0 +1,32 @@
+**Initially, growth is nearly exponential**
+
+* When the initial abundance $N_0$ is small compared to $K$, the growth curve initially approaches exponential growth.
+The abundance is far from $K$, so its increase no longer has any effect.
+
+* When $K$ is reduced to a value close to the abundance, the limitation becomes clearly visible and the growth curve flattens out.
+
+**The maximum abundance is independent of the initial value**
+
+* The value of $N_0$ only influences how quickly the value of $K$ is reached. It has no influence on the final value.
+
+* If the initial abundance exceeds the carrying capacity, the population decreases until $K$ is reached.
+
+**Equilibria behave differently**
+
+In the experiment, we can identify three different types of equilibria.
+If $N_0=0$, there are no organisms present that can grow. We have, so to speak, a “sterile system.” The abundance remains at 0.
+
+If $r_{max}=0$ and $N_0 > 0$, then organisms are present, but they do not reproduce.
+It is also possible that they reproduce, but reproduction and death are exactly balanced.
+
+Both equilibria are “labile” (or unstable).
+If even a small value is added to $N_0 = 0$, population growth begins, the equilibrium is left, and the abundance moves toward $K$.
+The same phenomenon can be observed in the second case when $r_{max} > 0$.
+
+In the third case (at $N = K$), the equilibrium is stable.
+It is reached when $N$ is less than $K$ but also when $N$ is greater than $K$.
+Even if the abundance temporarily deviates from $K$, its value us quickly restored.
+This is called “resilience.”
+
+
+

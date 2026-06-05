@@ -1,0 +1,115 @@
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 570
+
+{{< include solvers_pure.R >}}
+
+library(shiny)
+
+# ==============================================================================
+# 1. MODEL EQUATIONS (Used for discrete steps or fallback numerical integration)
+# ==============================================================================
+growth <- function (t, x, parms) {
+  with(as.list(c(x, parms)), {
+    dN <- r * N
+    list(c(dN))
+  })
+}
+
+# ==============================================================================
+# 2. SHINY USER INTERFACE (Simulates the 2-column Dashboard layout)
+# ==============================================================================
+ui <- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      /* Seamless integration into the Quarto Dashboard */
+      body { background-color: transparent; padding: 0; margin: 0; } 
+      .container-fluid { padding: 5px; }
+      .well { background-color: #f8f9fa; border: 1px solid #e3e3e3; box-shadow: none; }
+    "))
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      width = 4, # Left panel (approx. 33% width)
+      h4("Initial Values"),
+      numericInput("growth_N0", "N0: Abundance", value = 1, min = 0, max = 100, step = 1),
+      hr(),
+      h4("Parameters"),
+      sliderInput("growth_r", "r: Growth rate", value = 0.2, min = -1.2, max = 1.2, step = 0.05),
+      hr(),
+      h4("Control"),
+      radioButtons("growth_continuous", "Time steps",
+                   choices = c("Discrete" = "discrete", "Continuous" = "continuous"),
+                   selected = "discrete"),
+      sliderInput("t_max", "Simulation time", value = 10, min = 5, max = 200, step = 5)
+    ),
+    mainPanel(
+      width = 8, # Right panel (approx. 66% width)
+      plotOutput("growth_plot", height = "500px")
+    )
+  )
+)
+
+# ==============================================================================
+# 3. SHINY SERVER LOGIC (Fast Base-R Version)
+# ==============================================================================
+server <- function(input, output, session) {
+  
+  output$growth_plot <- renderPlot({
+    req(input$growth_continuous, input$t_max, input$growth_r, input$growth_N0)
+    
+    # 1. Simulation / Data Generation
+    if (input$growth_continuous == "continuous") {
+      # Analytical solution: N(t) = N0 * e^(r * t)
+      times <- seq(0, input$t_max, length.out = 101)
+      res <- data.frame(
+        time = times,
+        N = input$growth_N0 * exp(input$growth_r * times)
+      )
+      plot_type <- "l" # Line for continuous
+      plot_lwd  <- 3
+    } else {
+      # Discrete generation using Euler integration or fixed time steps
+      times <- seq(0, input$t_max, by = 1)
+      parms <- c(r = input$growth_r)
+      y0    <- c(N = input$growth_N0)
+      
+      # Use the included pure solver (Euler method style or ode45_pure adjusted)
+      # Since the original used 'euler' method for discrete, we simulate it directly:
+      res_mat <- matrix(0, nrow = length(times), ncol = 2)
+      colnames(res_mat) <- c("time", "N")
+      res_mat[, 1] <- times
+      res_mat[1, 2] <- input$growth_N0
+      
+      if (length(times) > 1) {
+        for (i in 1:(length(times) - 1)) {
+          # Discrete/Difference equation approach: N_(t+1) = N_t + r * N_t
+          res_mat[i + 1, 2] <- res_mat[i, 2] + input$growth_r * res_mat[i, 2]
+        }
+      }
+      res <- as.data.frame(res_mat)
+      plot_type <- "p" # Points for discrete
+      plot_lwd  <- 2
+    }
+    
+    # 2. High-Performance Base-R Plotting
+    par(mar = c(4.5, 4.5, 2, 1))
+    
+    # Handle dynamic limits safely, preventing Inf or NaN issues
+    max_y <- max(res$N, input$growth_N0, 1, na.rm = TRUE)
+    if (is.infinite(max_y) || is.nan(max_y)) max_y <- 100
+    
+    plot(res$time, res$N, type = plot_type, col = "#69af22", lwd = plot_lwd,
+         pch = 16, cex = 1.2, # Styling for discrete points
+         ylim = c(min(0, min(res$N, na.rm = TRUE)), max_y * 1.05),
+         xlab = "Time", ylab = "Abundance (N)", 
+         main = paste(ifelse(input$growth_continuous == "continuous", "Continuous", "Discrete"), "Exponential Growth"),
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+         
+    # Reference line at N=0 or starting value if r=0
+    abline(h = 0, col = "#cccccc", lty = 2)
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```

@@ -1,0 +1,23 @@
+**Understanding Exponential Growth**
+
+1. Given a growth rate of $r=1$ d^-1^, how many cells will develop from a single cell in one day:
+
+a. in discrete growth at fixed time intervals?
+b. with continuous (exponential) growth?
+
+---
+
+2. A green algae population starts with 10 cells per liter and a growth rate of $r=1$ d^-1^. How many cells per liter will there be after 7 days of exponential growth?
+
+---
+
+3. A cyanobacteria population (blue-green algae) grows at a rate of $r=0.5$ d^-1^. After approximately how many days will the abundance have increased tenfold under exponential growth?
+
+---
+
+4. A clear-water situation has developed in a lake. The Daphnia population, with a concentration of 50 individuals per liter, is suffering from acute food shortage and is no longer reproducing. However, due to predation by fish, the exponential mortality rate is $d=0.1$ d^-1^. After how many days will there be only one Daphnia left in one liter of water?
+
+---
+
+5. A thought experiment: A beaker containing 1 L of nutrient solution holds algae with a fresh mass of 1 mg L^-1^, and the growth rate is 1 d^-1^. 
+How long would it take until the beaker is completely filled with algal biomass if the algae could grow without limitation?

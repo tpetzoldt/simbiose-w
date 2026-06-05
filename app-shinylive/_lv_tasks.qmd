@@ -1,0 +1,75 @@
+**Identification of Equilibrium Points**
+
+
+The initial standard parameters and starting values are as follows:
+
+$a=b=c=d=0.1$, $B_0=1$, $R_0=0.5$.
+
+
+1. Change the initial value for the predator ($R_0$) to 2 or 1.
+
+* What happens?
+
+---
+
+2. Set $R_0=2$ again. Now try to find a   prey reproduction rate ($a$) at which an equilibrium is reached again.
+
+* You can find the desired value either by trial and error or by rearranging the system of equations.
+
+---
+
+**Period and Amplitude**
+
+First, restore the default parameters, e.g., by reloading the app.
+
+
+3. By changing the parameters $a, b, c, d$, you can alter the period. 
+For simplicity, let all parameter values be equal at first ($a = b = c = d$). 
+Now find values such that the period:
+
+    a. shortens
+
+    b. lengthens
+
+    c. Why do the parameters affect the period in the observed direction?
+    
+Note: Checking the “Scan values” box activates additional guide lines. You can read specific values using the mouse.
+
+---
+
+4. Now set the parameter values back to their defaults.
+
+    a. Double the prey reproduction rate $a$ to 0.2. How can the result be explained?
+
+    b. Double the predator mortality rate $d$ to 0.2. How can the result be explained?
+
+    c. What conclusions can be drawn regarding **turnover** and **population density** in real-world systems?
+
+---
+
+5. Double and halve the turnover between $B$ and $R$. Use parameters in the range: $b = c = 0.05 \dots 0.2$.
+  
+* How can the result be explained? What information is needed to assess whether the result is realistic?
+
+---
+
+**Analytical Determination of Equilibrium and Mean Values**
+
+6. Rearrange the system of equations and determine the equilibrium state.
+
+    a. At equilibrium, the first derivatives of both equations are equal to 0. Return to Problem (2) and find the value of the parameter a
+      by rearranging and solving the system of equations.
+      
+    b. Using the “Read Values” checkbox, you can estimate the mean values of prey and predator for each cycle from the displayed points.
+      Here, a cycle always extends from one maximum to the next.
+      
+    c. Compare the equilibrium state (horizontal dotted lines) with the mean values estimated in (b). Consider or research
+      how the mean value can be obtained directly from the initial values and the model parameters.
+
+
+$$
+\begin{align}
+\frac{dB}{dt} &= a \cdot B - b \cdot B \cdot R \\
+\frac{dR}{dt} &= c \cdot B \cdot R - d \cdot R
+\end{align}
+$$

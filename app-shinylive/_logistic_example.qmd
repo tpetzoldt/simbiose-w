@@ -1,0 +1,17 @@
+![](../www/algae-logist_en.png){fig-alt="The image shows a schematic representation of algae cells that multiply through division until growth reaches a limit. This results in an S-shaped curve."}
+---
+
+
+**Growth cannot continue indefinitely**
+
+Simulations of exponential growth clearly show that unlimited growth can lead to an unimaginably large population size after a relatively short time. 
+
+Let’s assume we have a single water flea with a length of 1.5 mm and a mass of 0.25 mg, with a population growth rate of $r=0.1$ per day (d^-1^). With unlimited reproduction, after 6 months we would already have 80 million daphnia with a total mass of 20 kg. After 14 months, Lake Müritz, Germany’s largest lake with a volume of 737 million m^3, would be completely filled with Daphnia. In just over 15 months, even Lake Constance would be.
+
+In reality, population growth slows as abundance increases, resulting in an S-shaped growth curve. 
+One of the simplest models for this is so-called “logistic growth.”
+
+The logistic model is one of the most important formulas in population ecology. However, it does not account for what causes the limitation. 
+In daphnia, this can be caused by food scarcity or oxygen deficiency. In algae, self-shading occurs because the algae cells block light from one another. 
+Some microorganisms possess the ability to self-regulate. They can detect cell density through chemical secretions from other cells and divide less frequently before light and nutrients become scarce.  
+

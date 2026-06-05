@@ -1,0 +1,21 @@
+**What limits growth?**
+
+<br></br>
+
+1. Compare resource-limited growth with logistic growth.
+
+    a. What is the advantage of resource-limited growth over the logistic growth function?
+
+    b. Are there any disadvantages?
+
+---
+
+2. Examine the influence of $r$, $k_P$, and $Y$ on growth.
+
+    a. At what values of $r$ is growth fastest?
+
+    b. At what values of $k_P$ is growth fastest and nutrient utilization best?
+
+    c. What determines the steepness of the transition to the limiting phase?
+
+    d. Which parameter and which initial value determine the maximum phytoplankton abundance reached? This value corresponds to the carrying capacity $K$ in the logistic model.

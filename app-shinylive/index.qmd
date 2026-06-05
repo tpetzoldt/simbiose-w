@@ -1,0 +1,159 @@
+---
+title: "SimBioSe-W Dashboard"
+format:
+  dashboard:
+    orientation: columns
+filters:
+  - shinylive
+shinylive:
+  shinylive-repo: "https://posit-dev.github.io/shinylive/r/repo/"   
+---
+
+<!---- Intitialisation of the WebR/shinylive filter -------------------------/-->
+<!---- Run this once before compiling the app ----------------------------------
+library(reticulate)
+reticulate::py_config()$python
+reticulate::py_run_string("import shinylive; print('Erfolg! shinylive Version:', shinylive.__version__)")
+system("quarto add quarto-ext/shinylive --no-prompt")
+-----------------------------------------------------------------------------/-->
+
+
+
+
+<!---------------------------------------------------------------------------/-->
+# Exponential Growth
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+### Example
+
+{{< include _exponential_example.qmd >}}
+
+### The Model
+
+{{< include _exponential_description.qmd >}}
+
+### Tasks
+
+{{< include _exponential_tasks.qmd >}}
+
+### Hints
+
+{{< include _exponential_hints.qmd >}}
+
+### Read More
+
+{{< include _exponential_more.qmd >}}
+
+:::
+
+## Column {width="60%"}
+
+{{< include exponential-shinylive-base.qmd >}}
+
+
+<!---------------------------------------------------------------------------/-->
+# Limited Growth
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+### Example
+
+{{< include _logistic_example.qmd >}}
+
+### The Model
+
+{{< include _logistic_description.qmd >}}
+
+### Tasks
+
+{{< include _logistic_tasks.qmd >}}
+
+### Hints
+
+{{< include _logistic_hints.qmd >}}
+
+### Read More
+
+{{< include _logistic_more.qmd >}}
+
+:::
+
+## Column {width="60%"}
+
+{{< include logist-shinylive-base.qmd >}}
+
+
+<!---------------------------------------------------------------------------/-->
+
+# Nutrient Limited Growth
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+### Example
+
+{{< include _resource_example.qmd >}}
+
+### The Model
+
+{{< include _resource_description.qmd >}}
+
+### Tasks
+
+{{< include _resource_tasks.qmd >}}
+
+### Hints
+
+{{< include _resource_hints.qmd >}}
+
+### Read More
+
+{{< include _resource_more.qmd >}}
+
+:::
+
+## Column {width="60%"}
+
+{{< include resource-shinylive-base.qmd >}}
+
+
+<!---------------------------------------------------------------------------/-->
+## Column {width="40%"}
+
+# Predator-Prey Model
+
+## Description
+
+::: {.panel-tabset width="38%"}
+
+### Example
+
+{{< include _lv_example.qmd >}}
+
+### The Model
+
+{{< include _lv_description.qmd >}}
+
+### Tasks
+
+{{< include _lv_tasks.qmd >}}
+
+### Hints
+
+{{< include _lv_hints.qmd >}}
+
+### Read More
+
+{{< include _lv_more.qmd >}}
+
+:::
+
+## Column {width="60%"}
+
+{{< include lv-shinylive-base-download.qmd >}}
