@@ -2,7 +2,7 @@
 #| standalone: true
 #| viewerHeight: 650
 
-{{< include solvers_pure.R >}}
+{{< include solvers.R >}}
 
 library(shiny)
 
@@ -50,7 +50,7 @@ ui <- fluidPage(
 )
 
 # ==============================================================================
-# 3. SHINY SERVER LOGIC (Fast Base-R Version with stacked plots)
+# 3. SHINY SERVER LOGIC (Base-R Version)
 # ==============================================================================
 server <- function(input, output, session) {
   times <- seq(0, 200, by = 1)
@@ -62,11 +62,9 @@ server <- function(input, output, session) {
     y0    <- c(A = input$resource_A, P = input$resource_P)
     
     # Run standalone simulation locally via webR
-    res <- ode45_pure(y0, times, resource, parms, atol = 1e-4, rtol = 1e-4)
+    res <- ode45(y0, times, resource, parms, atol = 1e-4, rtol = 1e-4)
     
     # Setup a 2-row, 1-column layout for the two state variables (simulating facet_wrap)
-    # mar sets margins: c(bottom, left, top, right)
-    # oma sets outer margins to perfectly align labels
     par(mfrow = c(2, 1), mar = c(4.5, 4.5, 2, 1), oma = c(1, 0, 0, 0))
     
     # --------------------------------------------------------------------------

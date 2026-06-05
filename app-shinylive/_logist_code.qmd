@@ -2,7 +2,7 @@
 #| standalone: true
 #| viewerHeight: 550
 
-{{< include solvers_pure.R >}}
+{{< include solvers.R >}}
 
 library(shiny)
 
@@ -46,7 +46,7 @@ ui <- fluidPage(
 )
 
 # ==============================================================================
-# 3. SHINY SERVER LOGIC (Fast Base-R Version using ode45_pure)
+# 3. SHINY SERVER LOGIC (Fast Base-R Version using ode45)
 # ==============================================================================
 server <- function(input, output, session) {
   times <- seq(0, 100, by = 0.5)
@@ -56,9 +56,9 @@ server <- function(input, output, session) {
     y0    <- c(N = input$logist_N0)
     
     # Run standalone simulation locally in the browser
-    res <- ode45_pure(y0, times, logist, parms, atol = 1e-4, rtol = 1e-4)
+    res <- ode45(y0, times, logist, parms, atol = 1e-4, rtol = 1e-4)
     
-    # High-performance plotting via R Base Graphics
+    # Plotting via R Base Graphics
     # Margins adjusted for a clean dashboard look (mar: bottom, left, top, right)
     par(mar = c(4.5, 4.5, 2, 1)) 
     

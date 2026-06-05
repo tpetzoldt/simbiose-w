@@ -1,4 +1,4 @@
-# 1. Reine R-Logik (Kein tidyverse, kein ggplot2, kein plotly!)
+## Fixed step Runge-Kutta solver
 rk4 <- function(y, times, func, parms) {
   out <- matrix(NA, nrow = length(times), ncol = length(y) + 1)
   out[1, ] <- c(times[1], y)
@@ -8,7 +8,7 @@ rk4 <- function(y, times, func, parms) {
     t_curr <- times[i]
     t_next <- times[i + 1]
     h <- t_next - t_curr
-    k1 <- unlist(func(t_curr,          current_y,          parms))
+    k1 <- unlist(func(t_curr,          current_y,              parms))
     k2 <- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
     k3 <- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
     k4 <- unlist(func(t_next,          current_y + h * k3,     parms))
@@ -18,8 +18,9 @@ rk4 <- function(y, times, func, parms) {
   return(as.data.frame(out))
 }
 
+## Variable time step ode45 Solver
 ode45 <- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
-  # Dormand-Prince (RK45) Koeffizienten
+  # Dormand-Prince (RK45) Coefficients
   c_val <- c(0, 1/5, 3/10, 4/5, 8/9, 1, 1)
   a <- list(
     c(),
@@ -30,7 +31,7 @@ ode45 <- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
     c(9017/3168, -355/33, 46732/5247, 49/176, -5103/18656),
     c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84)
   )
-  # Koeffizienten fuer Ordnung 5 (b1) und Ordnung 4 (b2) zur Fehlerschätzung
+  # Coefficients for order 5 (b1) and order 4 4 (b2) for error estimation
   b1 <- c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84, 0)
   b2 <- c(5179/57600, 0, 7571/16695, 393/640, -92097/339200, 187/2100, 1/40)
   
@@ -40,16 +41,16 @@ ode45 <- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
   
   current_y <- y
   t_curr <- times[1]
-  h <- 0.1 # Initialer Schrittweiten-Vorschlag
+  h <- min(diff(times)) # initial step size
   
   for (i in 2:length(times)) {
     t_target <- times[i]
     
-    # Interne Schleife, bis der gewuenschte Ausgabezeitpunkt erreicht ist
+    # Loop over the external time steps
     while (t_curr < t_target) {
       if (t_curr + h > t_target) h <- t_target - t_curr
       
-      # Berechne die Stufen (k1 bis k7)
+      # calculate levels (k1 ... k7)
       k <- matrix(NA, nrow = 7, ncol = length(y))
       k[1, ] <- unlist(func(t_curr, current_y, parms))
       
@@ -58,19 +59,19 @@ ode45 <- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
         k[s, ] <- unlist(func(t_curr + c_val[s] * h, y_step, parms))
       }
       
-      # Schätze den Fehler zwischen Ordnung 4 und 5
+      # estimate error between orders 4 and 5
       y5 <- current_y + h * colSums(b1 * k)
       y4 <- current_y + h * colSums(b2 * k)
       error_est <- max(abs(y5 - y4) / (atol + rtol * abs(y5)))
       
       if (error_est <= 1.0 || h < 1e-5) {
-        # Schritt akzeptiert
+        # accepted step
         current_y <- y5
         t_curr <- t_curr + h
-        # Schrittweite fuer die Zukunft optimieren
+        # optimize step for the future
         h <- h * min(5, max(0.2, 0.9 * (1 / error_est)^0.2))
       } else {
-        # Schritt abgelehnt -> Schrittweite verkleinern und neu versuchen
+        # reject step; decrease and try again
         h <- h * max(0.1, 0.9 * (1 / error_est)^0.25)
       }
     }

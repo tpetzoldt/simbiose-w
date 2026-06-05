@@ -2,7 +2,7 @@
 #| standalone: true
 #| viewerHeight: 570
 
-{{< include solvers_pure.R >}}
+{{< include solvers.R >}}
 
 library(shiny)
 
@@ -58,7 +58,7 @@ server <- function(input, output, session) {
   output$growth_plot <- renderPlot({
     req(input$growth_continuous, input$t_max, input$growth_r, input$growth_N0)
     
-    # 1. Simulation / Data Generation
+    # 1. Simulation
     if (input$growth_continuous == "continuous") {
       # Analytical solution: N(t) = N0 * e^(r * t)
       times <- seq(0, input$t_max, length.out = 101)
@@ -74,8 +74,7 @@ server <- function(input, output, session) {
       parms <- c(r = input$growth_r)
       y0    <- c(N = input$growth_N0)
       
-      # Use the included pure solver (Euler method style or ode45_pure adjusted)
-      # Since the original used 'euler' method for discrete, we simulate it directly:
+      # Simulate the 'euler' method for discrete directly
       res_mat <- matrix(0, nrow = length(times), ncol = 2)
       colnames(res_mat) <- c("time", "N")
       res_mat[, 1] <- times
@@ -92,7 +91,7 @@ server <- function(input, output, session) {
       plot_lwd  <- 2
     }
     
-    # 2. High-Performance Base-R Plotting
+    # 2. Base-R Plotting
     par(mar = c(4.5, 4.5, 2, 1))
     
     # Handle dynamic limits safely, preventing Inf or NaN issues
@@ -106,7 +105,7 @@ server <- function(input, output, session) {
          main = paste(ifelse(input$growth_continuous == "continuous", "Continuous", "Discrete"), "Exponential Growth"),
          bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
          
-    # Reference line at N=0 or starting value if r=0
+    # Reference line at N=0
     abline(h = 0, col = "#cccccc", lty = 2)
   })
 }

@@ -1,5 +1,5 @@
 ---
-title: "SimBioSe-W Dashboard"
+title: "SimBioSe-W Shinylive"
 format:
   dashboard:
     orientation: columns
@@ -51,7 +51,7 @@ system("quarto add quarto-ext/shinylive --no-prompt")
 
 ## Column {width="60%"}
 
-{{< include exponential-shinylive-base.qmd >}}
+{{< include _exponential_code.qmd >}}
 
 
 <!---------------------------------------------------------------------------/-->
@@ -85,7 +85,7 @@ system("quarto add quarto-ext/shinylive --no-prompt")
 
 ## Column {width="60%"}
 
-{{< include logist-shinylive-base.qmd >}}
+{{< include _logist_code.qmd >}}
 
 
 <!---------------------------------------------------------------------------/-->
@@ -120,7 +120,7 @@ system("quarto add quarto-ext/shinylive --no-prompt")
 
 ## Column {width="60%"}
 
-{{< include resource-shinylive-base.qmd >}}
+{{< include _resource_code.qmd >}}
 
 
 <!---------------------------------------------------------------------------/-->
@@ -156,4 +156,4 @@ system("quarto add quarto-ext/shinylive --no-prompt")
 
 ## Column {width="60%"}
 
-{{< include lv-shinylive-base-download.qmd >}}
+{{< include _lv_code_download.qmd >}}
