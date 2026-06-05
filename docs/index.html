@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>SimBioSe-W Shinylive</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-6a298fde403041579a69b2204f21ed52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-dark-6a298fde403041579a69b2204f21ed52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-6a298fde403041579a69b2204f21ed52.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="index_files/libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="index_files/libs/quarto-dashboard/stickythead.js"></script>
+
+
+
+<script src="index_files/libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="index_files/libs/quarto-dashboard/components.js"></script>
+
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="index_files/libs/quarto-contrib/shinylive-0.10.8/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="index_files/libs/quarto-contrib/shinylive-0.10.8/shinylive/run-python-blocks.js" type="module"></script>
+<link href="index_files/libs/quarto-contrib/shinylive-0.10.8/shinylive/shinylive.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="quarto-dashboard dashboard-fill fullcontent quarto-light">
+
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">
+
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">SimBioSe-W Shinylive</a></div>
+        
+        
+      </div>
+    </div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-exponential-growth" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#exponential-growth" data-scrolling="false" href="#exponential-growth" aria-controls="exponential-growth" aria-selected="true"><span class="nav-link-text">Exponential Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-limited-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#limited-growth" data-scrolling="false" href="#limited-growth" aria-controls="limited-growth" aria-selected="false"><span class="nav-link-text">Limited Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-nutrient-limited-growth" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#nutrient-limited-growth" data-scrolling="false" href="#nutrient-limited-growth" aria-controls="nutrient-limited-growth" aria-selected="false"><span class="nav-link-text">Nutrient Limited Growth</span></a></li><li class="nav-item" role="presentation"><a id="tab-predator-prey-model" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#predator-prey-model" data-scrolling="false" href="#predator-prey-model" aria-controls="predator-prey-model" aria-selected="false"><span class="nav-link-text">Predator-Prey Model</span></a></li></ul></div></div>
+</nav>
+</header>
+<div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">  
+
+<!---- Intitialisation of the WebR/shinylive filter -------------------------/-->
+<!---- Run this once before compiling the app ----------------------------------
+library(reticulate)
+reticulate::py_config()$python
+reticulate::py_run_string("import shinylive; print('Erfolg! shinylive Version:', shinylive.__version__)")
+system("quarto add quarto-ext/shinylive --no-prompt")
+-----------------------------------------------------------------------------/-->
+<!---------------------------------------------------------------------------/-->
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div id="exponential-growth" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-exponential-growth">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container" width="38%">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Read More</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container" width="38%">
+<section id="tabset-1-1" class="level2 tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<h2 data-anchor-id="tabset-1-1"><img src="../www/algae-exp_en.png" class="img-fluid" alt="The image shows a schematic representation of algae cells multiplying through division."></h2>
+<strong>Population Growth by Doubling</strong>
+<p>Single-celled organisms, such as bacteria or phytoplankton, can reproduce very quickly. The figure shows schematically how the number of phytoplankton cells doubles with each division. This results in a geometric sequence: 1-2-4-8-16-32-64, and so on.</p>
+<p>To describe such a growth process, three basic pieces of information are needed:</p>
+<ol type="1">
+<li><p>The number of organisms present. This is called <strong>abundance</strong> and is usually denoted by the symbol <span class="math inline">\(N\)</span> (number).</p></li>
+<li><p>The population growth per unit of time, in this case doubling.</p></li>
+<li><p>The underlying time interval <span class="math inline">\(\Delta t\)</span> during which the growth occurs, e.g., a day, an hour, or a year.</p></li>
+</ol>
+<strong>How fast does a population grow?</strong>
+<ol type="1">
+<li><p>The greater the existing abundance, the greater the increase. One cell becomes two; 8 cells become 16.</p></li>
+<li><p>The greater the increase, the faster the population grows. Instead of doubling (factor = 2, growth = 100%), the organisms could also increase tenfold (factor = 10, growth = 900%), but only a small portion may reproduce, e.g., growth = 10%, in which case the factor = 1.1.</p></li>
+<li><p>The smaller the time step in which reproduction occurs, the faster the population growth.</p></li>
+</ol>
+</section>
+<div id="tabset-1-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<img src="../www/graph_exponential_en.svg" class="quarto-figure quarto-figure-center" style="height:30.0%" alt="System diagram of exponential growth.">
+<hr>
+<strong>Discrete Growth</strong>
+<p>In discrete growth, cell division occurs at fixed time intervals.</p>
+<p>The number of cells (the abundance <span class="math inline">\(N\)</span>) at a future time <span class="math inline">\(t+1\)</span> is the abundance of cells at the current time <span class="math inline">\(t\)</span> plus the number of new cells added <span class="math inline">\(b\cdot N_{t}\)</span>. Here, <span class="math inline">\(b\)</span> is the per-capita reproduction rate (birth rate), the proportion of cells that divide.</p>
+<span class="math display">\[
+N_{t+1} = N_{t} + b \cdot N_{t}
+\]</span>
+<p>The abundance <span class="math inline">\(N\)</span> is either dimensionless and means “number of individuals,” but it can also be specified with a unit of measurement, e.g., individuals per square meter or per liter. A concentration value is also possible, e.g., mg/L biomass or mg/L carbon.</p>
+<p>Instead of the birth rate <span class="math inline">\(b\)</span>, the symbol <span class="math inline">\(r\)</span> is often used, representing the net reproduction rate. This consists of two parts: the birth rate <span class="math inline">\(b\)</span> and the death rate <span class="math inline">\(d\)</span>. Depending on whether the difference <span class="math inline">\(r=b-d\)</span> is positive or negative, the population grows or declines.</p>
+<p>A birth rate <span class="math inline">\(r=1\)</span> means that for every existing individual, a new individual is added per time step, resulting in a doubling of the population.</p>
+<strong>Continuous Growth</strong>
+<p>When considering a very large number of individuals that reproduce continuously—that is, not at fixed intervals—we refer to this as <strong>exponential growth</strong>. The equation above becomes an exponential function:</p>
+<span class="math display">\[
+N_t = N_0 \cdot e^{r \cdot t}
+\]</span>
+<p>This function describes the development of the number of individuals (abundance, <span class="math inline">\(N\)</span>) at time <span class="math inline">\(t\)</span> as a function of the net reproduction rate <span class="math inline">\(r\)</span> and the initial abundance <span class="math inline">\(N_0\)</span> at time <span class="math inline">\(t=0\)</span>.</p>
+<p>For animals that reproduce only once a year, discrete growth models are typically used in practice, while continuous models are typically used for microorganisms.</p>
+<strong>The System Diagram</strong>
+<p>A so-called system diagram can be used for illustration purposes:</p>
+<ul>
+<li>In this diagram, a thick-bordered rectangle represents a state variable, e.g., the abundance of a population,</li>
+<li>thick arrows represent a flow of matter or energy, and</li>
+<li>thin arrows represent an interaction.</li>
+<li>Metabolic processes, e.g., growth, are symbolized by a hexagon in this example,</li>
+<li>while fixed parameters, metabolic rates, and auxiliary variables are represented by circles.</li>
+</ul>
+<p>Positive (enhancing) feedback can be symbolized by a (+), and negative feedback by a (-).</p>
+</div>
+<div id="tabset-1-3" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<strong>Understanding Exponential Growth</strong>
+<ol type="1">
+<li>Given a growth rate of <span class="math inline">\(r=1\)</span> d<sup>-1</sup>, how many cells will develop from a single cell in one day:</li>
+</ol>
+<ol type="a">
+<li>in discrete growth at fixed time intervals?</li>
+<li>with continuous (exponential) growth?</li>
+</ol>
+<hr>
+<ol start="2" type="1">
+<li>A green algae population starts with 10 cells per liter and a growth rate of <span class="math inline">\(r=1\)</span> d<sup>-1</sup>. How many cells per liter will there be after 7 days of exponential growth?</li>
+</ol>
+<hr>
+<ol start="3" type="1">
+<li>A cyanobacteria population (blue-green algae) grows at a rate of <span class="math inline">\(r=0.5\)</span> d<sup>-1</sup>. After approximately how many days will the abundance have increased tenfold under exponential growth?</li>
+</ol>
+<hr>
+<ol start="4" type="1">
+<li>A clear-water situation has developed in a lake. The Daphnia population, with a concentration of 50 individuals per liter, is suffering from acute food shortage and is no longer reproducing. However, due to predation by fish, the exponential mortality rate is <span class="math inline">\(d=0.1\)</span> d<sup>-1</sup>. After how many days will there be only one Daphnia left in one liter of water?</li>
+</ol>
+<hr>
+<ol start="5" type="1">
+<li>A thought experiment: A beaker containing 1 L of nutrient solution holds algae with a fresh mass of 1 mg L<sup>-1</sup>, and the growth rate is 1 d<sup>-1</sup>. How long would it take until the beaker is completely filled with algal biomass if the algae could grow without limitation?</li>
+</ol>
+</div>
+<div id="tabset-1-4" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<strong>Tips for the App</strong>
+<ul>
+<li>If the numbers get too large, you can shorten the simulation period.</li>
+<li>You can read the numbers directly from the graph using the mouse pointer.</li>
+<li>You can save the results graph by clicking the camera icon.</li>
+<li>Instead of a simulation, a pen and paper or a calculator can sometimes be useful—and thinking things through is always a good idea.</li>
+</ul>
+<strong>Tips for the exercises</strong>
+<ul>
+<li>If a population is dying off, i.e., <span class="math inline">\(b &lt; d\)</span>, then the reproduction rate <span class="math inline">\(r\)</span> is negative.</li>
+<li>The density of algae is only slightly greater than that of water. We can practically assume a density of 1 g cm<sup>-3</sup>.</li>
+</ul>
+</div>
+<div id="tabset-1-5" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<strong>Background Information</strong>
+<p>The introduction assumed a doubling rate, but for continuous growth, an exponential function is used. Why an exponential function and not a power law??</p>
+<p>In reality, not all algae cells divide at the same time. Some divide earlier, others later, and the ones that divide earlier may already be dividing for the second time. As a result, we do not obtain a geometric sequence, but rather exponential growth.</p>
+<p>From the step-by-step (iterative) equation:</p>
+<p><span class="math display">\[
+N_{t+1} = N_{t} + r \cdot N_{t}
+\]</span> we obtain, by rearranging, a difference equation:</p>
+<p><span class="math display">\[
+\frac{N_{t+1} - N_t}{\Delta t} = r \cdot N_t
+\]</span> or:</p>
+<span class="math display">\[
+\frac{\Delta N}{\Delta t} = r \cdot N_t
+\]</span>
+<p>If we consider a very large number of cells and short time intervals, we obtain a differential equation:</p>
+<span class="math display">\[
+\frac{dN}{dt} = r \cdot N
+\]</span>
+<p>This equation can be analytically integrated using the so-called variable separation method to yield the exponential formula:</p>
+<span class="math display">\[
+N_t = N_0 \cdot e^{r\cdot t}
+\]</span>
+<p>The exponential formula has the advantage that one does not have to iterate step by step, but can calculate the values for all time steps directly.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 570
+
+## Fixed step Runge-Kutta solver
+rk4 &lt;- function(y, times, func, parms) {
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  out[1, ] &lt;- c(times[1], y)
+  colnames(out) &lt;- c("time", names(y))
+  current_y &lt;- y
+  for (i in 1:(length(times) - 1)) {
+    t_curr &lt;- times[i]
+    t_next &lt;- times[i + 1]
+    h &lt;- t_next - t_curr
+    k1 &lt;- unlist(func(t_curr,          current_y,              parms))
+    k2 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+    k3 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+    k4 &lt;- unlist(func(t_next,          current_y + h * k3,     parms))
+    current_y &lt;- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    out[i + 1, ] &lt;- c(t_next, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+## Variable time step ode45 Solver
+ode45 &lt;- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
+  # Dormand-Prince (RK45) Coefficients
+  c_val &lt;- c(0, 1/5, 3/10, 4/5, 8/9, 1, 1)
+  a &lt;- list(
+    c(),
+    c(1/5),
+    c(3/40, 9/40),
+    c(44/45, -56/15, 32/9),
+    c(19372/6561, -25360/2187, 64448/6561, -212/729),
+    c(9017/3168, -355/33, 46732/5247, 49/176, -5103/18656),
+    c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84)
+  )
+  # Coefficients for order 5 (b1) and order 4 4 (b2) for error estimation
+  b1 &lt;- c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84, 0)
+  b2 &lt;- c(5179/57600, 0, 7571/16695, 393/640, -92097/339200, 187/2100, 1/40)
+  
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  colnames(out) &lt;- c("time", names(y))
+  out[1, ] &lt;- c(times[1], y)
+  
+  current_y &lt;- y
+  t_curr &lt;- times[1]
+  h &lt;- min(diff(times)) # initial step size
+  
+  for (i in 2:length(times)) {
+    t_target &lt;- times[i]
+    
+    # Loop over the external time steps
+    while (t_curr &lt; t_target) {
+      if (t_curr + h &gt; t_target) h &lt;- t_target - t_curr
+      
+      # calculate levels (k1 ... k7)
+      k &lt;- matrix(NA, nrow = 7, ncol = length(y))
+      k[1, ] &lt;- unlist(func(t_curr, current_y, parms))
+      
+      for (s in 2:7) {
+        y_step &lt;- current_y + h * colSums(a[[s]] * k[1:(s-1), , drop = FALSE])
+        k[s, ] &lt;- unlist(func(t_curr + c_val[s] * h, y_step, parms))
+      }
+      
+      # estimate error between orders 4 and 5
+      y5 &lt;- current_y + h * colSums(b1 * k)
+      y4 &lt;- current_y + h * colSums(b2 * k)
+      error_est &lt;- max(abs(y5 - y4) / (atol + rtol * abs(y5)))
+      
+      if (error_est &lt;= 1.0 || h &lt; 1e-5) {
+        # accepted step
+        current_y &lt;- y5
+        t_curr &lt;- t_curr + h
+        # optimize step for the future
+        h &lt;- h * min(5, max(0.2, 0.9 * (1 / error_est)^0.2))
+      } else {
+        # reject step; decrease and try again
+        h &lt;- h * max(0.1, 0.9 * (1 / error_est)^0.25)
+      }
+    }
+    out[i, ] &lt;- c(t_target, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+
+
+
+library(shiny)
+
+# ==============================================================================
+# 1. MODEL EQUATIONS (Used for discrete steps or fallback numerical integration)
+# ==============================================================================
+growth &lt;- function (t, x, parms) {
+  with(as.list(c(x, parms)), {
+    dN &lt;- r * N
+    list(c(dN))
+  })
+}
+
+# ==============================================================================
+# 2. SHINY USER INTERFACE (Simulates the 2-column Dashboard layout)
+# ==============================================================================
+ui &lt;- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      /* Seamless integration into the Quarto Dashboard */
+      body { background-color: transparent; padding: 0; margin: 0; } 
+      .container-fluid { padding: 5px; }
+      .well { background-color: #f8f9fa; border: 1px solid #e3e3e3; box-shadow: none; }
+    "))
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      width = 4, # Left panel (approx. 33% width)
+      h4("Initial Values"),
+      numericInput("growth_N0", "N0: Abundance", value = 1, min = 0, max = 100, step = 1),
+      hr(),
+      h4("Parameters"),
+      sliderInput("growth_r", "r: Growth rate", value = 0.2, min = -1.2, max = 1.2, step = 0.05),
+      hr(),
+      h4("Control"),
+      radioButtons("growth_continuous", "Time steps",
+                   choices = c("Discrete" = "discrete", "Continuous" = "continuous"),
+                   selected = "discrete"),
+      sliderInput("t_max", "Simulation time", value = 10, min = 5, max = 200, step = 5)
+    ),
+    mainPanel(
+      width = 8, # Right panel (approx. 66% width)
+      plotOutput("growth_plot", height = "500px")
+    )
+  )
+)
+
+# ==============================================================================
+# 3. SHINY SERVER LOGIC (Fast Base-R Version)
+# ==============================================================================
+server &lt;- function(input, output, session) {
+  
+  output$growth_plot &lt;- renderPlot({
+    req(input$growth_continuous, input$t_max, input$growth_r, input$growth_N0)
+    
+    # 1. Simulation
+    if (input$growth_continuous == "continuous") {
+      # Analytical solution: N(t) = N0 * e^(r * t)
+      times &lt;- seq(0, input$t_max, length.out = 101)
+      res &lt;- data.frame(
+        time = times,
+        N = input$growth_N0 * exp(input$growth_r * times)
+      )
+      plot_type &lt;- "l" # Line for continuous
+      plot_lwd  &lt;- 3
+    } else {
+      # Discrete generation using Euler integration or fixed time steps
+      times &lt;- seq(0, input$t_max, by = 1)
+      parms &lt;- c(r = input$growth_r)
+      y0    &lt;- c(N = input$growth_N0)
+      
+      # Simulate the 'euler' method for discrete directly
+      res_mat &lt;- matrix(0, nrow = length(times), ncol = 2)
+      colnames(res_mat) &lt;- c("time", "N")
+      res_mat[, 1] &lt;- times
+      res_mat[1, 2] &lt;- input$growth_N0
+      
+      if (length(times) &gt; 1) {
+        for (i in 1:(length(times) - 1)) {
+          # Discrete/Difference equation approach: N_(t+1) = N_t + r * N_t
+          res_mat[i + 1, 2] &lt;- res_mat[i, 2] + input$growth_r * res_mat[i, 2]
+        }
+      }
+      res &lt;- as.data.frame(res_mat)
+      plot_type &lt;- "p" # Points for discrete
+      plot_lwd  &lt;- 2
+    }
+    
+    # 2. Base-R Plotting
+    par(mar = c(4.5, 4.5, 2, 1))
+    
+    # Handle dynamic limits safely, preventing Inf or NaN issues
+    max_y &lt;- max(res$N, input$growth_N0, 1, na.rm = TRUE)
+    if (is.infinite(max_y) || is.nan(max_y)) max_y &lt;- 100
+    
+    plot(res$time, res$N, type = plot_type, col = "#69af22", lwd = plot_lwd,
+         pch = 16, cex = 1.2, # Styling for discrete points
+         ylim = c(min(0, min(res$N, na.rm = TRUE)), max_y * 1.05),
+         xlab = "Time", ylab = "Abundance (N)", 
+         main = paste(ifelse(input$growth_continuous == "continuous", "Continuous", "Discrete"), "Exponential Growth"),
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+         
+    # Reference line at N=0
+    abline(h = 0, col = "#cccccc", lty = 2)
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
+<!---------------------------------------------------------------------------/-->
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div><div id="limited-growth" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-limited-growth">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container" width="38%">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false" href="">Read More</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container" width="38%">
+<section id="tabset-2-1" class="level2 tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<h2 data-anchor-id="tabset-2-1"><img src="../www/algae-logist_en.png" class="img-fluid" alt="The image shows a schematic representation of algae cells that multiply through division until growth reaches a limit. This results in an S-shaped curve."></h2>
+<strong>Growth cannot continue indefinitely</strong>
+<p>Simulations of exponential growth clearly show that unlimited growth can lead to an unimaginably large population size after a relatively short time.</p>
+<p>Let’s assume we have a single water flea with a length of 1.5 mm and a mass of 0.25 mg, with a population growth rate of <span class="math inline">\(r=0.1\)</span> per day (d<sup>-1</sup>). With unlimited reproduction, after 6 months we would already have 80 million daphnia with a total mass of 20 kg. After 14 months, Lake Müritz, Germany’s largest lake with a volume of 737 million m^3, would be completely filled with Daphnia. In just over 15 months, even Lake Constance would be.</p>
+<p>In reality, population growth slows as abundance increases, resulting in an S-shaped growth curve. One of the simplest models for this is so-called “logistic growth.”</p>
+<p>The logistic model is one of the most important formulas in population ecology. However, it does not account for what causes the limitation. In daphnia, this can be caused by food scarcity or oxygen deficiency. In algae, self-shading occurs because the algae cells block light from one another. Some microorganisms possess the ability to self-regulate. They can detect cell density through chemical secretions from other cells and divide less frequently before light and nutrients become scarce.</p>
+</section>
+<div id="tabset-2-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<img src="www/graph_logistic_en.svg" class="quarto-figure quarto-figure-center" style="height:30.0%" alt="System diagramm of logistic growth.">
+<hr>
+<strong>Limits of Growth</strong>
+<p>In logistic growth, the growth rate <span class="math inline">\(r\)</span> is no longer constant but is a function of abundance:</p>
+<span class="math display">\[
+r = r_{max} \cdot \left(1 - \frac{N}{K}\right)
+\]</span>
+<p>Here, the actual growth rate <span class="math inline">\(r\)</span> is given by the product of the species-specific (intrinsic) reproduction rate <span class="math inline">\(r_{max}\)</span> and a dimensionless term <span class="math inline">\(\left(1 - \frac{N}{K}\right)\)</span>, where <span class="math inline">\(r\)</span> is the realized reproduction rate and <span class="math inline">\(K\)</span> is the carrying capacity.</p>
+<p>The growth equation can then be written as:</p>
+<span class="math display">\[
+N_t = \frac{K N_0 e^{r t}}{K + N_0 (e^{r t}-1)}
+\]</span>
+<p>This looks quite complicated, but it is easy to calculate. In reality, this formula is the solution to a differential equation:</p>
+<span class="math display">\[
+\begin{align}
+\frac{dN}{dt} &amp;= r_{max} \cdot \left(1 - \frac{N}{K}\right) \cdot N
+\end{align}
+\]</span>
+<p>This equation describes the change in population per unit of time, exactly as shown in the system diagram.</p>
+<strong>Explanation</strong>
+<p>Growth continues until the <strong>carrying capacity</strong> <span class="math inline">\(K\)</span> is reached. At low population density, i.e., when <span class="math inline">\(N \ll K\)</span>, the term in parentheses is approximately equal to 1 and growth is at its maximum. The product <span class="math inline">\(r \cdot \left(1 - \frac{N}{K}\right)\)</span> is approximately <span class="math inline">\(r\)</span>.</p>
+<p>The closer the abundance <span class="math inline">\(N\)</span> approaches the carrying capacity, the smaller <span class="math inline">\(r \cdot \left(1 - \frac{N}{K}\right)\)</span> becomes, converging to zero as <span class="math inline">\(N \rightarrow K\)</span>.</p>
+</div>
+<div id="tabset-2-3" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<strong>Equilibria in the Logistic Growth Model</strong>
+<p><br><br></p>
+<ol type="1">
+<li><p>Set the logistic growth rate to the smallest possible value (<span class="math inline">\(r_{max}=0.02\)</span>) and the carrying capacity <span class="math inline">\(K=500\)</span>:</p>
+<ul>
+<li>What shape does the growth curve take?</li>
+</ul></li>
+</ol>
+<hr>
+<ol start="2" type="1">
+<li><p>Now adjust the <span class="math inline">\(K\)</span> slider.</p>
+<ul>
+<li><p>Why does increasing <span class="math inline">\(K\)</span> have only a minor effect?</p></li>
+<li><p>Why does decreasing <span class="math inline">\(K\)</span> have a greater effect?</p></li>
+</ul></li>
+</ol>
+<hr>
+<ol start="3" type="1">
+<li><p>Now set <span class="math inline">\(r_{max}=0.1\)</span> and <span class="math inline">\(K=100\)</span> again.</p>
+<ul>
+<li><p>What happens if you change the initial abundance <span class="math inline">\(N_0\)</span>?</p></li>
+<li><p>Now set the initial abundance to a larger value, e.g., 120. What happens?</p></li>
+</ul></li>
+</ol>
+<hr>
+<ol start="4" type="1">
+<li><p>In the following, we will examine different types of equilibrium:</p>
+<ul>
+<li><span class="math inline">\(N_0=0, r_{max}=0.1, K=100\)</span></li>
+<li><span class="math inline">\(N_0=1, r_{max}=0, K=100\)</span></li>
+<li><span class="math inline">\(N_0=100, r_{max}=0.1, K=100\)</span></li>
+</ul></li>
+</ol>
+<ol type="a">
+<li><p>First, explain by interpretation how the different equilibrium states arise.</p></li>
+<li><p>Try to understand why equilibrium is reached by substituting the values into the equations. For this, the derivative equation <span class="math inline">\(dN/dt= ...\)</span> is easier to understand than the integral form.</p></li>
+</ol>
+</div>
+<div id="tabset-2-4" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<strong>Initially, growth is nearly exponential</strong>
+<ul>
+<li><p>When the initial abundance <span class="math inline">\(N_0\)</span> is small compared to <span class="math inline">\(K\)</span>, the growth curve initially approaches exponential growth. The abundance is far from <span class="math inline">\(K\)</span>, so its increase no longer has any effect.</p></li>
+<li><p>When <span class="math inline">\(K\)</span> is reduced to a value close to the abundance, the limitation becomes clearly visible and the growth curve flattens out.</p></li>
+</ul>
+<strong>The maximum abundance is independent of the initial value</strong>
+<ul>
+<li><p>The value of <span class="math inline">\(N_0\)</span> only influences how quickly the value of <span class="math inline">\(K\)</span> is reached. It has no influence on the final value.</p></li>
+<li><p>If the initial abundance exceeds the carrying capacity, the population decreases until <span class="math inline">\(K\)</span> is reached.</p></li>
+</ul>
+<strong>Equilibria behave differently</strong>
+<p>In the experiment, we can identify three different types of equilibria. If <span class="math inline">\(N_0=0\)</span>, there are no organisms present that can grow. We have, so to speak, a “sterile system.” The abundance remains at 0.</p>
+<p>If <span class="math inline">\(r_{max}=0\)</span> and <span class="math inline">\(N_0 &gt; 0\)</span>, then organisms are present, but they do not reproduce. It is also possible that they reproduce, but reproduction and death are exactly balanced.</p>
+<p>Both equilibria are “labile” (or unstable). If even a small value is added to <span class="math inline">\(N_0 = 0\)</span>, population growth begins, the equilibrium is left, and the abundance moves toward <span class="math inline">\(K\)</span>. The same phenomenon can be observed in the second case when <span class="math inline">\(r_{max} &gt; 0\)</span>.</p>
+<p>In the third case (at <span class="math inline">\(N = K\)</span>), the equilibrium is stable. It is reached when <span class="math inline">\(N\)</span> is less than <span class="math inline">\(K\)</span> but also when <span class="math inline">\(N\)</span> is greater than <span class="math inline">\(K\)</span>. Even if the abundance temporarily deviates from <span class="math inline">\(K\)</span>, its value us quickly restored. This is called “resilience.”</p>
+</div>
+<div id="tabset-2-5" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<strong>r- and K-strategies</strong>
+<p>The logistic model provides the theoretical basis for distinguishing between so-called r- and K-strategists. An r-strategist refers to species that reproduce rapidly, “at any cost”. K-strategists, on the other hand, are species that can achieve a high abundance (a high K). According to a more modern interpretation, these are organisms that can survive well and minimize losses even during resource shortages.</p>
+<p>See also <a href="https://en.wikipedia.org/wiki/R/K_selection_theory">r/K selection theory</a> on Wikipedia.</p>
+<strong>Discrete growth can lead to chaos</strong>
+<p>The logistic model and its equilibria are a textbook example from chaos theory. The experiments described under “Exercises” assume that population growth occurs continuously, i.e., can be described mathematically by a differential equation.</p>
+<p>If population growth occurs in the form of generations, e.g., in wild animals that reproduce only once a year, then the time step is “discrete”. Mathematically, this is a difference equation.</p>
+<p>In this case, the carrying capacity may be temporarily exceeded. This is then followed by a partial collapse of the population, e.g., due to a lack of food. In the following time step, the population can recover again, and so on. This creates a cycle and, under certain conditions, a chaotic pattern.</p>
+<p>More information on this can be found under [Logistic Map]https://en.wikipedia.org/wiki/Logistic_map#Discretization_of_the_logistic_equation) on Wikipedia.</p>
+<p>If you want to try it out yourself, you can send an email to the app’s developers. Perhaps they will then incorporate the chaos model into the app.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 550
+
+## Fixed step Runge-Kutta solver
+rk4 &lt;- function(y, times, func, parms) {
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  out[1, ] &lt;- c(times[1], y)
+  colnames(out) &lt;- c("time", names(y))
+  current_y &lt;- y
+  for (i in 1:(length(times) - 1)) {
+    t_curr &lt;- times[i]
+    t_next &lt;- times[i + 1]
+    h &lt;- t_next - t_curr
+    k1 &lt;- unlist(func(t_curr,          current_y,              parms))
+    k2 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+    k3 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+    k4 &lt;- unlist(func(t_next,          current_y + h * k3,     parms))
+    current_y &lt;- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    out[i + 1, ] &lt;- c(t_next, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+## Variable time step ode45 Solver
+ode45 &lt;- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
+  # Dormand-Prince (RK45) Coefficients
+  c_val &lt;- c(0, 1/5, 3/10, 4/5, 8/9, 1, 1)
+  a &lt;- list(
+    c(),
+    c(1/5),
+    c(3/40, 9/40),
+    c(44/45, -56/15, 32/9),
+    c(19372/6561, -25360/2187, 64448/6561, -212/729),
+    c(9017/3168, -355/33, 46732/5247, 49/176, -5103/18656),
+    c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84)
+  )
+  # Coefficients for order 5 (b1) and order 4 4 (b2) for error estimation
+  b1 &lt;- c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84, 0)
+  b2 &lt;- c(5179/57600, 0, 7571/16695, 393/640, -92097/339200, 187/2100, 1/40)
+  
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  colnames(out) &lt;- c("time", names(y))
+  out[1, ] &lt;- c(times[1], y)
+  
+  current_y &lt;- y
+  t_curr &lt;- times[1]
+  h &lt;- min(diff(times)) # initial step size
+  
+  for (i in 2:length(times)) {
+    t_target &lt;- times[i]
+    
+    # Loop over the external time steps
+    while (t_curr &lt; t_target) {
+      if (t_curr + h &gt; t_target) h &lt;- t_target - t_curr
+      
+      # calculate levels (k1 ... k7)
+      k &lt;- matrix(NA, nrow = 7, ncol = length(y))
+      k[1, ] &lt;- unlist(func(t_curr, current_y, parms))
+      
+      for (s in 2:7) {
+        y_step &lt;- current_y + h * colSums(a[[s]] * k[1:(s-1), , drop = FALSE])
+        k[s, ] &lt;- unlist(func(t_curr + c_val[s] * h, y_step, parms))
+      }
+      
+      # estimate error between orders 4 and 5
+      y5 &lt;- current_y + h * colSums(b1 * k)
+      y4 &lt;- current_y + h * colSums(b2 * k)
+      error_est &lt;- max(abs(y5 - y4) / (atol + rtol * abs(y5)))
+      
+      if (error_est &lt;= 1.0 || h &lt; 1e-5) {
+        # accepted step
+        current_y &lt;- y5
+        t_curr &lt;- t_curr + h
+        # optimize step for the future
+        h &lt;- h * min(5, max(0.2, 0.9 * (1 / error_est)^0.2))
+      } else {
+        # reject step; decrease and try again
+        h &lt;- h * max(0.1, 0.9 * (1 / error_est)^0.25)
+      }
+    }
+    out[i, ] &lt;- c(t_target, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+
+
+
+library(shiny)
+
+# ==============================================================================
+# 1. MODEL EQUATIONS
+# ==============================================================================
+logist &lt;- function (t, x, parms) {
+  with(as.list(c(x, parms)), {
+    dN &lt;- r_max * N * (1 - N / K)
+    list(c(dN))
+  })
+}
+
+# ==============================================================================
+# 2. SHINY USER INTERFACE (Simulates the 2-column Dashboard layout)
+# ==============================================================================
+ui &lt;- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      /* Seamless integration into the Quarto Dashboard */
+      body { background-color: transparent; padding: 0; margin: 0; } 
+      .container-fluid { padding: 5px; }
+      .well { background-color: #f8f9fa; border: 1px solid #e3e3e3; box-shadow: none; }
+    "))
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      width = 4, # Left panel (approx. 33% width)
+      h4("Initial Values"),
+      numericInput("logist_N0", "N0: Abundance", value = 1.0, min = 0, max = 1000, step = 0.1),
+      hr(),
+      h4("Parameters"),
+      sliderInput("logist_r", "r_max: Growth rate", value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("logist_K", "K: Carrying capacity", value = 100, min = 0, max = 1000, step = 10)
+    ),
+    mainPanel(
+      width = 8, # Right panel (approx. 66% width)
+      plotOutput("logist_plot", height = "480px")
+    )
+  )
+)
+
+# ==============================================================================
+# 3. SHINY SERVER LOGIC (Fast Base-R Version using ode45)
+# ==============================================================================
+server &lt;- function(input, output, session) {
+  times &lt;- seq(0, 100, by = 0.5)
+  
+  output$logist_plot &lt;- renderPlot({
+    parms &lt;- c(r_max = input$logist_r, K = input$logist_K)
+    y0    &lt;- c(N = input$logist_N0)
+    
+    # Run standalone simulation locally in the browser
+    res &lt;- ode45(y0, times, logist, parms, atol = 1e-4, rtol = 1e-4)
+    
+    # Plotting via R Base Graphics
+    # Margins adjusted for a clean dashboard look (mar: bottom, left, top, right)
+    par(mar = c(4.5, 4.5, 2, 1)) 
+    
+    plot(res$time, res$N, type = "l", col = "#69af22", lwd = 3,
+         ylim = c(0, max(res$N, input$logist_K, input$logist_N0) * 1.05),
+         xlab = "Time", ylab = "Abundance (N)", 
+         main = "Logistic Growth Dynamics",
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+         
+    # Optional: Visual indicator for the Carrying Capacity (K)
+    abline(h = input$logist_K, col = "#888888", lty = 3, lwd = 1.5)
+    text(x = max(times)*0.9, y = input$logist_K, labels = "Carrying capacity (K)", 
+         pos = 3, col = "#888888",決ex = 0.9)
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
+<!---------------------------------------------------------------------------/-->
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div><div id="nutrient-limited-growth" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-nutrient-limited-growth">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container" width="38%">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">Read More</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container" width="38%">
+<section id="tabset-3-1" class="level2 tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<h2 data-anchor-id="tabset-3-1"><img src="../www/ressource-utilization_en.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%" alt="The image the temporal trend in algae abundance represented by an upward-sloping curve, while the nutrient concentration is represented by a downward-sloping S-shaped curve."></h2>
+<strong>From the Logistic Growth Model to Nutrient Limitation</strong>
+<p>The logistic growth model is of high theoretical importance and is frequently used in practice, for example in laboratory growth experiments with bacteria and algae or in the industrial biotechnological production of pharmaceuticals.</p>
+<p>However, the logistic model has two major drawbacks:</p>
+<ol type="1">
+<li><p>One must specify beforehand where the capacity limit <span class="math inline">\(K\)</span> lies, e.g., from a previous experiment.</p></li>
+<li><p>It is not known why growth stops – whether, for example, a nutrient has been depleted or whether the algae are shading each other too much.</p></li>
+</ol>
+<p>In the resource-limited growth model, this problem is solved by specifying an additional equation for a limiting resource. As the phytoplankton grows, a resource is consumed, e.g., phosphorus. When the phosphorus is depleted, growth stops. The curves for phytoplankton and phosphorus exhibit mirroring behavior.</p>
+<p>Instead of phosphorus, nitrogen can also be the limiting factor, or both. In that case, an additional equation is required (multiple limitation). The influence of light and temperature can also be taken into account.</p>
+</section>
+<div id="tabset-3-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<img src="../www/graph_resource_en.svg" class="quarto-figure quarto-figure-center" style="height:30.0%" alt="System diagramm of resource limited growth.">
+<hr>
+<strong>Phosphorus Limitation of Algal Growth</strong>
+<p>In this example, we will describe the population growth of phytoplankton as a function of phosphorus (<span class="math inline">\(P\)</span> in mg m^-3). To avoid duplicate letters, we will refer to the phytoplankton as “algae” <span class="math inline">\(A\)</span>. As a unit of measurement, we will use the biovolume or the carbon contained in the organisms in mg m<sup>-3</sup>. For time, we will use measurement hours (h).</p>
+<span class="math display">\[
+\begin{align}
+\frac{dA}{dt} &amp;= r(P) \cdot A \\
+\frac{dP}{dt} &amp;= - r(P) \cdot A \cdot \frac{1}{Y}\\
+r(P) &amp;= r_{max} \cdot \frac{P}{k_P + P}
+\end{align}
+\]</span>
+<p>In more modern models, biomass is often expressed in units of carbon. Carbon is the “element of life” and accounts for approximately 50% of the dry weight in most organisms.</p>
+<p>The first equation <span class="math inline">\(dA/dt\)</span> is, in principle, the exponential growth equation again; however, the growth rate <span class="math inline">\(r\)</span> is now a function of <span class="math inline">\(P\)</span>, i.e., <span class="math inline">\(r=f(P)\)</span>. When the nutrient <span class="math inline">\(P\)</span> is depleted, the growth rate <span class="math inline">\(r(P)\)</span> approaches zero.</p>
+<p>The first part of the phosphorus equation <span class="math inline">\(dP/dt\)</span> corresponds to the algae equation, but with a negative sign. When algae grow, phosphorus is consumed. The conversion factor <span class="math inline">\(1/Y\)</span> is used to convert the phosphorus and carbon content of the algae stoichiometrically. Here, one typically uses the reciprocal of the yield coefficient <span class="math inline">\(Y\)</span> (“Yield”). A value of <span class="math inline">\(Y=41\)</span> means that for every 1 mg of phosphorus, 41 mg of carbon is bound in the biomass.</p>
+<p>The function <span class="math inline">\(r(P)\)</span> describes the dependence of the growth rate <span class="math inline">\(r\)</span> on phosphorus as so-called saturation kinetics. As the phosphorus concentration increases, the growth rate initially rises steeply. When there is a nutrient surplus, the curve flattens out and approaches a maximum value <span class="math inline">\(r_{max}\)</span>. The value <span class="math inline">\(k_P\)</span> is the nutrient concentration at which 50% of the maximum growth rate is reached. The smaller <span class="math inline">\(k_P\)</span> is, the better an algal species is adapted to low nutrient concentrations.</p>
+</div>
+<div id="tabset-3-3" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<strong>What limits growth?</strong>
+<p><br><br></p>
+<ol type="1">
+<li><p>Compare resource-limited growth with logistic growth.</p>
+<ol type="a">
+<li><p>What is the advantage of resource-limited growth over the logistic growth function?</p></li>
+<li><p>Are there any disadvantages?</p></li>
+</ol></li>
+</ol>
+<hr>
+<ol start="2" type="1">
+<li><p>Examine the influence of <span class="math inline">\(r\)</span>, <span class="math inline">\(k_P\)</span>, and <span class="math inline">\(Y\)</span> on growth.</p>
+<ol type="a">
+<li><p>At what values of <span class="math inline">\(r\)</span> is growth fastest?</p></li>
+<li><p>At what values of <span class="math inline">\(k_P\)</span> is growth fastest and nutrient utilization best?</p></li>
+<li><p>What determines the steepness of the transition to the limiting phase?</p></li>
+<li><p>Which parameter and which initial value determine the maximum phytoplankton abundance reached? This value corresponds to the carrying capacity <span class="math inline">\(K\)</span> in the logistic model.</p></li>
+</ol></li>
+</ol>
+</div>
+<div id="tabset-3-4" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<p><img src="../www/blackman_en.svg" class="img-fluid" style="width:49.0%" alt="Graphical representation of the Blackman model."> <img src="../www/monod_en.svg" class="img-fluid" style="width:49.0%" alt="Graphical representation of the Monod model."></p>
+<strong>Growth Kinetics</strong>
+<p>The relationship between the growth rate <span class="math inline">\(r\)</span> and the nutrient concentration is described by what is known as <strong>kinetics</strong>. This refers to how fast the algae grow; this is also called a <strong>functional response</strong>. In contrast, the actual growth models (e.g., the logistic and resource-limited models) describe how many algae can grow in total. This is called a <strong>numerical response</strong>.</p>
+<p>For the dependence of the growth rate on a resource (e.g., phosphorus), saturation kinetics are used. The more nutrients are available, the faster the growth. Above a certain nutrient concentration, saturation is reached, meaning that even more nutrients do not lead to further growth.</p>
+<p>There are various ways to describe this mathematically. In the <strong>Blackman model</strong>, the growth rate initially increases proportionally with the nutrient concentration. Here, <span class="math inline">\(k_b\)</span> is the proportionality factor. When the nutrient concentration (<span class="math inline">\(P\)</span>) exceeds the maximum possible growth rate (<span class="math inline">\(r_{max}\)</span>), the growth rate <span class="math inline">\(r\)</span> remains constant at <span class="math inline">\(r_{max}\)</span>:</p>
+<p><span class="math display">\[
+r = r_{max} \cdot \min(k_b \cdot P, 1)
+\]</span> The <strong>Monod model</strong> assumes a gradual transition from the growth phase to saturation. In the equation used for this purpose:</p>
+<span class="math display">\[
+r = r_{max} \cdot \frac{P}{k_P + P}
+\]</span>
+<p>the limitation is achieved through a ratio in which the denominator is a so-called half-saturation rate <span class="math inline">\(k_P\)</span>, which has the same unit of measurement as <span class="math inline">\(P\)</span>. This makes this term dimensionless. If the phosphorus concentration and the half-saturation rate are equal (i.e., <span class="math inline">\(P=k_P\)</span>), then the ratio <span class="math inline">\(P/(P + P) = 0.5\)</span>. However, if <span class="math inline">\(P\)</span> is very large (<span class="math inline">\(P &gt;&gt; k_P\)</span>), then the ratio converges to 1 and the growth rate <span class="math inline">\(r\)</span> converges to <span class="math inline">\(r_{max}\)</span>.</p>
+<p>Fast-growing phytoplankton species have a <strong>high</strong> maximum growth rate, while species that can survive on few nutrients have a <strong>low</strong> semi-saturation constant.</p>
+</div>
+<div id="tabset-3-5" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<strong>Fertilizer Use and Eutrophication</strong>
+<p>The use of fertilizers in agriculture is very important for our food supply, but it is crucial to avoid overfertilization. Excess phosphorus and nitrogen cannot be absorbed by plants and ends up in our rivers and lakes, and ultimately in the sea.</p>
+<p>In these bodies of water, increased phosphorus and nitrogen inputs lead to increased phytoplankton growth, and the water becomes turbid. In deep water, the decay of algae then leads to oxygen depletion. The increased growth of plankton and aquatic plants and the resulting deterioration of water quality is called eutrophication.</p>
+<p>Further information on <a href="https://www.umweltbundesamt.de/themen/wasser/fluesse/zustand/naehrstoffe">nutrient input</a> and <a href="https://www.umweltbundesamt.de/themen/wasser/gewaesser/meere/nutzung-belastungen/eutrophierung">eutrophication</a> can be found, for example, on the website of the German Federal Environment Agency.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 650
+
+## Fixed step Runge-Kutta solver
+rk4 &lt;- function(y, times, func, parms) {
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  out[1, ] &lt;- c(times[1], y)
+  colnames(out) &lt;- c("time", names(y))
+  current_y &lt;- y
+  for (i in 1:(length(times) - 1)) {
+    t_curr &lt;- times[i]
+    t_next &lt;- times[i + 1]
+    h &lt;- t_next - t_curr
+    k1 &lt;- unlist(func(t_curr,          current_y,              parms))
+    k2 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+    k3 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+    k4 &lt;- unlist(func(t_next,          current_y + h * k3,     parms))
+    current_y &lt;- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    out[i + 1, ] &lt;- c(t_next, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+## Variable time step ode45 Solver
+ode45 &lt;- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
+  # Dormand-Prince (RK45) Coefficients
+  c_val &lt;- c(0, 1/5, 3/10, 4/5, 8/9, 1, 1)
+  a &lt;- list(
+    c(),
+    c(1/5),
+    c(3/40, 9/40),
+    c(44/45, -56/15, 32/9),
+    c(19372/6561, -25360/2187, 64448/6561, -212/729),
+    c(9017/3168, -355/33, 46732/5247, 49/176, -5103/18656),
+    c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84)
+  )
+  # Coefficients for order 5 (b1) and order 4 4 (b2) for error estimation
+  b1 &lt;- c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84, 0)
+  b2 &lt;- c(5179/57600, 0, 7571/16695, 393/640, -92097/339200, 187/2100, 1/40)
+  
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  colnames(out) &lt;- c("time", names(y))
+  out[1, ] &lt;- c(times[1], y)
+  
+  current_y &lt;- y
+  t_curr &lt;- times[1]
+  h &lt;- min(diff(times)) # initial step size
+  
+  for (i in 2:length(times)) {
+    t_target &lt;- times[i]
+    
+    # Loop over the external time steps
+    while (t_curr &lt; t_target) {
+      if (t_curr + h &gt; t_target) h &lt;- t_target - t_curr
+      
+      # calculate levels (k1 ... k7)
+      k &lt;- matrix(NA, nrow = 7, ncol = length(y))
+      k[1, ] &lt;- unlist(func(t_curr, current_y, parms))
+      
+      for (s in 2:7) {
+        y_step &lt;- current_y + h * colSums(a[[s]] * k[1:(s-1), , drop = FALSE])
+        k[s, ] &lt;- unlist(func(t_curr + c_val[s] * h, y_step, parms))
+      }
+      
+      # estimate error between orders 4 and 5
+      y5 &lt;- current_y + h * colSums(b1 * k)
+      y4 &lt;- current_y + h * colSums(b2 * k)
+      error_est &lt;- max(abs(y5 - y4) / (atol + rtol * abs(y5)))
+      
+      if (error_est &lt;= 1.0 || h &lt; 1e-5) {
+        # accepted step
+        current_y &lt;- y5
+        t_curr &lt;- t_curr + h
+        # optimize step for the future
+        h &lt;- h * min(5, max(0.2, 0.9 * (1 / error_est)^0.2))
+      } else {
+        # reject step; decrease and try again
+        h &lt;- h * max(0.1, 0.9 * (1 / error_est)^0.25)
+      }
+    }
+    out[i, ] &lt;- c(t_target, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+
+
+
+library(shiny)
+
+# ==============================================================================
+# 1. MODEL EQUATIONS (Algae growth and nutrient depletion)
+# ==============================================================================
+resource &lt;- function (time, y, parms) {
+  with(as.list(c(y, parms)), {
+    f &lt;- P / (kP + P)
+    dA_dt &lt;- r * f * A
+    dP_dt &lt;- - r * 1/Y * f * A
+    list(c(dA_dt, dP_dt))
+  })
+}
+
+# ==============================================================================
+# 2. SHINY USER INTERFACE (Simulates the 2-column Dashboard layout)
+# ==============================================================================
+ui &lt;- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      /* Seamless integration into the Quarto Dashboard */
+      body { background-color: transparent; padding: 0; margin: 0; } 
+      .container-fluid { padding: 5px; }
+      .well { background-color: #f8f9fa; border: 1px solid #e3e3e3; box-shadow: none; }
+    "))
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      width = 4, # Left panel (approx. 33% width)
+      h4("Initial Values"),
+      numericInput("resource_A", "A0: Algae (C, mg/m3)", value = 1.0, min = 0, max = 2, step = 0.1),
+      numericInput("resource_P", "P0: Phosphorus (P, mg/m3)", value = 10, min = 0, max = 20, step = 0.1),
+      hr(),
+      h4("Parameters"),
+      sliderInput("resource_r", "r: Growth rate (1/h)", value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("resource_kP", "Kp: Half-saturation (P, mg/m3)", value = 5, min = 0.5, max = 20, step = 0.5),
+      sliderInput("resource_Y", "Y: C/P ratio", value = 41, min = 1, max = 200, step = 5)
+    ),
+    mainPanel(
+      width = 8, # Right panel (approx. 66% width)
+      plotOutput("resource_plot", height = "580px")
+    )
+  )
+)
+
+# ==============================================================================
+# 3. SHINY SERVER LOGIC (Base-R Version)
+# ==============================================================================
+server &lt;- function(input, output, session) {
+  times &lt;- seq(0, 200, by = 1)
+  
+  output$resource_plot &lt;- renderPlot({
+    req(input$resource_r, input$resource_kP, input$resource_Y, input$resource_A, input$resource_P)
+    
+    parms &lt;- c(r = input$resource_r, kP = input$resource_kP, Y = input$resource_Y)
+    y0    &lt;- c(A = input$resource_A, P = input$resource_P)
+    
+    # Run standalone simulation locally via webR
+    res &lt;- ode45(y0, times, resource, parms, atol = 1e-4, rtol = 1e-4)
+    
+    # Setup a 2-row, 1-column layout for the two state variables (simulating facet_wrap)
+    par(mfrow = c(2, 1), mar = c(4.5, 4.5, 2, 1), oma = c(1, 0, 0, 0))
+    
+    # --------------------------------------------------------------------------
+    # PLOT 1: Phytoplankton (Algae)
+    # --------------------------------------------------------------------------
+    plot(res$time, res$A, type = "l", col = "#69af22", lwd = 3,
+         xlab = "", ylab = "C (mg/m3)", 
+         main = "Phytoplankton (Algae)",
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+    
+    # --------------------------------------------------------------------------
+    # PLOT 2: Phosphorus (Nutrient)
+    # --------------------------------------------------------------------------
+    plot(res$time, res$P, type = "l", col = "#f2aa8d", lwd = 3,
+         xlab = "Time (h)", ylab = "P (mg/m3)", 
+         main = "Phosphorus (Nutrient)",
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+  })
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
+<!---------------------------------------------------------------------------/-->
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div><div id="predator-prey-model" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="columns" aria-labelledby="tab-predator-prey-model">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 40fr) minmax(3em, 60fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="panel-tabset html-fill-item html-fill-container" width="38%">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">The Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Tasks</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Hints</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false" href="">Read More</a></li></ul>
+<div class="tab-content html-fill-item html-fill-container" width="38%">
+<section id="tabset-4-1" class="level2 tab-pane active html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<h2 data-anchor-id="tabset-4-1"><img src="../www/lotka-volterra_en.png" class="img-fluid" alt="The image shows how algae are eaten by daphnia. Without daphnia, the algae would grow exponentially. A portion of the daphnia die each time unit or are eaten by fish. The interaction between algae and daphnia reduces the algae population and allows the daphnia to reproduce.“ fig-height=”18%“ fig-align=”center"></h2>
+<strong>Interaction Between Populations</strong>
+<p>The models considered so far each describe only the growth of a single population. In reality, multiple populations are almost always found together, either competing with one another or forming food chains and food webs.</p>
+<p>In the following, we will examine a segment of a food chain involving a prey population and a predator population, e.g., phytoplankton (algae) and zooplankton (daphnia).</p>
+</section>
+<div id="tabset-4-2" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<img src="../www/graph_lv_en.svg" class="quarto-figure quarto-figure-center" style="height:20.0%" alt="System diagram of the predator-prey model.">
+<hr>
+<strong>The Predator-Prey Model of Lotka and Volterra</strong>
+<p>Unlike in logistic or resource-limited growth, stable equilibria are rarely observed in nature; instead, population abundance fluctuates. There are various reasons for this, such as the reproductive cycle or variations in food availability due to the seasons and weather.</p>
+<p>However, population fluctuations can also result from interactions between populations.</p>
+<p>Such interactions were investigated and mathematically described in the early 20th century by the Italian mathematician and physicist <a href="https://de.wikipedia.org/wiki/Vito_Volterra">Vito Volterra</a> and the Austrian-American chemist and actuary <a href="https://de.wikipedia.org/wiki/Alfred_J._Lotka">Alfred Lotka</a>.</p>
+<p>Their model consists of two equations, one for the prey population (e.g., algae) and one for the predator population (e.g., daphnia). As a modification to the notation of the equations originally used by <span class="citation" data-cites="Volterra1926b">@Volterra1926b</span>, many scientists and textbooks use different symbols and variants. In the following, we use a simplified notation with <span class="math inline">\(B\)</span> for the prey population and <span class="math inline">\(R\)</span> for the predator population. For the model parameters, we use consecutive letters <span class="math inline">\(a, b, c, d\)</span>, which can be interpreted as follows:</p>
+<p><span class="math inline">\(a\)</span>: Reproduction rate of phytoplankton (prey population)</p>
+<p><span class="math inline">\(b\)</span>: Loss of phytoplankton (prey) due to predation by daphnia (predators)</p>
+<p><span class="math inline">\(c\)</span>: Growth efficiency of daphnia (predators) due to food intake</p>
+<p><span class="math inline">\(d\)</span>: Mortality rate of daphnia (predators)</p>
+<p>The model essentially consists of three processes. The growth of the prey population (e.g., algae) and the decline of the predator population (e.g., Daphnia) each correspond to an exponential growth model with a positive or negative rate of change, respectively.</p>
+<p>Exponential growth of the prey population:</p>
+<span class="math display">\[
+\frac{dB}{dt} = a \cdot B\\
+\]</span>
+<p>Exponentielles Absterben der Räuberpopulation:</p>
+<span class="math display">\[
+\frac{dR}{dt} = - d \cdot R\\
+\]</span>
+<p>The third process describes the interaction between predators and prey. Here, the rate of decline in the prey population <span class="math inline">\((b \cdot R)\)</span> depends on the abundance of the predator population, and the growth rate of the predator population depends on the abundance of the prey population <span class="math inline">\((c \cdot B)\)</span>. By choosing different values for <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>, one can account for trophic efficiency (<span class="math inline">\(c/b\)</span>), e.g., that only 10% of the food is used for reproduction.</p>
+<p>This results in the following system of equations, in which, for clarity, the loss rate of the prey population due to predation and the growth rate of the predator population are denoted by additional parentheses:</p>
+<strong>System of Equations</strong>
+<span class="math display">\[
+\begin{align}
+\frac{dB}{dt} &amp;= a \cdot B - (b \cdot R) \cdot B \\
+\frac{dR}{dt} &amp;= (c \cdot B) \cdot R - d \cdot R
+\end{align}
+\]</span>
+<p>The parentheses are for illustrative purposes only and are usually omitted.</p>
+</div>
+<div id="tabset-4-3" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<strong>Identification of Equilibrium Points</strong>
+<p>The initial standard parameters and starting values are as follows:</p>
+<p><span class="math inline">\(a=b=c=d=0.1\)</span>, <span class="math inline">\(B_0=1\)</span>, <span class="math inline">\(R_0=0.5\)</span>.</p>
+<ol type="1">
+<li>Change the initial value for the predator (<span class="math inline">\(R_0\)</span>) to 2 or 1.</li>
+</ol>
+<ul>
+<li>What happens?</li>
+</ul>
+<hr>
+<ol start="2" type="1">
+<li>Set <span class="math inline">\(R_0=2\)</span> again. Now try to find a prey reproduction rate (<span class="math inline">\(a\)</span>) at which an equilibrium is reached again.</li>
+</ol>
+<ul>
+<li>You can find the desired value either by trial and error or by rearranging the system of equations.</li>
+</ul>
+<hr>
+<strong>Period and Amplitude</strong>
+<p>First, restore the default parameters, e.g., by reloading the app.</p>
+<ol start="3" type="1">
+<li><p>By changing the parameters <span class="math inline">\(a, b, c, d\)</span>, you can alter the period. For simplicity, let all parameter values be equal at first (<span class="math inline">\(a = b = c = d\)</span>). Now find values such that the period:</p>
+<ol type="a">
+<li>shortens</li>
+<li>lengthens</li>
+<li><p>Why do the parameters affect the period in the observed direction?</p></li>
+</ol></li>
+</ol>
+<p>Note: Checking the “Scan values” box activates additional guide lines. You can read specific values using the mouse.</p>
+<hr>
+<ol start="4" type="1">
+<li><p>Now set the parameter values back to their defaults.</p>
+<ol type="a">
+<li><p>Double the prey reproduction rate <span class="math inline">\(a\)</span> to 0.2. How can the result be explained?</p></li>
+<li><p>Double the predator mortality rate <span class="math inline">\(d\)</span> to 0.2. How can the result be explained?</p></li>
+<li><p>What conclusions can be drawn regarding <strong>turnover</strong> and <strong>population density</strong> in real-world systems?</p></li>
+</ol></li>
+</ol>
+<hr>
+<ol start="5" type="1">
+<li>Double and halve the turnover between <span class="math inline">\(B\)</span> and <span class="math inline">\(R\)</span>. Use parameters in the range: <span class="math inline">\(b = c = 0.05 \dots 0.2\)</span>.</li>
+</ol>
+<ul>
+<li>How can the result be explained? What information is needed to assess whether the result is realistic?</li>
+</ul>
+<hr>
+<strong>Analytical Determination of Equilibrium and Mean Values</strong>
+<ol start="6" type="1">
+<li><p>Rearrange the system of equations and determine the equilibrium state.</p>
+<ol type="a">
+<li><p>At equilibrium, the first derivatives of both equations are equal to 0. Return to Problem (2) and find the value of the parameter a by rearranging and solving the system of equations.</p></li>
+<li><p>Using the “Read Values” checkbox, you can estimate the mean values of prey and predator for each cycle from the displayed points. Here, a cycle always extends from one maximum to the next.</p></li>
+<li><p>Compare the equilibrium state (horizontal dotted lines) with the mean values estimated in (b). Consider or research how the mean value can be obtained directly from the initial values and the model parameters.</p></li>
+</ol></li>
+</ol>
+<span class="math display">\[
+\begin{align}
+\frac{dB}{dt} &amp;= a \cdot B - b \cdot B \cdot R \\
+\frac{dR}{dt} &amp;= c \cdot B \cdot R - d \cdot R
+\end{align}
+\]</span>
+</div>
+<div id="tabset-4-4" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<strong>A dimensionless model</strong>
+<p>We are usually taught that coordinate axes should always be labeled with units of measurement. This is very important, but there are exceptions. In theoretical models, sometimes only the variable name – without a unit of measurement – is written on the axis, e.g., “time,” “frequency,” or “abundance.”</p>
+<p>Physicists go even further and scale all axes to an interval from zero to one. In our apps, we have chosen not to do this, so that users can visualize what the values represent. This allows us to specify a unit of measurement depending on the application, e.g., “hours” or “days” for fast-growing algae and Daphnia, or “years” for snowshoe hares and lynx.</p>
+<p>When it comes to units of measurement for abundance and biomass, it is important to note that algae and Daphnia vary in size and have different body masses. If we omit the unit of measurement, the values on the y-axis are merely relative quantities that cannot be compared with one another.</p>
+<p>When considering biomass, we can use a trick to establish approximately comparable ratios. As a rule of thumb, about 10% of the energy is transferred from one trophic level to the next in a food chain.</p>
+<p>We can account for this if we set the parameter <span class="math inline">\(c\)</span> (“growth efficiency”) to one-tenth of <span class="math inline">\(b\)</span> (“feeding intensity”), i.e., for example, <span class="math inline">\(b=0.2\)</span> and <span class="math inline">\(c=0.02\)</span>. In this case, the initial values must also be adjusted accordingly, e.g., <span class="math inline">\(B_0=1\)</span> and <span class="math inline">\(R_0=0.05\)</span>.</p>
+<p>By changing the parameters, combinations can also be set that appear nonsensical or unrealistic. This is partly because the parameter values are specified relative to time, e.g., growth per day or per hour. Therefore, it is sometimes necessary to adjust the time unit as well and subject the values and units of measurement to a thorough reality check.</p>
+<p>To make the results of the app easier to understand, we can disregard the units of measurement and consider the results only qualitatively, i.e., small-large, cycle–equilibrium, larger amplitude–smaller amplitude, longer cycle–shorter cycle.</p>
+</div>
+<div id="tabset-4-5" class="tab-pane html-fill-item html-fill-container" role="tabpanel" aria-labelledby="tabset-4-5-tab">
+<strong>Snowshoe hares and lynx</strong>
+<p>The example of snowshoe hares and lynx is often cited in connection with the predator-prey model. Both species live in North America, primarily in Canada.</p>
+<p>It has been observed that hunters’ fur sales fluctuate in a cycle of 9 to 11 years. It seemed likely that this was a Lotka–Volterra cycle. Upon closer examination, however, inconsistencies became apparent, and various other explanations were proposed. One explanation was that the fluctuating fur sales were due to the influence of hunters. Another explanation is that the predator-prey cycle results from interactions at a lower trophic level—that is, not as an interaction between snowshoe hares and lynx, but between vegetation and the snowshoe hares. The lynx merely follows the cycle. More details can be found in the Wikipedia article <a href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">Lotka–Volterra equations</a>.</p>
+<p><img src="../www/lynx_en.png" class="img-fluid quarto-figure quarto-figure-center" style="width:100.0%" alt="Time series of lynx catches in Canada, from Brockwell and Davis  (1991)"> <span class="gray">Historical dataset of lynx catches in Canada, from <span class="citation" data-cites="Brockwell1991">@Brockwell1991</span></span></p>
+<strong>Algae and Daphnia</strong>
+<p>The algae-Daphnia system is also used as a textbook example in theoretical ecology. In real water bodies, however, only short section of these dynamics can be observed. An annual spring peak in algae is immediately followed by a distinct clear-water phase. The continuation of these oscillations is then prevented by damping mechanisms such as resource limitations (particularly phosphorus) and integration into a more complex food web <span class="citation" data-cites="Sommer2012">[@Sommer2012]</span>.</p>
+<strong>Moose and Wolves</strong>
+<p>Another prominent example is the interrelationship between moose and wolves. Research on this topic was conducted in the <a href="https://de.wikipedia.org/wiki/Isle-Royale-Nationalpark">Isle Royale National Park</a>, an island in one of the Great Lakes in North America. It is the longest-running study of predator-prey systems in the world. With the exception of researchers and summer visitors, no humans live on the island.</p>
+<p>Lotka–Volterra-type interactions were indeed observed between the moose and the wolves. However, these occurred only during brief phases of a cycle. In reality, additional factors also come into play here, such as parasites that weaken the moose. Conversely, the wolves were temporarily infected by a viral disease and nearly went extinct.</p>
+<p>During a particularly cold winter, wolves were observed traveling a distance of 22 km across the frozen lake to reach the island. This confirmed a long-standing assumption that the wolf population on the island is not completely isolated. Interaction with the mainland is apparently vital for the wolf population’s survival, but due to global warming, such ice bridges no longer form every 3 to 4 years, but only once every 10 years.</p>
+<p>More information can be found on the National Park’s website, on the research project’s website (<a href="https://isleroyalewolf.org/">https://isleroyalewolf.org/</a>), and in the book by <span class="citation" data-cites="Vucetich2024">@Vucetich2024</span>. There are also articles on Wikipedia on this topic. The videos about the project on YouTube are highly recommended, e.g., <a href="https://youtu.be/DS-4IsDg7mA">https://youtu.be/DS-4IsDg7mA</a>. Additional videos can be found by searching for the keywords: <code>wolves isle royale</code>.</p>
+<strong>Conclusions</strong>
+<p>The examples show that predator-prey interactions are far more complex in practice than the Lotka-Volterra model. The model is not suitable for making predictions, but, as in the app’s simulation experiments, one can derive fundamental insights into the emergence of population fluctuations or the establishment of equilibria.</p>
+<p>In practical models, various model components are combined: exponential growth, logistic growth, multiple resources, and predator-prey interactions. Additionally, the models incorporate current data on nutirients, weather, climate, and human influence.</p>
+<strong>References</strong>
+<p>Brockwell, P. J. and Davis, R. A. (1991). Time Series and Forecasting Methods. Second edition. Springer. Series G (p.&nbsp;557).</p>
+<p>Sommer, U., Adrian, R., De Senerpont Domis, L., Elser, J. J., Gaedke, U., Ibelings, B., Jeppesen, E., Lürling, M., Molinero, J. C., Mooij, W. M., van Donk, E., &amp; Winder, M. (2012). Beyond the Plankton Ecology Group (PEG) Model: Mechanisms Driving Plankton Succession. Annual Review of Ecology, Evolution, and Systematics, 43, 429–448. <a href="https://doi.org/10.1146/annurev-ecolsys-110411-160251">doi:10.1146/annurev-ecolsys-110411-160251</a></p>
+<p>Vucetich, J.A. (2021) Restoring the Balance: What Wolves Tell Us about Our Relationship with Nature. Johns Hopkins University Press.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 900
+
+## Fixed step Runge-Kutta solver
+rk4 &lt;- function(y, times, func, parms) {
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  out[1, ] &lt;- c(times[1], y)
+  colnames(out) &lt;- c("time", names(y))
+  current_y &lt;- y
+  for (i in 1:(length(times) - 1)) {
+    t_curr &lt;- times[i]
+    t_next &lt;- times[i + 1]
+    h &lt;- t_next - t_curr
+    k1 &lt;- unlist(func(t_curr,          current_y,              parms))
+    k2 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k1 / 2, parms))
+    k3 &lt;- unlist(func(t_curr + h / 2,  current_y + h * k2 / 2, parms))
+    k4 &lt;- unlist(func(t_next,          current_y + h * k3,     parms))
+    current_y &lt;- current_y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+    out[i + 1, ] &lt;- c(t_next, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+## Variable time step ode45 Solver
+ode45 &lt;- function(y, times, func, parms, rtol = 1e-6, atol = 1e-6) {
+  # Dormand-Prince (RK45) Coefficients
+  c_val &lt;- c(0, 1/5, 3/10, 4/5, 8/9, 1, 1)
+  a &lt;- list(
+    c(),
+    c(1/5),
+    c(3/40, 9/40),
+    c(44/45, -56/15, 32/9),
+    c(19372/6561, -25360/2187, 64448/6561, -212/729),
+    c(9017/3168, -355/33, 46732/5247, 49/176, -5103/18656),
+    c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84)
+  )
+  # Coefficients for order 5 (b1) and order 4 4 (b2) for error estimation
+  b1 &lt;- c(35/384, 0, 500/1113, 125/192, -2187/6784, 11/84, 0)
+  b2 &lt;- c(5179/57600, 0, 7571/16695, 393/640, -92097/339200, 187/2100, 1/40)
+  
+  out &lt;- matrix(NA, nrow = length(times), ncol = length(y) + 1)
+  colnames(out) &lt;- c("time", names(y))
+  out[1, ] &lt;- c(times[1], y)
+  
+  current_y &lt;- y
+  t_curr &lt;- times[1]
+  h &lt;- min(diff(times)) # initial step size
+  
+  for (i in 2:length(times)) {
+    t_target &lt;- times[i]
+    
+    # Loop over the external time steps
+    while (t_curr &lt; t_target) {
+      if (t_curr + h &gt; t_target) h &lt;- t_target - t_curr
+      
+      # calculate levels (k1 ... k7)
+      k &lt;- matrix(NA, nrow = 7, ncol = length(y))
+      k[1, ] &lt;- unlist(func(t_curr, current_y, parms))
+      
+      for (s in 2:7) {
+        y_step &lt;- current_y + h * colSums(a[[s]] * k[1:(s-1), , drop = FALSE])
+        k[s, ] &lt;- unlist(func(t_curr + c_val[s] * h, y_step, parms))
+      }
+      
+      # estimate error between orders 4 and 5
+      y5 &lt;- current_y + h * colSums(b1 * k)
+      y4 &lt;- current_y + h * colSums(b2 * k)
+      error_est &lt;- max(abs(y5 - y4) / (atol + rtol * abs(y5)))
+      
+      if (error_est &lt;= 1.0 || h &lt; 1e-5) {
+        # accepted step
+        current_y &lt;- y5
+        t_curr &lt;- t_curr + h
+        # optimize step for the future
+        h &lt;- h * min(5, max(0.2, 0.9 * (1 / error_est)^0.2))
+      } else {
+        # reject step; decrease and try again
+        h &lt;- h * max(0.1, 0.9 * (1 / error_est)^0.25)
+      }
+    }
+    out[i, ] &lt;- c(t_target, current_y)
+  }
+  return(as.data.frame(out))
+}
+
+
+
+
+library(shiny)
+
+# ==============================================================================
+# 1. MODEL EQUATIONS (Lotka-Volterra / Predator-Prey)
+# ==============================================================================
+lv &lt;- function (t, x, parms) {
+  with(as.list(c(x, parms)), {
+    dB &lt;- a * B - b * R * B
+    dR &lt;- c * R * B - d * R
+    list(c(dB, dR))
+  })
+}
+
+# ==============================================================================
+# 2. SHINY USER INTERFACE (Simulates the 2-column Dashboard layout)
+# ==============================================================================
+ui &lt;- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      /* Seamless integration into the Quarto Dashboard */
+      body { background-color: transparent; padding: 0; margin: 0; } 
+      .container-fluid { padding: 5px; }
+      .well { background-color: #f8f9fa; border: 1px solid #e3e3e3; box-shadow: none; }
+      .btn-download { width: 100%; margin-top: 15px; font-weight: bold; }
+    "))
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      width = 4, # Left panel (approx. 33% width)
+      h4("Initial Values"),
+      numericInput("lv_B0", "B0: Prey abundance", value = 1.0, min = 0, max = 2, step = 0.1),
+      numericInput("lv_R0", "R0: Predator abundance", value = 0.5, min = 0, max = 2, step = 0.1),
+      hr(),
+      h4("Parameters"),
+      sliderInput("lv_a", "a: Prey growth rate", value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("lv_b", "b: Prey loss rate (predation)", value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("lv_c", "c: Predator efficiency", value = 0.1, min = 0, max = 1, step = 0.02),
+      sliderInput("lv_d", "d: Predator mortality rate", value = 0.1, min = 0, max = 1, step = 0.02),
+      hr(),
+      # Native browser data extraction trigger
+      downloadButton("downloadData", "Download Simulation Data", class = "btn-download")
+    ),
+    mainPanel(
+      width = 8, # Right panel (approx. 66% width)
+      plotOutput("lv_plot", height = "520px")
+    )
+  )
+)
+
+# ==============================================================================
+# 3. SHINY SERVER LOGIC (Fast Base-R with standalone export bridge)
+# ==============================================================================
+server &lt;- function(input, output, session) {
+  times &lt;- seq(0, 200, by = 1)
+  
+  # Explicit namespace mapping to guarantee webR environment discovery
+  simulate_data &lt;- shiny::reactive({
+    req(input$lv_a, input$lv_b, input$lv_c, input$lv_d, input$lv_B0, input$lv_R0)
+    
+    parms &lt;- c(a = input$lv_a, b = input$lv_b, c = input$lv_c, d = input$lv_d)
+    y0    &lt;- c(B = input$lv_B0, R = input$lv_R0)
+    
+    # differential equation solver in pure R
+    ode45(y0, times, lv, parms, atol = 1e-4, rtol = 1e-4)
+  })
+  
+  # Render routine via high-performance Base-R
+  output$lv_plot &lt;- renderPlot({
+    res &lt;- simulate_data()
+    
+    par(mar = c(4.5, 4.5, 2, 1))
+    
+    plot(res$time, res$B, type = "l", col = "#69af22", lwd = 3,
+         ylim = c(0, max(c(res$B, res$R)) * 1.05),
+         xlab = "Time", ylab = "Abundance", main = "Predator-Prey Population Dynamics",
+         bty = "l", las = 1, cex.lab = 1.1, cex.axis = 1.0)
+         
+    lines(res$time, res$R, col = "#009de0", lwd = 3)
+    
+    legend("topright", legend = c("Prey", "Predator"), 
+           col = c("#69af22", "#009de0"), lty = 1, lwd = 3, bty = "n", cex = 1.1)
+  })
+  
+  # ============================================================================
+  # DOWNLOAD HANDLER (Serverless browser engine extraction)
+  # ============================================================================
+  output$downloadData &lt;- downloadHandler(
+    filename = function() {
+      paste("lotka-volterra-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".csv", sep = "")
+    },
+    content = function(file) {
+      res &lt;- simulate_data()
+      
+      # Clean structural headers for direct spreadsheet use
+      export_df &lt;- data.frame(
+        Time     = res$time,
+        Prey     = res$B,
+        Predator = res$R
+      )
+      
+      # Standard US English CSV format
+      write.csv(export_df, file, row.names = FALSE)
+    }
+  )
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /container fluid -->
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>

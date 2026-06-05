@@ -1,0 +1,3 @@
+project:
+  type: default
+  output-dir: ../docs   # Tells Quarto to compile everything directly into /docs
