@@ -1,5 +1,5 @@
-![](../www/blackman_en.svg){width="49%" fig-alt="Graphical representation of the Blackman model."}
-![](../www/monod_en.svg){width="49%" fig-alt="Graphical representation of the Monod model."}
+![](www/blackman_en.svg){width="49%" fig-alt="Graphical representation of the Blackman model."}
+![](www/monod_en.svg){width="49%" fig-alt="Graphical representation of the Monod model."}
 
 
 **Growth Kinetics**

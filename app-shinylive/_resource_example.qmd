@@ -1,4 +1,4 @@
-![](../www/ressource-utilization_en.png){fig-alt="The image the temporal trend in algae abundance represented by an upward-sloping curve, while the nutrient concentration is represented by a downward-sloping S-shaped curve." width="100%" fig-align="center"}
+![](www/ressource-utilization_en.png){fig-alt="The image the temporal trend in algae abundance represented by an upward-sloping curve, while the nutrient concentration is represented by a downward-sloping S-shaped curve." width="100%" fig-align="center"}
 ---
 
 
