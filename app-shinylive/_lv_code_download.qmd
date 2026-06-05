@@ -1,6 +1,7 @@
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 900
+#| viewerHeight: 100%
+#| classes: .fill
 
 {{< include solvers.R >}}
 
